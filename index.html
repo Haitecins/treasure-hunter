@@ -10,35 +10,42 @@
     <title>Treasure &#9733; Hunter</title>
     <link rel="shortcut icon" href="/src/assets/icons/favicon.ico" />
   </head>
-  <body class="w-full h-full" style="display: none">
+  <body class="w-full h-full bg-neutral-50" style="display: none">
     <div id="root" class="w-full h-full relative">
       <div
         id="name-modal"
-        class="h-96 w-192 absolute inset-0 m-auto border rounded-3xl p-4 shadow-md"
+        class="w-192 absolute inset-0 m-auto border rounded-3xl py-10 px-6 h-fit shadow-md"
       >
-        <div
-          class="text-4xl bg-gradient-to-r from-lime-600 to-green-500 text-white px-2 py-2 text-center m-auto rounded-3xl mt-6 mb-8"
-        >
-          输入你想使用的名称
+        <div id="is-naming">
+          <div
+            class="text-5xl text-center m-auto rounded-3xl mb-8 text-neutral-800"
+          >
+            输入你想使用的名称
+          </div>
+          <label>
+            <input
+              id="name-input"
+              class="border-2 text-3xl outline-0 block m-auto px-5 py-2 border-gray-200 w-96 mb-8 focus:border-gray-400 transition-colors text-neutral-700"
+              type="text"
+              maxlength="15"
+            />
+          </label>
+          <div
+            id="name-tip"
+            class="h-12 w-full mb-8 text-center text-3xl text-neutral-700"
+          ></div>
+          <button
+            id="name-confirm"
+            class="px-6 py-2 rounded-2xl text-4xl block m-auto text-neutral-800"
+          >
+            确定
+          </button>
         </div>
-        <label>
-          <input
-            id="name-input"
-            class="border-2 text-3xl outline-0 block m-auto px-5 py-2 border-gray-200 text-slate-600 w-96 mb-8 focus:border-gray-400 transition-colors"
-            type="text"
-            maxlength="10"
-          />
-        </label>
-        <div
-          id="name-tip"
-          class="h-12 w-full mb-8 text-center text-3xl text-slate-600"
-        ></div>
-        <button
-          id="name-ok"
-          class="px-6 py-2 rounded-2xl text-3xl block m-auto bg-gradient-to-r from-lime-600 to-green-500 text-white"
-        >
-          OK
-        </button>
+        <div id="welcome-bar" class="hidden">
+          <h1
+            class="text-4xl py-2 text-center m-auto rounded-3xl text-slate-800"
+          ></h1>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
