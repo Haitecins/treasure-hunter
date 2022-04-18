@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" class="w-full h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,8 +10,37 @@
     <title>Treasure &#9733; Hunter</title>
     <link rel="shortcut icon" href="/src/assets/icons/favicon.ico" />
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="w-full h-full" style="display: none">
+    <div id="root" class="w-full h-full relative">
+      <div
+        id="name-modal"
+        class="h-96 w-192 absolute inset-0 m-auto border rounded-3xl p-4 shadow-md"
+      >
+        <div
+          class="text-4xl bg-gradient-to-r from-lime-600 to-green-500 text-white px-2 py-2 text-center m-auto rounded-3xl mt-6 mb-8"
+        >
+          输入你想使用的名称
+        </div>
+        <label>
+          <input
+            id="name-input"
+            class="border-2 text-3xl outline-0 block m-auto px-5 py-2 border-gray-200 text-slate-600 w-96 mb-8 focus:border-gray-400 transition-colors"
+            type="text"
+            maxlength="10"
+          />
+        </label>
+        <div
+          id="name-tip"
+          class="h-12 w-full mb-8 text-center text-3xl text-slate-600"
+        ></div>
+        <button
+          id="name-ok"
+          class="px-6 py-2 rounded-2xl text-3xl block m-auto bg-gradient-to-r from-lime-600 to-green-500 text-white"
+        >
+          OK
+        </button>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
