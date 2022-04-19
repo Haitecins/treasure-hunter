@@ -10,9 +10,11 @@ const namingElements = {
   welcomeBar: document.querySelector("#welcome-bar")!,
 };
 const { modal, confirm, tip, input, isNaming, welcomeBar } = namingElements;
-const showWelcomeBar = (name: string) => {
+const showWelcomeBar = () => {
   isNaming.remove();
-  welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${name}！`;
+  welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
+    localstorage.get().name
+  }！`;
   welcomeBar.classList.remove("hidden");
   const timeline = anime.timeline({
     targets: modal,
@@ -46,12 +48,12 @@ if (!localstorage.get().name) {
       localstorage.save((data) => {
         data.name = input.value;
       });
-      showWelcomeBar(localstorage.get().name);
+      showWelcomeBar();
     }
   });
   input.addEventListener("input", () => {
     tip.innerHTML = "";
   });
 } else {
-  showWelcomeBar(localstorage.get().name);
+  showWelcomeBar();
 }
