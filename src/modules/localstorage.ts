@@ -9,17 +9,14 @@ const db_name = "th_db";
  */
 const load = () => {
   if (localStorage.getItem(db_key)) {
-    Object.defineProperty(window, db_name, {
-      value: JSON.parse(localStorage.getItem(db_key)!),
-    });
-    console.log("游戏数据已加载！");
+    console.log("Loading...");
   } else {
     localStorage.setItem(db_key, JSON.stringify(metadata));
-    Object.defineProperty(window, db_name, {
-      value: JSON.parse(localStorage.getItem(db_key)!),
-    });
-    console.log("正在初始化游戏数据。");
+    console.log("Init...");
   }
+  Object.defineProperty(window, db_name, {
+    value: JSON.parse(localStorage.getItem(db_key)!),
+  });
 };
 
 // 加载或初始化游戏数据
@@ -34,7 +31,7 @@ const save = (callback?: (data: Metadata) => void) => {
   try {
     callback?.(db_temp);
     localStorage.setItem(db_key, JSON.stringify(db_temp));
-    console.log("游戏数据已保存！", db_temp);
+    console.log("Saved!", db_temp);
   } catch (e) {
     console.error(e);
   }
