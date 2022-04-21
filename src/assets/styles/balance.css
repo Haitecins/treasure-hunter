@@ -1,0 +1,9 @@
+@layer components {
+  .th-bal-modal {
+    @apply pr-6 flex h-8;
+  }
+
+  .th-bal-icon {
+    @apply w-8 h-full bg-no-repeat bg-contain bg-center block mr-4 scale-150;
+  }
+}

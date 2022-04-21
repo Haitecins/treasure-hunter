@@ -1,7 +1,19 @@
+@import "naming.css";
+@import "personal.css";
+@import "chunk.css";
+@import "balance.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
   src: url("../fonts/zh-cn.ttf");
   font-family: "default";
+}
+
+@layer components {
+  .pixelated-rendering {
+    image-rendering: pixelated;
+  }
 }

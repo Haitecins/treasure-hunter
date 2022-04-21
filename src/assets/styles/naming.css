@@ -1,0 +1,17 @@
+@layer components {
+  .th-naming-modal {
+    @apply w-192 absolute inset-0 m-auto border border-th-white py-10 px-6 h-fit rounded-2xl;
+  }
+
+  .th-name-input {
+    @apply border border-th-grey text-2xl outline-0 block m-auto px-5 py-1 w-96 mb-8 transition-colors text-th-white bg-transparent;
+  }
+
+  .th-name-tip {
+    @apply h-12 w-full mb-8 text-center text-3xl text-th-white;
+  }
+
+  .th-name-confirm {
+    @apply px-6 py-2 text-3xl block m-auto text-th-white border border-th-grey;
+  }
+}
