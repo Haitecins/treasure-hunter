@@ -1,7 +1,8 @@
 import anime from "animejs";
-import localstorage from "./localstorage";
+import scene from "./scene";
+import localstorage from "../utils/localstorage";
 
-const namingElements = {
+const namingObject = {
   modal: document.querySelector("#name-modal")!,
   confirm: document.querySelector("#name-confirm")!,
   tip: document.querySelector("#name-tip")!,
@@ -9,51 +10,64 @@ const namingElements = {
   isNaming: document.querySelector("#is-naming")!,
   welcomeBar: document.querySelector("#welcome-bar")!,
 };
-const { modal, confirm, tip, input, isNaming, welcomeBar } = namingElements;
+
+// 显示欢迎消息的功能
 const showWelcomeBar = () => {
+  const { modal, isNaming, welcomeBar } = namingObject;
+  const timeline = anime.timeline({
+    targets: modal,
+  });
+
   isNaming.remove();
   welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
     localstorage.get().name
   }！`;
   welcomeBar.classList.remove("hidden");
-  const timeline = anime.timeline({
-    targets: modal,
-  });
   timeline.add({
     duration: 1000,
-    translateY: [600, 0],
+    translateY: [450, 0],
   });
   timeline.add({
     opacity: 0,
-    duration: 400,
-    easing: "easeOutSine",
+    duration: 500,
+    easing: "easeInOutQuad",
     complete() {
+      // 删除naming模块
       modal.remove();
+      // 显示Home模块
+      scene.home.show();
     },
   });
 };
 
 if (!localstorage.get().name) {
-  anime({
-    targets: modal,
-    duration: 1000,
-    translateY: [-600, 0],
-  });
-  confirm.addEventListener("click", () => {
-    if (input.value === "") {
+  const { modal, confirm, tip, input } = namingObject;
+  // 命名处理程序
+  const namingHandler = () => {
+    if (input.value === "" || input.value.trim() === "") {
       tip.innerHTML = "名称不能为空！";
     } else if (input.value.length > 15) {
       tip.innerHTML = "名称的长度不能超过10个字符！";
     } else {
       localstorage.save((data) => {
-        data.name = input.value;
+        data.name = input.value.trim();
       });
       showWelcomeBar();
     }
+  };
+
+  anime({
+    targets: modal,
+    duration: 1000,
+    translateY: [-600, 0],
   });
-  input.addEventListener("input", () => {
+  confirm.addEventListener("click", namingHandler);
+  input.addEventListener("keydown", (ev) => {
     tip.innerHTML = "";
+    ev.code === "Enter" && namingHandler();
   });
 } else {
   showWelcomeBar();
 }
+
+export default namingObject;
