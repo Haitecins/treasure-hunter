@@ -1,6 +1,15 @@
 module.exports = {
-  content: ["./index.html", "./src/modules/**/*.{js,ts}"],
+  content: [
+    "./index.html",
+    "./src/modules/**/*.{js,ts}",
+    "./src/utils/**/*.{js,ts}",
+  ],
   theme: {
+    backgroundImage: {
+      "bal-copper-ingot": 'url("/src/assets/icons/copper_ingot.png")',
+      "bal-iron-ingot": 'url("/src/assets/icons/iron_ingot.png")',
+      "bal-gold-ingot": 'url("/src/assets/icons/gold_ingot.png")',
+    },
     extend: {
       colors: {
         "th-black": "#252423",
