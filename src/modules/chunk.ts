@@ -1,4 +1,3 @@
-import scene from "./scene";
 import entities from "./entities";
 import listener from "./listener";
 
@@ -25,8 +24,6 @@ const chunkObject = {
     this.hide();
     this.clear();
     import.meta.env.DEV && console.log("Chunk模块销毁");
-    // 显示Home模块
-    scene.home.show();
   },
 };
 
