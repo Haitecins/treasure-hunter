@@ -14,7 +14,7 @@
       "prettier --write --ignore-unknown"
     ],
     "*.{js,ts}": [
-      "tsc-files --noEmit"
+      "tsc-files --project tsconfig.husky.json"
     ]
   },
   "devDependencies": {
