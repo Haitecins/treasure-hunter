@@ -8,12 +8,13 @@ const entitiesObject = {
   animeInstance: null as unknown as anime.AnimeInstance,
   enable() {
     import.meta.env.DEV && console.log("Entities模块加载");
-    import.meta.env.DEV && console.log("开始生成实体");
-
     // 生成实体
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
+      begin() {
+        import.meta.env.DEV && console.log("开始生成实体");
+      },
       loopComplete: () => {
         // 超过20个实体则停止生成
         if (this.modal.children.length >= 20) return;
