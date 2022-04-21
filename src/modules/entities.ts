@@ -1,5 +1,5 @@
 import anime from "animejs";
-import chars from "./chars";
+import chars from "../utils/chars";
 import colors from "./colors";
 import navigate from "./navigate";
 
