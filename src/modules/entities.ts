@@ -45,6 +45,7 @@ const entitiesObject = {
       "absolute"
     );
     el.innerHTML = el.activeKey = char;
+    el.isActive = false;
     this.modal.appendChild(el);
 
     return el;
@@ -72,5 +73,6 @@ export { Entity };
 
 interface Entity extends HTMLDivElement {
   activeKey: string;
+  isActive: boolean;
   tracker: anime.AnimeInstance;
 }

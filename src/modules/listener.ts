@@ -4,15 +4,16 @@ import entities, { Entity } from "./entities";
 
 const downHandler = (ev: KeyboardEvent) => {
   document.onkeydown = null;
-  import.meta.env.DEV && console.log(ev);
   const children = <Entity[]>(
     Array.prototype.slice.call(entities.modal.children)
   );
 
   children.forEach((el) => {
-    const { activeKey } = el;
+    const { activeKey, isActive } = el;
 
-    if (ev.key.toLowerCase() === activeKey.toLowerCase()) {
+    if (!isActive && ev.key.toLowerCase() === activeKey.toLowerCase()) {
+      // 防止重复执行
+      el.isActive = !el.isActive;
       // 停止路线动画
       el.tracker.pause();
       // 执行消失动画
