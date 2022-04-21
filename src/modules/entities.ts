@@ -28,17 +28,7 @@ const entitiesObject = {
     const char = chars.random().toUpperCase();
     const color = colors.random();
 
-    el.classList.add(
-      ...color,
-      "w-24",
-      "h-24",
-      "text-2xl",
-      "flex",
-      "justify-center",
-      "items-center",
-      "rounded-full",
-      "absolute"
-    );
+    el.classList.add(...color, "th-entity");
     el.innerHTML = el.activeKey = char;
     el.isActive = false;
     this.modal.appendChild(el);

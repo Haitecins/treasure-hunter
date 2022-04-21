@@ -1,0 +1,5 @@
+@layer components {
+  .th-entity {
+    @apply w-24 h-24 text-2xl flex justify-center items-center rounded-full absolute;
+  }
+}

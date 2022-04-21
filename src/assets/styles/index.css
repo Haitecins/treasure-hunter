@@ -2,6 +2,7 @@
 @import "personal.css";
 @import "chunk.css";
 @import "balance.css";
+@import "entity.css";
 
 @tailwind base;
 @tailwind components;
