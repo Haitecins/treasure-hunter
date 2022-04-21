@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" class="w-full h-full select-none">
+<html lang="zh" class="w-full h-full select-none pixelated-rendering">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,10 +12,7 @@
   </head>
   <body class="w-full h-full bg-th-black" style="display: none">
     <div id="root" class="w-full h-full relative">
-      <div
-        id="name-modal"
-        class="w-192 absolute inset-0 m-auto border border-th-white py-10 px-6 h-fit rounded-2xl"
-      >
+      <div id="name-modal" class="th-naming-modal">
         <div id="is-naming">
           <div class="text-5xl text-center m-auto mb-8 text-th-white">
             输入你想使用的名称
@@ -23,21 +20,13 @@
           <label>
             <input
               id="name-input"
-              class="border border-th-grey text-2xl outline-0 block m-auto px-5 py-1 w-96 mb-8 transition-colors text-th-white bg-transparent"
+              class="th-name-input"
               type="text"
               maxlength="15"
             />
           </label>
-          <div
-            id="name-tip"
-            class="h-12 w-full mb-8 text-center text-3xl text-th-white"
-          ></div>
-          <button
-            id="name-confirm"
-            class="px-6 py-2 text-3xl block m-auto text-th-white border border-th-grey"
-          >
-            确定
-          </button>
+          <div id="name-tip" class="th-name-tip"></div>
+          <button id="name-confirm" class="th-name-confirm">确定</button>
         </div>
         <div id="welcome-bar" class="hidden">
           <h1 class="text-3xl text-center m-auto text-th-white"></h1>
@@ -48,14 +37,28 @@
         id="home-modal"
         class="hidden absolute inset-0 text-th-white text-2xl"
       >
-        <p>Home页面</p>
-        <button id="home-start" class="text-2xl">开始游戏</button>
+        <!-- personal status bar -->
+        <div id="personal-modal" class="th-personal-modal">
+          <div class="th-bal-modal">
+            <i class="th-bal-icon bg-bal-copper-ingot"></i>
+            <div>114,514</div>
+          </div>
+          <div class="th-bal-modal">
+            <i class="th-bal-icon bg-bal-iron-ingot"></i>
+            <div>1,919</div>
+          </div>
+          <div class="th-bal-modal">
+            <i class="th-bal-icon bg-bal-gold-ingot"></i>
+            <div>810</div>
+          </div>
+        </div>
+        <!-- start game button -->
+        <div class="absolute right-0 bottom-0">
+          <button id="home-start" class="text-2xl">开始游戏</button>
+        </div>
       </div>
       <!-- game area -->
-      <div
-        id="chunk-modal"
-        class="overflow-hidden hidden absolute inset-0 text-2xl text-white"
-      >
+      <div id="chunk-modal" class="th-chunk-modal hidden">
         <!-- difficulty -->
         <div
           id="diff-modal"
