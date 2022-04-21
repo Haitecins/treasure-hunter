@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" class="w-full h-full">
+<html lang="zh" class="w-full h-full select-none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,42 +10,65 @@
     <title>Treasure &#9733; Hunter</title>
     <link rel="shortcut icon" href="/src/assets/icons/favicon.ico" />
   </head>
-  <body class="w-full h-full bg-neutral-50" style="display: none">
+  <body class="w-full h-full bg-th-black" style="display: none">
     <div id="root" class="w-full h-full relative">
       <div
         id="name-modal"
-        class="w-192 absolute inset-0 m-auto border rounded-3xl py-10 px-6 h-fit shadow-md"
+        class="w-192 absolute inset-0 m-auto border border-th-white py-10 px-6 h-fit rounded-2xl"
       >
         <div id="is-naming">
-          <div
-            class="text-5xl text-center m-auto rounded-3xl mb-8 text-neutral-800"
-          >
+          <div class="text-5xl text-center m-auto mb-8 text-th-white">
             输入你想使用的名称
           </div>
           <label>
             <input
               id="name-input"
-              class="border-2 text-3xl outline-0 block m-auto px-5 py-2 border-gray-200 w-96 mb-8 focus:border-gray-400 transition-colors text-neutral-700"
+              class="border border-th-grey text-2xl outline-0 block m-auto px-5 py-1 w-96 mb-8 transition-colors text-th-white bg-transparent"
               type="text"
               maxlength="15"
             />
           </label>
           <div
             id="name-tip"
-            class="h-12 w-full mb-8 text-center text-3xl text-neutral-700"
+            class="h-12 w-full mb-8 text-center text-3xl text-th-white"
           ></div>
           <button
             id="name-confirm"
-            class="px-6 py-2 rounded-2xl text-4xl block m-auto text-neutral-800"
+            class="px-6 py-2 text-3xl block m-auto text-th-white border border-th-grey"
           >
             确定
           </button>
         </div>
         <div id="welcome-bar" class="hidden">
-          <h1
-            class="text-4xl py-2 text-center m-auto rounded-3xl text-slate-800"
-          ></h1>
+          <h1 class="text-3xl text-center m-auto text-th-white"></h1>
         </div>
+      </div>
+      <!-- main page -->
+      <div
+        id="home-modal"
+        class="hidden absolute inset-0 text-th-white text-2xl"
+      >
+        <p>Home页面</p>
+        <button id="home-start" class="text-2xl">开始游戏</button>
+      </div>
+      <!-- game area -->
+      <div
+        id="chunk-modal"
+        class="overflow-hidden hidden absolute inset-0 text-2xl text-white"
+      >
+        <!-- difficulty -->
+        <div
+          id="diff-modal"
+          class="text-4xl absolute inset-x-0 text-center top-24"
+        >
+          <span class="text-th-info">简单</span>难度 <span>Lv.1</span>
+        </div>
+        <div
+          id="ticks-modal"
+          class="text-th-warn text-3xl absolute inset-x-0 top-48 text-center"
+        ></div>
+        <!-- summon entities -->
+        <div id="chunk-entities"></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
