@@ -31,7 +31,7 @@ const showWelcomeBar = () => {
   // 为欢迎消息添加动画
   timeline.add({
     duration: 1000,
-    translateY: [450, 0],
+    translateY: [document.documentElement.clientHeight, 0],
   });
   timeline.add({
     opacity: 0,

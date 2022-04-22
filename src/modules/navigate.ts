@@ -6,10 +6,10 @@ const navigate = (el: Entity) => {
     targets: el,
   });
   const x = Math.floor(
-    Math.random() * (document.body.clientWidth - el.clientWidth)
+    Math.random() * (document.documentElement.clientWidth - el.clientWidth)
   );
   const y = Math.floor(
-    Math.random() * (document.body.clientHeight - el.clientHeight)
+    Math.random() * (document.documentElement.clientHeight - el.clientHeight)
   );
 
   // 将路线动画实例对象给tracker属性控制
@@ -33,26 +33,32 @@ const navigate = (el: Entity) => {
     keyframes: [
       {
         translateX: Math.floor(
-          Math.random() * (document.body.clientWidth - el.clientWidth)
+          Math.random() *
+            (document.documentElement.clientWidth - el.clientWidth)
         ),
         translateY: Math.floor(
-          Math.random() * (document.body.clientHeight - el.clientHeight)
+          Math.random() *
+            (document.documentElement.clientHeight - el.clientHeight)
         ),
       },
       {
         translateX: Math.floor(
-          Math.random() * (document.body.clientWidth - el.clientWidth)
+          Math.random() *
+            (document.documentElement.clientWidth - el.clientWidth)
         ),
         translateY: Math.floor(
-          Math.random() * (document.body.clientHeight - el.clientHeight)
+          Math.random() *
+            (document.documentElement.clientHeight - el.clientHeight)
         ),
       },
       {
         translateX: Math.floor(
-          Math.random() * (document.body.clientWidth - el.clientWidth)
+          Math.random() *
+            (document.documentElement.clientWidth - el.clientWidth)
         ),
         translateY: Math.floor(
-          Math.random() * (document.body.clientHeight - el.clientHeight)
+          Math.random() *
+            (document.documentElement.clientHeight - el.clientHeight)
         ),
       },
     ],
