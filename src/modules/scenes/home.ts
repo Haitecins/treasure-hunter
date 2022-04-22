@@ -2,6 +2,7 @@ import anime from "animejs";
 import chunk from "../chunk";
 import listener from "../listener";
 import ticks from "../ticks";
+import account from "../account";
 
 const homeObject = {
   modal: document.querySelector("#home-modal")!,
@@ -9,6 +10,7 @@ const homeObject = {
   show() {
     import.meta.env.DEV && console.log("Home模块显示");
     this.modal.classList.remove("hidden");
+    account.update();
     anime({
       targets: this.modal,
       opacity: [0, 1],
