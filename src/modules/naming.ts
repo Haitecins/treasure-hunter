@@ -18,11 +18,17 @@ const showWelcomeBar = () => {
     targets: modal,
   });
 
+  // 删除name-modal元素
   isNaming.remove();
+  // 修改标题栏
+  document.title += ` (${localstorage.get().name})`;
+  // 修改欢迎消息
   welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
     localstorage.get().name
   }！`;
+  // 显示欢迎消息
   welcomeBar.classList.remove("hidden");
+  // 为欢迎消息添加动画
   timeline.add({
     duration: 1000,
     translateY: [450, 0],
