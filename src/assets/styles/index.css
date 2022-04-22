@@ -13,6 +13,12 @@
   font-family: "default";
 }
 
+@layer base {
+  button {
+    @apply outline-none;
+  }
+}
+
 @layer components {
   .pixelated-rendering {
     image-rendering: pixelated;
