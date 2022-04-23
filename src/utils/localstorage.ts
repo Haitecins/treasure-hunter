@@ -5,8 +5,8 @@ const metadata: Metadata = {
   needExp: 100,
   historyBreak: 0,
   balances: {
-    copper: 500,
-    iron: 150,
+    copper: 100,
+    iron: 0,
     gold: 0,
   },
   version: "1.0",
