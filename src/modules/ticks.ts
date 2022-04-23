@@ -28,8 +28,8 @@ const tickModule = {
       loopBegin: () => {
         this.rootElement.innerHTML = convert(this.seconds--, () => {
           console.log("时间到！");
-          this.animeInstance.restart();
-          this.animeInstance.pause();
+          // 停止计时
+          this.stop();
           // 重置计时
           this.reset();
           // 清理Chunk模块
@@ -38,9 +38,14 @@ const tickModule = {
       },
     });
   },
+  stop() {
+    this.animeInstance.restart();
+    this.animeInstance.pause();
+    console.log("计时停止");
+  },
   reset() {
     this.seconds = 30;
-    console.log("计时已重置");
+    console.log("已重置计时");
   },
 };
 
