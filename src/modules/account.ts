@@ -2,6 +2,7 @@ import localstorage from "../utils/localstorage";
 import formatter from "../utils/formatter";
 
 const accountObject = {
+  modal: document.querySelector("#account-modal")!,
   info: document.querySelector("#account-info")!,
   balances: {
     copper: document.querySelector("#bal-copper-ingot>div")!,
