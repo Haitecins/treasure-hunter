@@ -5,19 +5,19 @@ import ticks from "../ticks";
 import account from "../account";
 
 const homeScene = {
-  scene: document.querySelector("#home-scene")!,
+  rootElement: document.querySelector("#home-scene")!,
   start: document.querySelector("#home-start")!,
   show() {
     console.log("正在加载Home模块");
     anime({
-      targets: this.scene,
+      targets: this.rootElement,
       opacity: [0, 1],
       duration: 200,
       easing: "easeInOutSine",
       begin: () => {
         // 更新Account模块
         account.update();
-        this.scene.classList.remove("hidden");
+        this.rootElement.classList.remove("hidden");
       },
       // 加载完成后添加按钮事件
       complete: () => {
@@ -42,12 +42,12 @@ const homeScene = {
   },
   hide(animeComplete: () => void) {
     anime({
-      targets: this.scene,
+      targets: this.rootElement,
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
       complete: () => {
-        this.scene.classList.add("hidden");
+        this.rootElement.classList.add("hidden");
         console.log("Home模块隐藏");
         animeComplete();
       },

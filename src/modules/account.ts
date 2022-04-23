@@ -2,7 +2,7 @@ import localstorage from "../utils/localstorage";
 import formatter from "../utils/formatter";
 
 const accountModule = {
-  module: document.querySelector("#account-module")!,
+  rootElement: document.querySelector("#account-module")!,
   info: document.querySelector("#account-info>div")!,
   balances: {
     copper: document.querySelector("#bal-copper-ingot>div")!,

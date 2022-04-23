@@ -2,13 +2,13 @@ import anime from "animejs";
 import chunk from "./scenes/chunk";
 
 const tickModule = {
-  module: document.querySelector("#ticks-module")!,
+  rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
   seconds: 30,
   start() {
     console.log("计时开始");
     // 清空上一个tick计时内容
-    this.module.innerHTML = "";
+    this.rootElement.innerHTML = "";
     const convert = (sec: number, callback: () => void) => {
       let m: string | number = Math.floor(sec / 60);
       let s: string | number = sec % 60;
@@ -26,7 +26,7 @@ const tickModule = {
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        this.module.innerHTML = convert(this.seconds--, () => {
+        this.rootElement.innerHTML = convert(this.seconds--, () => {
           console.log("时间到！");
           this.animeInstance.restart();
           this.animeInstance.pause();

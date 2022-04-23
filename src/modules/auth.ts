@@ -3,7 +3,7 @@ import scene from "./scene";
 import localstorage from "../utils/localstorage";
 
 const authModule = {
-  module: document.querySelector("#auth-module")!,
+  rootElement: document.querySelector("#auth-module")!,
   confirm: document.querySelector("#auth-confirm")!,
   tip: document.querySelector("#auth-tip")!,
   input: <HTMLInputElement>document.querySelector("#auth-input"),
@@ -13,7 +13,7 @@ const authModule = {
 
 // 初始化模块
 const init = () => {
-  const { module, confirm, tip, input } = authModule;
+  const { rootElement, confirm, tip, input } = authModule;
   // 命名处理程序
   const loginHandler = () => {
     if (input.value === "" || input.value.trim() === "") {
@@ -29,7 +29,7 @@ const init = () => {
   };
 
   anime({
-    targets: module,
+    targets: rootElement,
     duration: 1000,
     translateY: [-600, 0],
   });
@@ -42,9 +42,9 @@ const init = () => {
 // 模块验证通过
 const success = () => {
   const { clientHeight } = document.documentElement;
-  const { module, isLogin, welcomeBar } = authModule;
+  const { rootElement, isLogin, welcomeBar } = authModule;
   const timeline = anime.timeline({
-    targets: module,
+    targets: rootElement,
   });
 
   // 删除auth-modal元素
@@ -68,7 +68,7 @@ const success = () => {
     easing: "easeInOutQuad",
     complete() {
       // 删除Auth模块
-      module.remove();
+      rootElement.remove();
       // 显示Home模块
       scene.home.show();
     },

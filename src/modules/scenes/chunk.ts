@@ -2,15 +2,15 @@ import entities from "../entities";
 import listener from "../listener";
 
 const chunkScene = {
-  scene: document.querySelector("#chunk-scene")!,
+  rootElement: document.querySelector("#chunk-scene")!,
   play() {
-    this.scene.classList.remove("hidden");
+    this.rootElement.classList.remove("hidden");
     console.log("Chunk模块加载");
     // 启用实体生成模块
     entities.enable();
   },
   hide() {
-    this.scene.classList.add("hidden");
+    this.rootElement.classList.add("hidden");
     console.log("Chunk模块隐藏");
   },
   clear() {
