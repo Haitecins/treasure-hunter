@@ -41,6 +41,7 @@ const init = () => {
 };
 // 模块验证通过
 const success = () => {
+  const { clientHeight } = document.documentElement;
   const { modal, isLogin, welcomeBar } = authObject;
   const timeline = anime.timeline({
     targets: modal,
@@ -59,7 +60,7 @@ const success = () => {
   // 为欢迎消息添加动画
   timeline.add({
     duration: 1000,
-    translateY: [document.documentElement.clientHeight, 0],
+    translateY: [clientHeight, 0],
   });
   timeline.add({
     opacity: 0,
