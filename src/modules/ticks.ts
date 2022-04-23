@@ -1,5 +1,5 @@
 import anime from "animejs";
-import chunk from "./chunk";
+import chunk from "./scenes/chunk";
 
 const tickObject = {
   modal: document.querySelector("#ticks-modal")!,

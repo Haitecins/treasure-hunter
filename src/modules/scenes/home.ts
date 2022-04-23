@@ -1,5 +1,5 @@
 import anime from "animejs";
-import chunk from "../chunk";
+import chunk from "./chunk";
 import listener from "../listener";
 import ticks from "../ticks";
 import account from "../account";

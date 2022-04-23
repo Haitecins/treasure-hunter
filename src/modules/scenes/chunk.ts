@@ -1,5 +1,5 @@
-import entities from "./entities";
-import listener from "./listener";
+import entities from "../entities";
+import listener from "../listener";
 
 const chunkObject = {
   modal: document.querySelector("#chunk-modal")!,
