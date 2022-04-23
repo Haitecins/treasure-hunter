@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write {**/*,*}.{js,ts,html,ejs,css,json}",
+    "format": "prettier --write {**/*,*}.{js,ts,html,css,json}",
     "prepare": "husky install"
   },
   "lint-staged": {
