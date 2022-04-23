@@ -1,3 +1,5 @@
+import anime from "animejs";
+
 const colors = {
   refs: [
     ["bg-th-orange", null],
@@ -13,7 +15,7 @@ const colors = {
     ["bg-th-light-pink", null],
   ],
   random() {
-    const i = Math.floor(Math.random() * this.refs.length);
+    const i = anime.random(0, this.refs.length - 1);
     const [bg, text] = this.refs[i];
 
     return [bg!, text || "text-th-white"];
