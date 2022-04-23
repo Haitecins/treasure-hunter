@@ -1,6 +1,6 @@
 @layer components {
   .th-bal-modal {
-    @apply pr-8 flex h-8;
+    @apply pl-8 flex h-8;
   }
 
   .th-bal-icon {
