@@ -11,5 +11,13 @@
   "quoteProps": "as-needed",
   "arrowParens": "always",
   "trailingComma": "es5",
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": "*.ejs",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }

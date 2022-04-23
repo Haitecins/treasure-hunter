@@ -1,6 +1,6 @@
 root = true
 
-[*.{js,ts,html,css,json}]
+[*.{js,ts,html,ejs,css,json}]
 indent_style = space
 indent_size = 2
 end_of_line = lf
