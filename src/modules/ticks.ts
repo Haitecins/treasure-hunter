@@ -31,7 +31,7 @@ const tickObject = {
           console.log("时间到！");
           this.animeInstance.restart();
           this.animeInstance.pause();
-          // 计时已重置
+          // 重置计时
           this.reset();
           // 清理游戏区域
           chunk.destroy();
