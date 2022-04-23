@@ -15,7 +15,7 @@
   </head>
   <body style="display: none" class="w-full h-full bg-th-black">
     <div id="root" class="w-full h-full relative">
-      <div id="auth-modal" class="th-auth-modal">
+      <div id="auth-module" class="th-auth-module">
         <div id="is-login">
           <div class="text-5xl text-center m-auto mb-8 text-th-white">
             你想使用的名称是？
@@ -37,22 +37,22 @@
       </div>
       <!-- main page -->
       <div
-        id="home-modal"
+        id="home-scene"
         class="hidden absolute inset-0 text-th-white text-2xl"
       >
         <!-- account status bar -->
-        <div id="account-modal" class="th-account-modal">
+        <div id="account-module" class="th-account-module">
           <div id="account-info" class="flex text-3xl"></div>
           <div class="flex">
-            <div id="bal-copper-ingot" class="th-bal-modal">
+            <div id="bal-copper-ingot" class="th-bal-module">
               <i class="th-bal-icon bg-bal-copper-ingot"></i>
               <div></div>
             </div>
-            <div id="bal-iron-ingot" class="th-bal-modal">
+            <div id="bal-iron-ingot" class="th-bal-module">
               <i class="th-bal-icon bg-bal-iron-ingot"></i>
               <div></div>
             </div>
-            <div id="bal-gold-ingot" class="th-bal-modal">
+            <div id="bal-gold-ingot" class="th-bal-module">
               <i class="th-bal-icon bg-bal-gold-ingot"></i>
               <div></div>
             </div>
@@ -64,18 +64,18 @@
         </div>
       </div>
       <!-- game area -->
-      <div id="chunk-modal" class="th-chunk-modal hidden">
+      <div id="chunk-scene" class="th-chunk-scene hidden">
         <!-- difficulty -->
         <div
-          id="diff-modal"
+          id="diff-module"
           class="text-4xl absolute inset-x-0 text-center top-24"
         ></div>
         <div
-          id="ticks-modal"
+          id="ticks-module"
           class="text-th-warn text-3xl absolute inset-x-0 top-48 text-center"
         ></div>
         <!-- summon entities -->
-        <div id="summon-entities"></div>
+        <div id="entities-container"></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

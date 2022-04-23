@@ -1,5 +1,5 @@
 @layer components {
-  .th-bal-modal {
+  .th-bal-module {
     @apply pl-8 flex h-8;
   }
 

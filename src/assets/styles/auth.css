@@ -1,5 +1,5 @@
 @layer components {
-  .th-auth-modal {
+  .th-auth-module {
     @apply w-192 absolute inset-0 m-auto border border-th-white py-10 px-6 h-fit rounded-2xl;
   }
 

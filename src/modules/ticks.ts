@@ -1,14 +1,14 @@
 import anime from "animejs";
 import chunk from "./scenes/chunk";
 
-const tickObject = {
-  modal: document.querySelector("#ticks-modal")!,
+const tickModule = {
+  module: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
   seconds: 30,
   start() {
     console.log("计时开始");
     // 清空上一个tick计时内容
-    this.modal.innerHTML = "";
+    this.module.innerHTML = "";
     const convert = (sec: number, callback: () => void) => {
       let m: string | number = Math.floor(sec / 60);
       let s: string | number = sec % 60;
@@ -26,7 +26,7 @@ const tickObject = {
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        this.modal.innerHTML = convert(this.seconds--, () => {
+        this.module.innerHTML = convert(this.seconds--, () => {
           console.log("时间到！");
           this.animeInstance.restart();
           this.animeInstance.pause();
@@ -44,4 +44,4 @@ const tickObject = {
   },
 };
 
-export default tickObject;
+export default tickModule;

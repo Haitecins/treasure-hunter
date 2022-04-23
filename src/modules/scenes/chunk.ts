@@ -1,16 +1,16 @@
 import entities from "../entities";
 import listener from "../listener";
 
-const chunkObject = {
-  modal: document.querySelector("#chunk-modal")!,
+const chunkScene = {
+  scene: document.querySelector("#chunk-scene")!,
   play() {
-    this.modal.classList.remove("hidden");
+    this.scene.classList.remove("hidden");
     console.log("Chunk模块加载");
     // 启用实体生成模块
     entities.enable();
   },
   hide() {
-    this.modal.classList.add("hidden");
+    this.scene.classList.add("hidden");
     console.log("Chunk模块隐藏");
   },
   clear() {
@@ -27,4 +27,4 @@ const chunkObject = {
   },
 };
 
-export default chunkObject;
+export default chunkScene;

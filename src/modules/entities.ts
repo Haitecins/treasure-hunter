@@ -3,8 +3,8 @@ import chars from "../utils/chars";
 import colors from "./colors";
 import navigate from "./navigate";
 
-const entitiesObject = {
-  container: document.querySelector("#summon-entities")!,
+const entitiesContainer = {
+  container: document.querySelector("#entities-container")!,
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     console.log("Entities模块加载");
@@ -54,7 +54,7 @@ const entitiesObject = {
   },
 };
 
-export default entitiesObject;
+export default entitiesContainer;
 export { Entity };
 
 interface Entity extends HTMLDivElement {

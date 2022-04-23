@@ -1,5 +1,5 @@
 @layer components {
-  .th-chunk-modal {
+  .th-chunk-scene {
     @apply overflow-hidden absolute inset-0 text-2xl text-white;
   }
 }

@@ -2,8 +2,8 @@ import anime from "animejs";
 import scene from "./scene";
 import localstorage from "../utils/localstorage";
 
-const authObject = {
-  modal: document.querySelector("#auth-modal")!,
+const authModule = {
+  module: document.querySelector("#auth-module")!,
   confirm: document.querySelector("#auth-confirm")!,
   tip: document.querySelector("#auth-tip")!,
   input: <HTMLInputElement>document.querySelector("#auth-input"),
@@ -13,7 +13,7 @@ const authObject = {
 
 // 初始化模块
 const init = () => {
-  const { modal, confirm, tip, input } = authObject;
+  const { module, confirm, tip, input } = authModule;
   // 命名处理程序
   const loginHandler = () => {
     if (input.value === "" || input.value.trim() === "") {
@@ -29,7 +29,7 @@ const init = () => {
   };
 
   anime({
-    targets: modal,
+    targets: module,
     duration: 1000,
     translateY: [-600, 0],
   });
@@ -42,9 +42,9 @@ const init = () => {
 // 模块验证通过
 const success = () => {
   const { clientHeight } = document.documentElement;
-  const { modal, isLogin, welcomeBar } = authObject;
+  const { module, isLogin, welcomeBar } = authModule;
   const timeline = anime.timeline({
-    targets: modal,
+    targets: module,
   });
 
   // 删除auth-modal元素
@@ -68,7 +68,7 @@ const success = () => {
     easing: "easeInOutQuad",
     complete() {
       // 删除Auth模块
-      modal.remove();
+      module.remove();
       // 显示Home模块
       scene.home.show();
     },
@@ -83,4 +83,4 @@ if (!localstorage.get().name) {
   success();
 }
 
-export default authObject;
+export default authModule;
