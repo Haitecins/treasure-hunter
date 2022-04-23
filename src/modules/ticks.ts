@@ -1,6 +1,5 @@
 import anime from "animejs";
 import chunk from "./chunk";
-import scene from "./scene";
 
 const tickObject = {
   modal: document.querySelector("#ticks-modal")!,
@@ -33,10 +32,8 @@ const tickObject = {
           this.animeInstance.pause();
           // 重置计时
           this.reset();
-          // 清理游戏区域
-          chunk.destroy();
-          // 显示Home模块
-          scene.home.show();
+          // 清理Chunk模块
+          chunk.clear();
         });
       },
     });
