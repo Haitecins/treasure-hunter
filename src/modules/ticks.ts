@@ -4,7 +4,7 @@ import scene from "./scene";
 
 const tickObject = {
   modal: document.querySelector("#ticks-modal")!,
-  animeInstance: null as unknown as anime.AnimeInstance,
+  animeInstance: <anime.AnimeInstance>{},
   seconds: 30,
   start() {
     console.log("计时开始");

@@ -5,7 +5,7 @@ import navigate from "./navigate";
 
 const entitiesObject = {
   modal: document.querySelector("#chunk-entities")!,
-  animeInstance: null as unknown as anime.AnimeInstance,
+  animeInstance: <anime.AnimeInstance>{},
   enable() {
     console.log("Entities模块加载");
     // 生成实体
