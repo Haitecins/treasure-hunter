@@ -3,7 +3,7 @@ import formatter from "../utils/formatter";
 
 const accountModule = {
   module: document.querySelector("#account-module")!,
-  info: document.querySelector("#account-info")!,
+  info: document.querySelector("#account-info>div")!,
   balances: {
     copper: document.querySelector("#bal-copper-ingot>div")!,
     iron: document.querySelector("#bal-iron-ingot>div")!,
