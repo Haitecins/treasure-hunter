@@ -18,10 +18,10 @@ const db_name = "th_db";
  */
 const load = () => {
   if (localStorage.getItem(db_key)) {
-    import.meta.env.DEV && console.log("Loading...");
+    console.log("Loading...");
   } else {
     localStorage.setItem(db_key, JSON.stringify(metadata));
-    import.meta.env.DEV && console.log("Init...");
+    console.log("Init...");
   }
   Object.defineProperty(window, db_name, {
     value: JSON.parse(localStorage.getItem(db_key)!),
@@ -40,7 +40,7 @@ const save = (callback?: (data: Metadata) => void) => {
   try {
     callback?.(db_temp);
     localStorage.setItem(db_key, JSON.stringify(db_temp));
-    import.meta.env.DEV && console.log("Saved!", db_temp);
+    console.log("Saved!", db_temp);
   } catch (e) {
     console.error(e);
   }

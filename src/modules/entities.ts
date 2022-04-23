@@ -7,13 +7,13 @@ const entitiesObject = {
   modal: document.querySelector("#chunk-entities")!,
   animeInstance: null as unknown as anime.AnimeInstance,
   enable() {
-    import.meta.env.DEV && console.log("Entities模块加载");
+    console.log("Entities模块加载");
     // 生成实体
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       begin() {
-        import.meta.env.DEV && console.log("开始生成实体");
+        console.log("开始生成实体");
       },
       loopComplete: () => {
         // 超过20个实体则停止生成
@@ -40,17 +40,17 @@ const entitiesObject = {
     // 停止生成
     this.animeInstance.restart();
     this.animeInstance.pause();
-    import.meta.env.DEV && console.log("已停止生成实体");
+    console.log("已停止生成实体");
   },
   clear() {
     // 清空实体
     this.modal.innerHTML = "";
-    import.meta.env.DEV && console.log("已清空实体");
+    console.log("已清空实体");
   },
   destroy() {
     this.stop();
     this.clear();
-    import.meta.env.DEV && console.log("Entities模块销毁");
+    console.log("Entities模块销毁");
   },
 };
 

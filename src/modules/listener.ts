@@ -36,12 +36,12 @@ const downHandler = (ev: KeyboardEvent) => {
 };
 const listener = {
   enable() {
-    import.meta.env.DEV && console.log("开启键盘监听器");
+    console.log("开启键盘监听器");
     document.onkeydown = downHandler;
     document.onkeyup = () => (document.onkeydown = downHandler);
   },
   disable() {
-    import.meta.env.DEV && console.log("关闭键盘监听器");
+    console.log("关闭键盘监听器");
     document.onkeydown = document.onkeyup = null;
   },
 };

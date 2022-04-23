@@ -7,7 +7,7 @@ const tickObject = {
   animeInstance: null as unknown as anime.AnimeInstance,
   seconds: 30,
   start() {
-    import.meta.env.DEV && console.log("计时开始");
+    console.log("计时开始");
     // 清空上一个tick计时内容
     this.modal.innerHTML = "";
     const convert = (sec: number, callback: () => void) => {
@@ -28,7 +28,7 @@ const tickObject = {
       duration: 1000,
       loopBegin: () => {
         this.modal.innerHTML = convert(this.seconds--, () => {
-          import.meta.env.DEV && console.log("时间到！");
+          console.log("时间到！");
           this.animeInstance.restart();
           this.animeInstance.pause();
           // 计时已重置
@@ -43,7 +43,7 @@ const tickObject = {
   },
   reset() {
     this.seconds = 30;
-    import.meta.env.DEV && console.log("计时已重置");
+    console.log("计时已重置");
   },
 };
 

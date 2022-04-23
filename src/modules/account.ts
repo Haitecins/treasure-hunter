@@ -8,7 +8,7 @@ const accountObject = {
     gold: document.querySelector("#bal-gold-ingot>div")!,
   },
   update() {
-    import.meta.env.DEV && console.log("Account模块更已更新");
+    console.log("Account模块更已更新");
     const { copper, iron, gold } = this.balances;
 
     this.info.innerHTML = `${localstorage.get().name} / Lv.${
