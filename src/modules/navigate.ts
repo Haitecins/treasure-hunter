@@ -3,7 +3,9 @@ import { Entity } from "./entities";
 
 const navigate = (el: Entity) => {
   const { clientWidth, clientHeight } = document.documentElement;
-  const timeline = anime.timeline({ targets: el });
+  const timeline = anime.timeline({
+    targets: el,
+  });
 
   // 将路线动画实例对象给tracker属性控制
   el.tracker = timeline;
