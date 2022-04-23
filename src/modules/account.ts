@@ -1,4 +1,5 @@
 import localstorage from "../utils/localstorage";
+import formatter from "../utils/formatter";
 
 const accountObject = {
   info: document.querySelector("#account-info")!,
@@ -15,9 +16,9 @@ const accountObject = {
     this.info.innerHTML = `${localstorage.get().name} / Lv.${
       localstorage.get().levels
     }`;
-    copper.innerHTML = `${balances.copper}`;
-    iron.innerHTML = `${balances.iron}`;
-    gold.innerHTML = `${balances.gold}`;
+    copper.innerHTML = formatter(balances.copper, 2);
+    iron.innerHTML = formatter(balances.iron, 2);
+    gold.innerHTML = formatter(balances.gold, 2);
   },
 };
 
