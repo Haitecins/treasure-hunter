@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/animejs": "^3.1.4",
+    "@types/howler": "^2.2.7",
     "@types/node": "^17.0.25",
     "autoprefixer": "^10.4.4",
     "husky": "^7.0.4",
@@ -31,6 +32,7 @@
     "vite": "^2.9.0"
   },
   "dependencies": {
-    "animejs": "^3.2.1"
+    "animejs": "^3.2.1",
+    "howler": "^2.2.3"
   }
 }
