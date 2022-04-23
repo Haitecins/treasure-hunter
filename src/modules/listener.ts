@@ -5,7 +5,7 @@ import entities, { Entity } from "./entities";
 const downHandler = (ev: KeyboardEvent) => {
   document.onkeydown = null;
   const children = <Entity[]>(
-    Array.prototype.slice.call(entities.modal.children)
+    Array.prototype.slice.call(entities.container.children)
   );
 
   children.forEach((el) => {

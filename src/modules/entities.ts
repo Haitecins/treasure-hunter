@@ -4,7 +4,7 @@ import colors from "./colors";
 import navigate from "./navigate";
 
 const entitiesObject = {
-  modal: document.querySelector("#chunk-entities")!,
+  container: document.querySelector("#summon-entities")!,
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     console.log("Entities模块加载");
@@ -17,7 +17,7 @@ const entitiesObject = {
       },
       loopComplete: () => {
         // 超过20个实体则停止生成
-        if (this.modal.children.length >= 20) return;
+        if (this.container.children.length >= 20) return;
         const el = this.create();
 
         navigate(el);
@@ -32,7 +32,7 @@ const entitiesObject = {
     el.classList.add(...color, "th-entity");
     el.innerHTML = el.activeKey = char;
     el.isActive = false;
-    this.modal.appendChild(el);
+    this.container.appendChild(el);
 
     return el;
   },
@@ -44,7 +44,7 @@ const entitiesObject = {
   },
   clear() {
     // 清空实体
-    this.modal.innerHTML = "";
+    this.container.innerHTML = "";
     console.log("已清空实体");
   },
   destroy() {

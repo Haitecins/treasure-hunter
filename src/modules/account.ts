@@ -11,11 +11,9 @@ const accountObject = {
   update() {
     console.log("Account模块更已更新");
     const { copper, iron, gold } = this.balances;
-    const { balances } = localstorage.get();
+    const { balances, name, levels } = localstorage.get();
 
-    this.info.innerHTML = `${localstorage.get().name} / Lv.${
-      localstorage.get().levels
-    }`;
+    this.info.innerHTML = `${name} / Lv.${levels}`;
     copper.innerHTML = formatter(balances.copper, 2);
     iron.innerHTML = formatter(balances.iron, 2);
     gold.innerHTML = formatter(balances.gold, 2);
