@@ -13,8 +13,8 @@
     "*.{js,ts,html,css,json}": [
       "prettier --write --ignore-unknown"
     ],
-    "*.{js,ts}": [
-      "tsc-files --project tsconfig.husky.json"
+    "*.ts": [
+      "tsc-files --noEmit -p tsconfig.husky.json"
     ]
   },
   "devDependencies": {
