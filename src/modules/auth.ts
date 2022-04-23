@@ -2,24 +2,24 @@ import anime from "animejs";
 import scene from "./scene";
 import localstorage from "../utils/localstorage";
 
-const namingObject = {
-  modal: document.querySelector("#name-modal")!,
-  confirm: document.querySelector("#name-confirm")!,
-  tip: document.querySelector("#name-tip")!,
-  input: <HTMLInputElement>document.querySelector("#name-input"),
-  isNaming: document.querySelector("#is-naming")!,
+const authObject = {
+  modal: document.querySelector("#auth-modal")!,
+  confirm: document.querySelector("#auth-confirm")!,
+  tip: document.querySelector("#auth-tip")!,
+  input: <HTMLInputElement>document.querySelector("#auth-input"),
+  isLogin: document.querySelector("#is-login")!,
   welcomeBar: document.querySelector("#welcome-bar")!,
 };
 
 // 显示欢迎消息的功能
 const showWelcomeBar = () => {
-  const { modal, isNaming, welcomeBar } = namingObject;
+  const { modal, isLogin, welcomeBar } = authObject;
   const timeline = anime.timeline({
     targets: modal,
   });
 
-  // 删除name-modal元素
-  isNaming.remove();
+  // 删除auth-modal元素
+  isLogin.remove();
   // 修改标题栏
   document.title += ` (${localstorage.get().name})`;
   // 修改欢迎消息
@@ -38,7 +38,7 @@ const showWelcomeBar = () => {
     duration: 500,
     easing: "easeInOutQuad",
     complete() {
-      // 删除naming模块
+      // 删除Auth模块
       modal.remove();
       // 显示Home模块
       scene.home.show();
@@ -47,9 +47,11 @@ const showWelcomeBar = () => {
 };
 
 if (!localstorage.get().name) {
-  const { modal, confirm, tip, input } = namingObject;
+  console.log("初始化Auth模块");
+
+  const { modal, confirm, tip, input } = authObject;
   // 命名处理程序
-  const namingHandler = () => {
+  const loginHandler = () => {
     if (input.value === "" || input.value.trim() === "") {
       tip.innerHTML = "名称不能为空！";
     } else if (input.value.length > 15) {
@@ -67,13 +69,14 @@ if (!localstorage.get().name) {
     duration: 1000,
     translateY: [-600, 0],
   });
-  confirm.addEventListener("click", namingHandler);
+  confirm.addEventListener("click", loginHandler);
   input.addEventListener("keydown", (ev) => {
     tip.innerHTML = "";
-    ev.code === "Enter" && namingHandler();
+    ev.code === "Enter" && loginHandler();
   });
 } else {
+  console.log("Auth模块验证通过");
   showWelcomeBar();
 }
 
-export default namingObject;
+export default authObject;

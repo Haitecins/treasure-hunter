@@ -15,21 +15,21 @@
   </head>
   <body class="w-full h-full bg-th-black" style="display: none">
     <div id="root" class="w-full h-full relative">
-      <div id="name-modal" class="th-naming-modal">
-        <div id="is-naming">
+      <div id="auth-modal" class="th-auth-modal">
+        <div id="is-login">
           <div class="text-5xl text-center m-auto mb-8 text-th-white">
             输入你想使用的名称
           </div>
           <label>
             <input
-              id="name-input"
-              class="th-name-input"
+              id="auth-input"
+              class="th-auth-input"
               type="text"
               maxlength="15"
             />
           </label>
-          <div id="name-tip" class="th-name-tip"></div>
-          <button id="name-confirm" class="th-name-confirm">确定</button>
+          <div id="auth-tip" class="th-auth-tip"></div>
+          <button id="auth-confirm" class="th-auth-confirm">确定</button>
         </div>
         <div id="welcome-bar" class="hidden">
           <h1 class="text-3xl text-center m-auto text-th-white"></h1>
@@ -42,7 +42,7 @@
       >
         <!-- personal status bar -->
         <div id="personal-modal" class="th-personal-modal">
-          <div id="account-info" class="flex"></div>
+          <div id="account-info" class="flex text-3xl"></div>
           <div class="flex">
             <div id="bal-copper-ingot" class="th-bal-modal">
               <i class="th-bal-icon bg-bal-copper-ingot"></i>
