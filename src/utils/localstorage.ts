@@ -9,7 +9,7 @@ const metadata: Metadata = {
     iron: 150,
     gold: 0,
   },
-  version: 1.0,
+  version: "1.0",
 };
 const db_key = "th_storage";
 const db_name = "th_db";
@@ -61,7 +61,7 @@ interface Metadata {
   levels: number;
   needExp: number;
   historyBreak: number;
-  version: number;
+  version: string;
   balances: {
     copper: number;
     iron: number;
