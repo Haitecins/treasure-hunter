@@ -19,11 +19,6 @@ const chunkScene = {
     // 关闭键盘监听器
     listener.disable();
   },
-  destroy() {
-    this.hide();
-    this.clear();
-    console.log("Chunk模块销毁");
-  },
 };
 
 export default chunkScene;

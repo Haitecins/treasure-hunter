@@ -1,5 +1,5 @@
 import anime from "animejs";
-import chunk from "./scenes/chunk";
+import scene from "./scenes";
 
 const tickModule = {
   rootElement: document.querySelector("#ticks-module")!,
@@ -33,7 +33,7 @@ const tickModule = {
           // 重置计时
           this.reset();
           // 清理Chunk模块
-          chunk.clear();
+          scene.chunk.clear();
         });
       },
     });
