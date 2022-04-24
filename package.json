@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "animejs": "^3.2.1",
+    "dom-chef": "^5.1.0",
     "howler": "^2.2.3"
   }
 }
