@@ -12,10 +12,7 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "DocumentFragment"
+    "noImplicitReturns": true
   },
   "include": ["src"]
 }
