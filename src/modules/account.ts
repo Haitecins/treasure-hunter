@@ -11,7 +11,7 @@ const accountModule = {
     gold: document.querySelector("#bal-gold-ingot>div")!,
   },
   update() {
-    console.log("Account模块更已更新");
+    console.log("Account模块已更新");
     const { copper, iron, gold } = this.balances;
     const { balances, name, levels } = localstorage.get();
 

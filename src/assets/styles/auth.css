@@ -1,6 +1,6 @@
 @layer components {
   .th-auth-module {
-    @apply w-192 absolute inset-0 m-auto border border-th-white py-10 px-6 h-fit rounded-2xl;
+    @apply w-192 absolute inset-0 m-auto border border-th-grey py-10 px-6 h-fit rounded-2xl;
   }
 
   .th-auth-input {
