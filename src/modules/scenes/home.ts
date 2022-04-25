@@ -2,7 +2,7 @@ import anime from "animejs";
 import chunk from "./chunk";
 import listener from "../listener";
 import ticks from "../ticks";
-import account from "../account";
+import user from "../user";
 
 const homeScene = {
   rootElement: document.querySelector("#home-scene")!,
@@ -16,7 +16,7 @@ const homeScene = {
       easing: "easeInOutSine",
       begin: () => {
         // 更新Account模块
-        account.update();
+        user.profile.update();
         this.rootElement.classList.remove("hidden");
       },
       // 加载完成后添加按钮事件

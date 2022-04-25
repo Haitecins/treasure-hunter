@@ -1,6 +1,6 @@
 import anime from "animejs";
-import scene from "./scene";
-import localstorage from "../utils/localstorage";
+import scene from "../scene";
+import localstorage from "../../utils/localstorage";
 
 const authModule = {
   rootElement: document.querySelector("#auth-module")!,
