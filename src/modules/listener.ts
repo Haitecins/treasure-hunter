@@ -25,6 +25,8 @@ const downHandler = (ev: KeyboardEvent) => {
         begin() {
           // 累计此次破坏的字符数
           cache.refs.breakCount++;
+          // 有概率获得铜锭x1
+          anime.random(0, 100) >= 75 && cache.refs.bal.copperCount++;
         },
         complete() {
           el.remove();
