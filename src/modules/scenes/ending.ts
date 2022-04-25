@@ -3,46 +3,65 @@ import scene from "../scene";
 import localstorage from "../../utils/localstorage";
 import cache from "../../conf/cache";
 
+const loadText = (text: any) => `<span class="text-th-info">${text}</span>`;
+const loadIcon = (iconClass: string) =>
+  `<i class="th-icon-ref w-8 h-8 ${iconClass}"></i>`;
+const getLevel = () => {
+  if (cache.refs.breakCount >= 100) {
+    return "S";
+  } else if (cache.refs.breakCount >= 50) {
+    return "A";
+  } else if (cache.refs.breakCount >= 25) {
+    return "B";
+  }
+  return "C";
+};
+const stats = [
+  () => {
+    const { breakCount } = cache.refs;
+
+    localstorage.save((data) => (data.historyBreak += breakCount));
+    return `破坏字符：${loadText(cache.refs.breakCount)}个`;
+  },
+];
+const rewards = [
+  () => {
+    const { copperCount } = cache.refs.bal;
+
+    localstorage.save(({ balances }) => {
+      balances.copper += copperCount;
+    });
+    return `${loadIcon("bg-bal-copper-ingot")}${loadText(
+      cache.refs.bal.copperCount
+    )}`;
+  },
+];
 const endingScene = {
   rootElement: document.querySelector("#ending-module")!,
+  evaluation: document.querySelector("#ending-evaluation>span")!,
   statistic: document.querySelector("#ending-statistic>div")!,
   rewardList: document.querySelector("#ending-reward-list>div")!,
   returnLobby: document.querySelector("#return-lobby")!,
   update() {
     // 清理上一次的统计、奖励信息
     this.clear();
-    console.log("加载Ending模块中的统计、奖励");
-    const loadText = (text: any) => `<span class="text-th-info">${text}</span>`;
-    const loadIcon = (iconClass: string) =>
-      `<i class="th-icon-ref w-8 h-8 ${iconClass}"></i>`;
-    const statistics = [
-      () => {
-        localstorage.save(
-          (data) => (data.historyBreak += cache.refs.breakCount)
-        );
-        return `破坏字符：${loadText(cache.refs.breakCount)}`;
-      },
-    ];
-    const rewards = [
-      () => {
-        localstorage.save((data) => {
-          data.balances.copper += cache.refs.bal.copperCount;
-        });
-        return `${loadIcon("bg-bal-copper-ingot")}${loadText(
-          cache.refs.bal.copperCount
-        )}`;
-      },
-    ];
+    console.log("载入Ending模块的评级/统计/奖励信息");
 
-    statistics.forEach((item) => {
+    // 评价等级
+    this.evaluation.innerHTML = getLevel();
+    // 统计信息
+    stats.forEach((getInfo) => {
       const el = document.createElement("p");
-      el.innerHTML = item();
+
+      el.innerHTML = getInfo();
       this.statistic.appendChild(el);
     });
-    rewards.forEach((item) => {
+    // 奖励列表
+    rewards.forEach((getInfo) => {
       const el = document.createElement("div");
+
       el.classList.add("th-icon-module");
-      el.innerHTML = item();
+      el.innerHTML = getInfo();
       this.rewardList.appendChild(el);
     });
   },

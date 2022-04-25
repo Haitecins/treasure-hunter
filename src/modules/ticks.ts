@@ -8,8 +8,6 @@ const tickModule = {
   seconds,
   start() {
     console.log("计时开始");
-    // 清空上一个tick计时内容
-    this.rootElement.innerHTML = "";
     const convert = (sec: number, callback: () => void) => {
       let m: string | number = Math.floor(sec / 60);
       let s: string | number = sec % 60;
@@ -42,6 +40,7 @@ const tickModule = {
               scene.chunk.hide();
               // 加载Ending模块
               scene.ending.show();
+              // 清空tick元素遗留下的内容
               this.rootElement.innerHTML = "";
             },
           });
