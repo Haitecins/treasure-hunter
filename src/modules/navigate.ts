@@ -21,18 +21,20 @@ const navigate = (el: Entity) => {
     opacity: [0, 1],
   });
   timeline.add({
-    duration: anime.random(2000, 5000),
     easing: "linear",
     keyframes: [
       {
+        duration: anime.random(500, 4000),
         translateX: anime.random(0, clientWidth - el.clientWidth),
         translateY: anime.random(0, clientHeight - el.clientHeight),
       },
       {
+        duration: anime.random(500, 3000),
         translateX: anime.random(0, clientWidth - el.clientWidth),
         translateY: anime.random(0, clientHeight - el.clientHeight),
       },
       {
+        duration: anime.random(500, 2000),
         translateX: anime.random(0, clientWidth - el.clientWidth),
         translateY: anime.random(0, clientHeight - el.clientHeight),
       },
