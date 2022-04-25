@@ -1,5 +1,5 @@
 import anime from "animejs";
-import scene from "./scenes";
+import scene from "./scene";
 import localstorage from "../utils/localstorage";
 
 const authModule = {

@@ -1,5 +1,5 @@
 import anime from "animejs";
-import scene from "./index";
+import scene from "../scene";
 import localstorage from "../../utils/localstorage";
 import cache from "../../conf/cache";
 
