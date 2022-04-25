@@ -1,0 +1,6 @@
+@layer components {
+  .th-ending-module {
+    @apply absolute inset-0 m-auto w-192 h-96 border border-th-grey rounded-2xl p-6 text-white text-2xl;
+    @apply flex flex-row justify-between items-start;
+  }
+}

@@ -18,6 +18,7 @@ const chunkScene = {
     entities.destroy();
     // 关闭键盘监听器
     listener.disable();
+    console.log("已清理Chunk模块");
   },
 };
 

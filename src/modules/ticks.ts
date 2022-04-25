@@ -34,6 +34,16 @@ const tickModule = {
           this.reset();
           // 清理Chunk模块
           scene.chunk.clear();
+          anime({
+            duration: 1000,
+            complete: () => {
+              // 隐藏Chunk模块
+              scene.chunk.hide();
+              // 加载Ending模块
+              scene.ending.show();
+              this.rootElement.innerHTML = "";
+            },
+          });
         });
       },
     });

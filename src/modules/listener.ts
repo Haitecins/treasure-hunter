@@ -1,6 +1,6 @@
 import anime from "animejs";
-import localstorage from "../utils/localstorage";
 import entities, { Entity } from "./entities";
+import cache from "../conf/cache";
 
 const downHandler = (ev: KeyboardEvent) => {
   document.onkeydown = null;
@@ -23,9 +23,8 @@ const downHandler = (ev: KeyboardEvent) => {
         scale: 0,
         easing: "easeInOutQuad",
         begin() {
-          localstorage.save((data) => {
-            data.historyBreak += 1;
-          });
+          // 累计此次破坏的字符数
+          cache.refs.breakCount++;
         },
         complete() {
           el.remove();
