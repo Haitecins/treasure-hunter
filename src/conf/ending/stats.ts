@@ -7,10 +7,10 @@ import convert from "../../utils/convert";
 const stats = {
   list: [
     () => {
-      const recorder = convert(ticks.recorder);
+      const recorder = ticks.recorder;
       // 重置计时
       ticks.reset();
-      return `耗时：${writeText(recorder)}`;
+      return `耗时：${writeText(convert(recorder))}`;
     },
     () => {
       localstorage.save((data) => {
