@@ -1,9 +1,17 @@
-import writeText from "../../components/writeText";
-import localstorage from "../../utils/localstorage";
 import cache from "../cache";
+import localstorage from "../../utils/localstorage";
+import writeText from "../../components/writeText";
+import ticks from "../../modules/ticks";
+import convert from "../../utils/convert";
 
 const stats = {
   list: [
+    () => {
+      const recorder = convert(ticks.recorder);
+      // 重置计时
+      ticks.reset();
+      return `耗时：${writeText(recorder)}`;
+    },
     () => {
       localstorage.save((data) => {
         console.log(`统计：破坏字符${cache.props.BREAK_CHARS}个`);

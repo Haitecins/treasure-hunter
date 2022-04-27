@@ -1,36 +1,29 @@
 import anime from "animejs";
 import scene from "./scene";
+import convert from "../utils/convert";
 
 const tickModule = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  seconds: 30,
+  ticker: 30,
+  recorder: 0,
   start() {
     console.log("计时开始");
-    const convert = (sec: number, callback: () => void) => {
-      let m: string | number = Math.floor(sec / 60);
-      let s: string | number = sec % 60;
-      m = m < 10 ? `0${m}` : m;
-      s = s < 10 ? `0${s}` : s;
-
-      if (sec > 0) {
-        return `${m}:${s}`;
-      } else {
-        callback?.();
-        return "时间到！";
-      }
-    };
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        this.rootElement.innerHTML = convert(this.seconds--, () => {
-          console.log("时间到！");
+        if (this.ticker !== 0) {
+          this.rootElement.innerHTML = convert(() => {
+            this.recorder++;
+            return this.ticker--;
+          });
+          console.log(this);
+        } else {
+          this.rootElement.innerHTML = "时间到！";
           // 停止计时
           this.stop();
-          // 重置计时
-          this.reset();
-          // 清理Chunk模块
+          // 清理Chunk模块，移除实体/关闭监听器。
           scene.chunk.clear();
           anime({
             duration: 1000,
@@ -43,7 +36,7 @@ const tickModule = {
               this.rootElement.innerHTML = "";
             },
           });
-        });
+        }
       },
     });
   },
@@ -53,7 +46,8 @@ const tickModule = {
     console.log("计时停止");
   },
   reset() {
-    this.seconds = 30;
+    this.ticker = 30;
+    this.recorder = 0;
     console.log("已重置计时");
   },
 };
