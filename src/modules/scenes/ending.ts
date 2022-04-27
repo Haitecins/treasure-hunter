@@ -12,7 +12,7 @@ const endingScene = {
   reward: document.querySelector("#ending-reward>div")!,
   returnLobby: document.querySelector("#return-lobby")!,
   update() {
-    console.log("加载 Rating/Stats/Rewards");
+    console.log("正在加载Rating/Stats/Rewards模块");
     // 加载评价等级
     this.rate.innerHTML = ratings.get();
     // 加载统计信息

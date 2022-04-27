@@ -5,13 +5,15 @@ import cache from "../cache";
 const stats = {
   list: [
     () => {
-      localstorage.save(
-        (data) => (data.historyBreak += cache.props.BREAK_CHARS)
-      );
+      localstorage.save((data) => {
+        console.log(`统计：破坏字符${cache.props.BREAK_CHARS}个`);
+        data.historyBreak += cache.props.BREAK_CHARS;
+      });
       return `破坏字符：${writeText(cache.props.BREAK_CHARS)}个`;
     },
   ],
   load(container: Element) {
+    console.log("Stats模块加载");
     this.list.forEach((stat) => {
       const result = stat();
 

@@ -2,6 +2,7 @@ import cache from "../cache";
 
 const ratings = {
   get() {
+    console.log("Ratings模块载入");
     if (cache.props.BREAK_CHARS >= 100) {
       return this.S();
     } else if (cache.props.BREAK_CHARS >= 75) {
