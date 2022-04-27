@@ -3,66 +3,84 @@ import scene from "../scene";
 import localstorage from "../../utils/localstorage";
 import cache from "../../conf/cache";
 
-const loadText = (text: any) => `<span class="text-th-info">${text}</span>`;
-const loadIcon = (iconClass: string) =>
-  `<i class="th-icon-ref w-8 h-8 ${iconClass}"></i>`;
-const getLevel = () => {
-  if (cache.refs.breakCount >= 100) {
+const writeText = (text: any) => {
+  return `<span class="text-th-info">${text}</span>`;
+};
+const loadIcon = (iconClass: string) => {
+  return `<i class="th-icon-ref w-8 h-8 ${iconClass}"></i>`;
+};
+
+const ratings = () => {
+  if (cache.props.BREAK_CHARS! >= 100) {
+    cache.props.COPPER_COUNT! += 120;
     return "S";
-  } else if (cache.refs.breakCount >= 50) {
+  } else if (cache.props.BREAK_CHARS! >= 75) {
+    cache.props.COPPER_COUNT! += 120;
     return "A";
-  } else if (cache.refs.breakCount >= 25) {
+  } else if (cache.props.BREAK_CHARS! >= 50) {
+    cache.props.COPPER_COUNT! += 120;
     return "B";
+  } else if (cache.props.BREAK_CHARS! >= 25) {
+    cache.props.COPPER_COUNT! += 120;
+    return "C";
+  } else {
+    cache.props.COPPER_COUNT! += 10;
+    return "D";
   }
-  return "C";
 };
 const stats = [
   () => {
-    const { breakCount } = cache.refs;
-
-    localstorage.save((data) => (data.historyBreak += breakCount));
-    return `破坏字符：${loadText(cache.refs.breakCount)}个`;
+    localstorage.save(
+      (data) => (data.historyBreak += cache.props.BREAK_CHARS!)
+    );
+    return `破坏字符：${writeText(cache.props.BREAK_CHARS)}个`;
   },
 ];
 const rewards = [
   () => {
-    const { copperCount } = cache.refs.bal;
-
-    localstorage.save(({ balances }) => {
-      balances.copper += copperCount;
-    });
-    return `${loadIcon("bg-bal-copper-ingot")}${loadText(
-      cache.refs.bal.copperCount
-    )}`;
+    if (cache.props.COPPER_COUNT) {
+      return `${loadIcon("bg-bal-copper-ingot")}${writeText(
+        cache.props.COPPER_COUNT
+      )}`;
+    }
+    return null;
   },
 ];
+
 const endingScene = {
   rootElement: document.querySelector("#ending-module")!,
-  evaluation: document.querySelector("#ending-evaluation>span")!,
-  statistic: document.querySelector("#ending-statistic>div")!,
-  rewardList: document.querySelector("#ending-reward-list>div")!,
+  rate: document.querySelector("#ending-rate>span")!,
+  stat: document.querySelector("#ending-stat>div")!,
+  reward: document.querySelector("#ending-reward>div")!,
   returnLobby: document.querySelector("#return-lobby")!,
   update() {
     // 清理上一次的统计、奖励信息
     this.clear();
     console.log("载入Ending模块的评级/统计/奖励信息");
+    // 加载评价等级
+    this.rate.innerHTML = ratings();
+    // 加载统计信息
+    stats.forEach((stat) => {
+      const result = stat();
 
-    // 评价等级
-    this.evaluation.innerHTML = getLevel();
-    // 统计信息
-    stats.forEach((getInfo) => {
-      const el = document.createElement("p");
+      if (result) {
+        const el = document.createElement("p");
 
-      el.innerHTML = getInfo();
-      this.statistic.appendChild(el);
+        el.innerHTML = result;
+        this.stat.appendChild(el);
+      }
     });
-    // 奖励列表
-    rewards.forEach((getInfo) => {
-      const el = document.createElement("div");
+    // 加载奖励信息
+    rewards.forEach((reward) => {
+      const result = reward();
 
-      el.classList.add("th-icon-module");
-      el.innerHTML = getInfo();
-      this.rewardList.appendChild(el);
+      if (result) {
+        const el = document.createElement("p");
+
+        el.innerHTML = result;
+        el.classList.add("th-icon-module");
+        this.reward.appendChild(el);
+      }
     });
   },
   show() {
@@ -99,8 +117,8 @@ const endingScene = {
     console.log("Ending模块隐藏");
   },
   clear() {
-    this.statistic.innerHTML = "";
-    this.rewardList.innerHTML = "";
+    this.stat.innerHTML = "";
+    this.reward.innerHTML = "";
   },
 };
 

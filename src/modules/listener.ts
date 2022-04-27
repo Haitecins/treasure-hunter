@@ -24,9 +24,9 @@ const downHandler = (ev: KeyboardEvent) => {
         easing: "easeInOutQuad",
         begin() {
           // 累计此次破坏的字符数
-          cache.refs.breakCount++;
+          cache.props.BREAK_CHARS!++;
           // 有概率获得铜锭x1
-          anime.random(0, 100) >= 75 && cache.refs.bal.copperCount++;
+          anime.random(0, 100) >= 75 && cache.props.COPPER_COUNT!++;
         },
         complete() {
           el.remove();

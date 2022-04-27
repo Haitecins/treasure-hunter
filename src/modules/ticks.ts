@@ -1,11 +1,10 @@
 import anime from "animejs";
 import scene from "./scene";
-import seconds from "../conf/seconds";
 
 const tickModule = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  seconds,
+  seconds: 30,
   start() {
     console.log("计时开始");
     const convert = (sec: number, callback: () => void) => {
@@ -40,7 +39,7 @@ const tickModule = {
               scene.chunk.hide();
               // 加载Ending模块
               scene.ending.show();
-              // 清空tick元素遗留下的内容
+              // 清空tick节点遗留下的内容
               this.rootElement.innerHTML = "";
             },
           });
@@ -54,7 +53,7 @@ const tickModule = {
     console.log("计时停止");
   },
   reset() {
-    this.seconds = seconds;
+    this.seconds = 30;
     console.log("已重置计时");
   },
 };

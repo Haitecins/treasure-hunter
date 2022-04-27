@@ -1,14 +1,13 @@
-const rootObject = {
-  breakCount: 0,
-  bal: {
-    copperCount: 0,
-  },
+const props = {
+  BREAK_CHARS: 0,
+  COPPER_COUNT: 0,
 };
+
 const cache = {
-  refs: { ...rootObject },
+  props: { ...props },
   reset() {
-    this.refs = { ...rootObject };
-    console.log("重置Cache模块", this.refs);
+    this.props = { ...props };
+    console.log("重置Cache模块", this.props);
   },
 };
 
