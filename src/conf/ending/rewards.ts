@@ -1,12 +1,8 @@
 import cache from "../cache";
 import localstorage from "../../utils/localstorage";
+import loadIcon from "../../components/loadIcon";
+import writeText from "../../components/writeText";
 
-const writeText = (text: any) => {
-  return `<span class="text-th-info">${text}</span>`;
-};
-const loadIcon = (iconClass: string) => {
-  return `<i class="th-icon-ref w-8 h-8 ${iconClass}"></i>`;
-};
 const rewards = {
   list: [
     () => {

@@ -1,9 +1,6 @@
+import writeText from "../../components/writeText";
 import localstorage from "../../utils/localstorage";
 import cache from "../cache";
-
-const writeText = (text: any) => {
-  return `<span class="text-th-info">${text}</span>`;
-};
 
 const stats = {
   list: [
