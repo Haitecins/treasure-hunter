@@ -1,9 +1,5 @@
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/modules/**/*.{js,ts}",
-    "./src/utils/**/*.{js,ts}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts}"],
   theme: {
     backgroundImage: {
       "bal-copper-ingot": 'url("/src/assets/icons/copper_ingot.png")',
