@@ -1,7 +1,5 @@
 # Treasure Hunter
 
-**How to play**
-
-[cloudflare.com](https://treasure-hunter.pages.dev/)
+## How to play
 
 [vercel.com](https://treasure-hunter-phi.vercel.app/)
