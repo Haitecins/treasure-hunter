@@ -16,7 +16,7 @@ const metadata: Metadata = {
 /**
  * 从浏览器中加载游戏数据，没有则初始化数据。
  */
-const load = () => {
+const load = (callback?: () => void) => {
   if (!localStorage[db_key]) {
     localStorage[db_key] = JSON.stringify(metadata);
     console.log("Init...");
@@ -26,10 +26,9 @@ const load = () => {
   Object.defineProperty(window, temp_key, {
     value: JSON.parse(localStorage[db_key]),
   });
+  // 当数据加载完成后需要做的事
+  callback?.();
 };
-
-// 加载或初始化游戏数据
-load();
 
 /**
  * 保存当前进度

@@ -11,8 +11,8 @@ const authModule = {
   welcomeBar: document.querySelector("#welcome-bar")!,
 };
 
-// 初始化模块
-const init = () => {
+// 加载模块
+const load = () => {
   const { rootElement, confirm, tip, input } = authModule;
   // 命名处理程序
   const loginHandler = () => {
@@ -75,12 +75,14 @@ const success = () => {
   });
 };
 
-if (!localstorage.get().name) {
-  console.log("初始化Auth模块");
-  init();
-} else {
-  console.log("Auth模块验证通过");
-  success();
-}
+const init = () => {
+  if (!localstorage.get().name) {
+    console.log("加载Auth模块");
+    load();
+  } else {
+    console.log("Auth模块验证通过");
+    success();
+  }
+};
 
-export default authModule;
+export default { init };
