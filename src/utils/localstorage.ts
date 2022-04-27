@@ -1,13 +1,25 @@
+interface Metadata {
+  pid: number;
+  name: any;
+  levels: number;
+  historyBreak: number;
+  version: string;
+  balances: {
+    copper: number;
+    iron: number;
+    gold: number;
+  };
+}
+
 const db_key = "th_storage";
 const temp_key = "th_temp_storage";
 const metadata: Metadata = {
   pid: new Date().getTime(),
   name: null,
   levels: 1,
-  needExp: 100,
   historyBreak: 0,
   balances: {
-    copper: 100,
+    copper: 0,
     iron: 0,
     gold: 0,
   },
@@ -53,17 +65,3 @@ const get = () => {
 };
 
 export default { load, save, get };
-
-interface Metadata {
-  pid: number;
-  name: any;
-  levels: number;
-  needExp: number;
-  historyBreak: number;
-  version: string;
-  balances: {
-    copper: number;
-    iron: number;
-    gold: number;
-  };
-}

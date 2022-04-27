@@ -4,7 +4,6 @@ const props = {
   IRON_COUNT: 0,
   GOLD_COUNT: 0,
 };
-
 const cache = {
   props: { ...props },
   reset() {
