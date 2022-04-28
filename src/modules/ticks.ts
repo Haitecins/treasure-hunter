@@ -5,18 +5,18 @@ import convert from "../utils/convert";
 const tickModule = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  ticker: 30,
-  recorder: 0,
+  timer: 30,
+  timeRecorder: 0,
   start() {
     console.log("计时开始");
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        if (this.ticker !== 0) {
+        if (this.timer !== 0) {
           this.rootElement.innerHTML = convert(() => {
-            this.recorder++;
-            return this.ticker--;
+            this.timeRecorder++;
+            return this.timer--;
           });
           console.log(this);
         } else {
@@ -46,8 +46,8 @@ const tickModule = {
     console.log("计时停止");
   },
   reset() {
-    this.ticker = 30;
-    this.recorder = 0;
+    this.timer = 30;
+    this.timeRecorder = 0;
     console.log("已重置计时");
   },
 };

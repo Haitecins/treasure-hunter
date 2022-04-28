@@ -14,7 +14,7 @@ Object.defineProperty(window, "cls", {
 Object.defineProperty(window, "ttk", {
   value() {
     if (import.meta.env.PROD) return;
-    tickModule.ticker = 1;
+    tickModule.timer = 1;
     return "已将计时设为1秒";
   },
 });
