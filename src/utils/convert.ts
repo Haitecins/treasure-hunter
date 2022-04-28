@@ -1,4 +1,6 @@
-const convert = (handler: Function | number) => {
+type Handler = () => number;
+
+const convert = (handler: Handler | number) => {
   let t: number;
   if (typeof handler === "function") {
     t = handler();
