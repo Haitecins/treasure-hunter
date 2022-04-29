@@ -18,7 +18,6 @@ const tickModule = {
             this.timeRecorder++;
             return this.timer--;
           });
-          console.log(this);
         } else {
           this.rootElement.innerHTML = "时间到！";
           // 停止计时
