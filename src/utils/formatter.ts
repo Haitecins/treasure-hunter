@@ -12,8 +12,8 @@ const formatter = (num: number, digits: number) => {
   const item = lookup
     .slice()
     .reverse()
-    .find(function (item) {
-      return num >= item.value;
+    .find(({ value }) => {
+      return num >= value;
     });
 
   return item

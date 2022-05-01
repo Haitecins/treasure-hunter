@@ -13,7 +13,7 @@ Object.defineProperty(window, "cls", {
 });
 
 // 将计时变为1秒
-Object.defineProperty(window, "ttk", {
+Object.defineProperty(window, "timer", {
   value() {
     if (import.meta.env.PROD) return;
     tickModule.timer = 1;
