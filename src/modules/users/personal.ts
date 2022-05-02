@@ -1,5 +1,4 @@
 import logger from "../../components/logger";
-import formatter from "../../utils/formatter";
 import localstorage from "../../utils/localstorage";
 import profile from "./profile";
 import anime from "animejs";
@@ -37,10 +36,10 @@ const personalModule = {
 
     this.levels.innerHTML = `Lv.${levels}`;
     this.name.innerHTML = name;
-    this.balances.copper.innerHTML = formatter(balances.copper, 2);
-    this.balances.iron.innerHTML = formatter(balances.iron, 2);
-    this.balances.gold.innerHTML = formatter(balances.gold, 2);
-    this.totalBreaks.innerHTML = String(historyBreak);
+    this.balances.copper.innerHTML = balances.copper.toLocaleString("en");
+    this.balances.iron.innerHTML = balances.iron.toLocaleString("en");
+    this.balances.gold.innerHTML = balances.gold.toLocaleString("en");
+    this.totalBreaks.innerHTML = historyBreak.toLocaleString("en");
   },
   show() {
     anime({
