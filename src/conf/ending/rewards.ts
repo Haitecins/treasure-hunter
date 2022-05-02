@@ -20,7 +20,7 @@ const rewards = {
     () => {
       if (cache.props.IRON_COUNT) {
         localstorage.save((data) => {
-          console.log(`奖励：铁锭x${cache.props.COPPER_COUNT}`);
+          console.log(`奖励：铁锭x${cache.props.IRON_COUNT}`);
           data.balances.iron += cache.props.IRON_COUNT;
         });
         return `${loadIcon("bg-bal-iron-ingot")}${writeText(
@@ -32,7 +32,7 @@ const rewards = {
     () => {
       if (cache.props.GOLD_COUNT) {
         localstorage.save((data) => {
-          console.log(`奖励：金锭x${cache.props.COPPER_COUNT}`);
+          console.log(`奖励：金锭x${cache.props.GOLD_COUNT}`);
           data.balances.gold += cache.props.GOLD_COUNT;
         });
         return `${loadIcon("bg-bal-gold-ingot")}${writeText(
