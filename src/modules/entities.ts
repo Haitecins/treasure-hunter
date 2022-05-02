@@ -12,7 +12,7 @@ const entitiesContainer = {
     // 生成实体
     this.animeInstance = anime({
       loop: true,
-      duration: 1000,
+      duration: 400,
       begin() {
         logger("Entities", "开始生成实体");
       },
