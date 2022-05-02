@@ -2,8 +2,8 @@ import "./assets/styles/index.css";
 import localstorage from "./utils/localstorage";
 import auth from "./modules/users/auth";
 
-// 开发者模式功能，不会将代码构建到生产环境。
-import "./conf/dev";
+// 环境功能配置
+import "./conf/env";
 
 // 加载或初始化游戏数据
 localstorage.load(auth.init);

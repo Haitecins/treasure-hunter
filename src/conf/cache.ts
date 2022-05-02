@@ -1,4 +1,6 @@
 const props = {
+  // 游戏进行中?
+  IS_PLAYING: false,
   // 破坏的字符数
   BREAK_CHARS: 0,
   // 铜锭计数
@@ -12,7 +14,7 @@ const cache = {
   props: { ...props },
   reset() {
     this.props = { ...props };
-    console.log("重置Cache模块", this.props);
+    console.log("重置Cache模块");
   },
 };
 

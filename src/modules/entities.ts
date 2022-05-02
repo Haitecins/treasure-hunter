@@ -18,13 +18,13 @@ const entitiesContainer = {
       loopComplete: () => {
         // 超过20个实体则停止生成
         if (this.container.children.length >= 20) return;
-        const el = this.create();
+        const el = this.spawn();
 
         navigate(el);
       },
     });
   },
-  create() {
+  spawn() {
     const el = <Entity>document.createElement("div");
     const char = chars.random().toUpperCase();
     const color = colors.random();
