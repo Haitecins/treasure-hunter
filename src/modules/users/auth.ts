@@ -2,6 +2,7 @@ import anime from "animejs";
 import scene from "../scene";
 import localstorage from "../../utils/localstorage";
 import logger from "../../components/logger";
+import user from "../user";
 
 const authModule = {
   rootElement: document.querySelector("#auth-module")!,
@@ -72,6 +73,8 @@ const success = () => {
       rootElement.remove();
       // 显示Home模块
       scene.home.show();
+      // 初始化Personal模块
+      user.personal.init();
     },
   });
 };
