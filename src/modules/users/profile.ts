@@ -4,8 +4,8 @@ import logger from "../../components/logger";
 
 const profileModule = {
   rootElement: document.querySelector("#profile-module")!,
-  levels: document.querySelector("#profile-levels")!,
   name: document.querySelector("#profile-name")!,
+  levels: document.querySelector("#profile-levels")!,
   balances: {
     copper: document.querySelector("#bal-copper-ingot>div")!,
     iron: document.querySelector("#bal-iron-ingot>div")!,

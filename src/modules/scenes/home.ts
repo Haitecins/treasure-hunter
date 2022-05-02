@@ -16,6 +16,8 @@ const homeScene = {
       duration: 200,
       easing: "easeInOutSine",
       begin: () => {
+        // 初始化Personal模块
+        user.personal.init();
         // 更新Account模块
         user.profile.update();
         this.rootElement.classList.remove("hidden");

@@ -6,6 +6,8 @@ module.exports = {
       "bal-iron-ingot": 'url("/src/assets/icons/iron_ingot.png")',
       "bal-gold-ingot": 'url("/src/assets/icons/gold_ingot.png")',
       "writable-book": 'url("/src/assets/icons/writable_book.png")',
+      close: 'url("/src/assets/icons/close.png")',
+      barrier: 'url("/src/assets/icons/barrier.png")',
     },
     extend: {
       colors: {

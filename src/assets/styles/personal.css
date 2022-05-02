@@ -1,0 +1,9 @@
+@layer components {
+  .th-personal-module {
+    @apply absolute inset-0 m-auto w-192 h-96 border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
+  }
+
+  .th-personal-close-btn {
+    @apply th-icon-ref bg-close m-0 w-8 h-8 absolute right-6 cursor-pointer;
+  }
+}
