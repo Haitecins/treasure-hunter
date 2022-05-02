@@ -1,6 +1,7 @@
 import anime from "animejs";
 import scene from "../scene";
 import localstorage from "../../utils/localstorage";
+import logger from "../../components/logger";
 
 const authModule = {
   rootElement: document.querySelector("#auth-module")!,
@@ -77,10 +78,10 @@ const success = () => {
 
 const init = () => {
   if (!localstorage.get().name) {
-    console.log("加载Auth模块");
+    logger("Auth", "载入模块");
     load();
   } else {
-    console.log("Auth模块验证通过");
+    logger("Auth", "验证通过");
     success();
   }
 };

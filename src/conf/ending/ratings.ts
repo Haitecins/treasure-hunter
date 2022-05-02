@@ -1,25 +1,31 @@
 import cache from "../cache";
 import anime from "animejs";
+import logger from "../../components/logger";
 
 const ratings = {
   get() {
-    console.log("Ratings模块载入");
+    console.group("Ratings Module Event");
+    logger("Ratings", "载入模块");
+    let result;
+
     if (cache.props.BREAK_CHARS >= 100) {
-      console.log("最终评价为 S");
-      return this.rankS();
+      logger("Rating", "Result: S");
+      result = this.rankS();
     } else if (cache.props.BREAK_CHARS >= 75) {
-      console.log("最终评价为 A");
-      return this.rankA();
+      logger("Rating", "Result: A");
+      result = this.rankA();
     } else if (cache.props.BREAK_CHARS >= 50) {
-      console.log("最终评价为 B");
-      return this.rankB();
+      logger("Rating", "Result: B");
+      result = this.rankB();
     } else if (cache.props.BREAK_CHARS >= 25) {
-      console.log("最终评价为 C");
-      return this.rankC();
+      logger("Rating", "Result: C");
+      result = this.rankC();
     } else {
-      console.log("最终评价为 D");
-      return this.rankD();
+      logger("Rating", "Result: D");
+      result = this.rankD();
     }
+    console.groupEnd();
+    return result;
   },
   rankS() {
     cache.props.COPPER_COUNT += anime.random(50, 70);

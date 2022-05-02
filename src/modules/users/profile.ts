@@ -1,5 +1,6 @@
 import localstorage from "../../utils/localstorage";
 import formatter from "../../utils/formatter";
+import logger from "../../components/logger";
 
 const profileModule = {
   rootElement: document.querySelector("#profile-module")!,
@@ -11,7 +12,7 @@ const profileModule = {
     gold: document.querySelector("#bal-gold-ingot>div")!,
   },
   update() {
-    console.log("Profile模块已更新");
+    logger("Profile", "已更新");
     const { copper, iron, gold } = this.balances;
     const { balances, name, levels } = localstorage.get();
 

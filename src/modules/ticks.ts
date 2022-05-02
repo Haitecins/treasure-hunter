@@ -1,6 +1,7 @@
 import anime from "animejs";
 import scene from "./scene";
 import convert from "../utils/convert";
+import logger from "../components/logger";
 
 const tickModule = {
   rootElement: document.querySelector("#ticks-module")!,
@@ -8,7 +9,7 @@ const tickModule = {
   timer: 30,
   timeRecorder: 0,
   start() {
-    console.log("计时开始");
+    logger("Ticks", "计时开始");
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
@@ -42,12 +43,12 @@ const tickModule = {
   stop() {
     this.animeInstance.restart();
     this.animeInstance.pause();
-    console.log("计时停止");
+    logger("Ticks", "计时停止");
   },
   reset() {
     this.timer = 30;
     this.timeRecorder = 0;
-    console.log("已重置计时");
+    logger("Ticks", "已重置计时");
   },
 };
 

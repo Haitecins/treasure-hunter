@@ -3,6 +3,7 @@ import localstorage from "../../utils/localstorage";
 import writeText from "../../components/writeText";
 import ticks from "../../modules/ticks";
 import convert from "../../utils/convert";
+import logger from "../../components/logger";
 
 const stats = {
   list: [
@@ -14,14 +15,15 @@ const stats = {
     },
     () => {
       localstorage.save((data) => {
-        console.log(`统计：破坏字符${cache.props.BREAK_CHARS}个`);
+        logger("Stat", `破坏字符${cache.props.BREAK_CHARS}个`);
         data.historyBreak += cache.props.BREAK_CHARS;
       });
       return `破坏字符：${writeText(cache.props.BREAK_CHARS)}个`;
     },
   ],
   load(container: Element) {
-    console.log("Stats模块加载");
+    console.group("Stats Module Event");
+    logger("Stats", "载入模块");
     this.list.forEach((stat) => {
       const result = stat();
 
@@ -32,6 +34,7 @@ const stats = {
         container.appendChild(el);
       }
     });
+    console.groupEnd();
   },
 };
 

@@ -3,12 +3,13 @@ import chunk from "./chunk";
 import listener from "../listener";
 import ticks from "../ticks";
 import user from "../user";
+import logger from "../../components/logger";
 
 const homeScene = {
   rootElement: document.querySelector("#home-scene")!,
   start: document.querySelector("#home-start")!,
   show() {
-    console.log("正在加载Home模块");
+    logger("Home", "正在加载");
     anime({
       targets: this.rootElement,
       opacity: [0, 1],
@@ -21,7 +22,7 @@ const homeScene = {
       },
       // 加载完成后添加按钮事件
       complete: () => {
-        console.log("Home模块显示");
+        logger("Home", "载入模块");
 
         const clickHandler = () => {
           this.start.removeEventListener("click", clickHandler);
@@ -48,7 +49,7 @@ const homeScene = {
       easing: "easeInOutSine",
       complete: () => {
         this.rootElement.classList.add("hidden");
-        console.log("Home模块隐藏");
+        logger("Home", "已隐藏");
         animeComplete();
       },
     });

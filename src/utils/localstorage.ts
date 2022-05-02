@@ -1,3 +1,5 @@
+import logger from "../components/logger";
+
 interface Metadata {
   pid: number;
   name: any;
@@ -31,9 +33,9 @@ const metadata: Metadata = {
 const load = (callback?: () => void) => {
   if (!localStorage[db_key]) {
     localStorage[db_key] = JSON.stringify(metadata);
-    console.log("Init...");
+    logger("Localstorage", "Init...");
   } else {
-    console.log("Loading...");
+    logger("Localstorage", "Loading...");
   }
   Object.defineProperty(window, temp_key, {
     value: JSON.parse(localStorage[db_key]),
@@ -52,7 +54,10 @@ const save = (callback?: (data: Metadata) => void) => {
   try {
     callback?.(db_temp);
     localStorage[db_key] = JSON.stringify(db_temp);
-    console.log("Saved!", db_temp);
+    console.group("本地存储");
+    logger("Localstorage", "数据已保存！");
+    console.table(db_temp);
+    console.groupEnd();
   } catch (e) {
     console.error(e);
   }

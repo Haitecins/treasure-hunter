@@ -4,6 +4,7 @@ import cache from "../../conf/cache";
 import ratings from "../../conf/ending/ratings";
 import stats from "../../conf/ending/stats";
 import rewards from "../../conf/ending/rewards";
+import logger from "../../components/logger";
 
 const endingScene = {
   rootElement: document.querySelector("#ending-module")!,
@@ -12,7 +13,7 @@ const endingScene = {
   reward: document.querySelector("#ending-reward>div")!,
   returnLobby: document.querySelector("#return-lobby")!,
   update() {
-    console.log("正在加载Rating/Stats/Rewards模块");
+    logger("Ending", "已更新");
     // 加载评价等级
     this.rate.innerHTML = ratings.get();
     // 加载统计信息
@@ -21,7 +22,7 @@ const endingScene = {
     rewards.load(this.reward);
   },
   show() {
-    console.log("正在加载Ending模块");
+    logger("Ending", "正在加载");
     const { clientHeight } = document.documentElement;
 
     anime({
@@ -35,7 +36,7 @@ const endingScene = {
         this.rootElement.classList.remove("hidden");
       },
       complete: () => {
-        console.log("Ending模块显示");
+        logger("Ending", "载入模块");
         const lobbyHandler = () => {
           this.returnLobby.removeEventListener("click", lobbyHandler);
           this.hide();
@@ -55,7 +56,7 @@ const endingScene = {
   },
   hide() {
     this.rootElement.classList.add("hidden");
-    console.log("Ending模块隐藏");
+    logger("Ending", "已隐藏");
   },
 };
 

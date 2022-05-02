@@ -1,6 +1,7 @@
 import anime from "animejs";
 import entities, { Entity } from "./entities";
 import cache from "../conf/cache";
+import logger from "../components/logger";
 
 const activeCharHandler = (el: Entity) => {
   // 防止重复执行
@@ -40,12 +41,12 @@ const keyDownHandler = (ev: KeyboardEvent) => {
 };
 const listener = {
   enable() {
-    console.log("开启键盘监听器");
+    logger("Listener", "开启键盘监听器");
     document.onkeydown = keyDownHandler;
     document.onkeyup = () => (document.onkeydown = keyDownHandler);
   },
   disable() {
-    console.log("关闭键盘监听器");
+    logger("Listener", "关闭键盘监听器");
     document.onkeydown = document.onkeyup = null;
   },
 };

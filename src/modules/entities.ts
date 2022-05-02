@@ -1,4 +1,5 @@
 import anime from "animejs";
+import logger from "../components/logger";
 import chars from "../utils/chars";
 import colors from "./colors";
 import navigate from "./navigate";
@@ -7,13 +8,13 @@ const entitiesContainer = {
   container: document.querySelector("#entities-container")!,
   animeInstance: <anime.AnimeInstance>{},
   enable() {
-    console.log("Entities模块加载");
+    logger("Entities", "载入模块");
     // 生成实体
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       begin() {
-        console.log("开始生成实体");
+        logger("Entities", "开始生成实体");
       },
       loopComplete: () => {
         // 超过20个实体则停止生成
@@ -40,17 +41,17 @@ const entitiesContainer = {
     // 停止生成
     this.animeInstance.restart();
     this.animeInstance.pause();
-    console.log("已停止生成实体");
+    logger("Entities", "已停止生成实体");
   },
   clear() {
     // 清空实体
     this.container.innerHTML = "";
-    console.log("已清空实体");
+    logger("Entities", "已清空实体");
   },
   destroy() {
     this.stop();
     this.clear();
-    console.log("Entities模块销毁");
+    logger("Entities", "模块销毁");
   },
 };
 

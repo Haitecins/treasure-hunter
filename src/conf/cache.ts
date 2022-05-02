@@ -1,3 +1,5 @@
+import logger from "../components/logger";
+
 const props = {
   // 破坏的字符数
   BREAK_CHARS: 0,
@@ -12,7 +14,7 @@ const cache = {
   props: { ...props },
   reset() {
     this.props = { ...props };
-    console.log("重置Cache模块");
+    logger("Cache", "重置Cache模块");
   },
 };
 
