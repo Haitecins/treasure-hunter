@@ -6,7 +6,6 @@ import navigate from "../modules/navigate";
 
 // 配置功能
 ((env) => {
-  console.log(import.meta.env.MODE);
   if (env === "development") {
     // 全局暴露缓存(cache)模块
     Object.defineProperty(window, "_cache", {
