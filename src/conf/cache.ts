@@ -1,6 +1,4 @@
 const props = {
-  // 游戏进行中?
-  IS_PLAYING: false,
   // 破坏的字符数
   BREAK_CHARS: 0,
   // 铜锭计数
