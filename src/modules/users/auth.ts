@@ -11,82 +11,77 @@ const authModule = {
   input: <HTMLInputElement>document.querySelector("#auth-input"),
   isLogin: document.querySelector("#is-login")!,
   welcomeBar: document.querySelector("#welcome-bar")!,
-};
+  load() {
+    const { rootElement, confirm, tip, input } = this;
+    // 命名处理程序
+    const loginHandler = () => {
+      if (input.value === "" || input.value.trim() === "") {
+        tip.innerHTML = "名称不能为空！";
+      } else if (input.value.length > 15) {
+        tip.innerHTML = "名称的长度不能超过10个字符！";
+      } else {
+        localstorage.save((data) => {
+          data.name = input.value.trim();
+        });
+        this.success();
+      }
+    };
 
-// 加载模块
-const load = () => {
-  const { rootElement, confirm, tip, input } = authModule;
-  // 命名处理程序
-  const loginHandler = () => {
-    if (input.value === "" || input.value.trim() === "") {
-      tip.innerHTML = "名称不能为空！";
-    } else if (input.value.length > 15) {
-      tip.innerHTML = "名称的长度不能超过10个字符！";
+    anime({
+      targets: rootElement,
+      duration: 1000,
+      translateY: [-600, 0],
+    });
+    confirm.addEventListener("click", loginHandler);
+    input.addEventListener("keydown", (ev) => {
+      tip.innerHTML = "";
+      ev.code === "Enter" && loginHandler();
+    });
+  },
+  success() {
+    const { clientHeight } = document.documentElement;
+    const timeline = anime.timeline({
+      targets: this.rootElement,
+    });
+
+    // 删除auth-modal元素
+    this.isLogin.remove();
+    // 修改标题栏
+    document.title += ` (${localstorage.get().name})`;
+    // 修改欢迎消息
+    this.welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
+      localstorage.get().name
+    }！`;
+    // 显示欢迎消息
+    this.welcomeBar.classList.remove("hidden");
+    // 为欢迎消息添加动画
+    timeline.add({
+      duration: 1000,
+      translateY: [clientHeight, 0],
+    });
+    timeline.add({
+      opacity: 0,
+      duration: 500,
+      easing: "easeInOutQuad",
+      complete: () => {
+        // 删除Auth模块
+        this.rootElement.remove();
+        // 显示Home模块
+        scene.home.show();
+        // 初始化Personal模块
+        user.personal.init();
+      },
+    });
+  },
+  init() {
+    if (!localstorage.get().name) {
+      logger("Auth", "载入模块");
+      this.load();
     } else {
-      localstorage.save((data) => {
-        data.name = input.value.trim();
-      });
-      success();
+      logger("Auth", "验证通过");
+      this.success();
     }
-  };
-
-  anime({
-    targets: rootElement,
-    duration: 1000,
-    translateY: [-600, 0],
-  });
-  confirm.addEventListener("click", loginHandler);
-  input.addEventListener("keydown", (ev) => {
-    tip.innerHTML = "";
-    ev.code === "Enter" && loginHandler();
-  });
-};
-// 模块验证通过
-const success = () => {
-  const { clientHeight } = document.documentElement;
-  const { rootElement, isLogin, welcomeBar } = authModule;
-  const timeline = anime.timeline({
-    targets: rootElement,
-  });
-
-  // 删除auth-modal元素
-  isLogin.remove();
-  // 修改标题栏
-  document.title += ` (${localstorage.get().name})`;
-  // 修改欢迎消息
-  welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
-    localstorage.get().name
-  }！`;
-  // 显示欢迎消息
-  welcomeBar.classList.remove("hidden");
-  // 为欢迎消息添加动画
-  timeline.add({
-    duration: 1000,
-    translateY: [clientHeight, 0],
-  });
-  timeline.add({
-    opacity: 0,
-    duration: 500,
-    easing: "easeInOutQuad",
-    complete() {
-      // 删除Auth模块
-      rootElement.remove();
-      // 显示Home模块
-      scene.home.show();
-      // 初始化Personal模块
-      user.personal.init();
-    },
-  });
+  },
 };
 
-const init = () => {
-  if (!localstorage.get().name) {
-    logger("Auth", "载入模块");
-    load();
-  } else {
-    logger("Auth", "验证通过");
-    success();
-  }
-};
-
-export default { init };
+export default authModule;
