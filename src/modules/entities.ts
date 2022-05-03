@@ -1,8 +1,14 @@
 import anime from "animejs";
 import logger from "../components/logger";
 import chars from "../utils/chars";
-import colors from "./colors";
+import colors from "../utils/colors";
 import navigate from "./navigate";
+
+interface Entity extends HTMLDivElement {
+  activeKey: string;
+  isActive: boolean;
+  tracker: anime.AnimeInstance;
+}
 
 const entities = {
   container: document.querySelector("#entities-container")!,
@@ -57,9 +63,3 @@ const entities = {
 
 export default entities;
 export { Entity };
-
-interface Entity extends HTMLDivElement {
-  activeKey: string;
-  isActive: boolean;
-  tracker: anime.AnimeInstance;
-}
