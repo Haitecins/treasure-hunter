@@ -9,6 +9,7 @@ module.exports = {
       close: 'url("/src/assets/icons/close.png")',
       barrier: 'url("/src/assets/icons/barrier.png")',
       "nether-star": 'url("/src/assets/icons/nether_star.png")',
+      compass: 'url("/src/assets/icons/compass.png")',
     },
     extend: {
       colors: {
