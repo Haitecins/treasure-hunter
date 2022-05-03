@@ -1,9 +1,9 @@
 import anime from "animejs";
-import chunk from "./chunk";
 import listener from "../listener";
 import ticks from "../ticks";
 import user from "../user";
 import logger from "../../components/logger";
+import scene from "../scene";
 
 const home = {
   rootElement: document.querySelector("#home-scene")!,
@@ -29,7 +29,7 @@ const home = {
           // 隐藏Home模块
           this.hide(() => {
             // 载入游戏
-            chunk.play();
+            scene.chunk.play();
             // 开启键盘监听器
             listener.enable();
             // 开启计时
