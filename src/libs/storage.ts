@@ -6,6 +6,9 @@ interface Metadata {
   levels: number;
   historyBreak: number;
   version: string;
+  settings: {
+    resolution: number;
+  };
   balances: {
     copper: number;
     iron: number;
@@ -20,6 +23,9 @@ const metadata: Metadata = {
   name: null,
   levels: 1,
   historyBreak: 0,
+  settings: {
+    resolution: 16,
+  },
   balances: {
     copper: 0,
     iron: 0,

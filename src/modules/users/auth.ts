@@ -3,7 +3,6 @@ import scene from "../scene";
 import storage from "../../libs/storage";
 import logger from "../../components/logger";
 import user from "../user";
-import settings from "../../conf/settings";
 
 const auth = {
   rootElement: document.querySelector("#auth-module")!,
@@ -71,8 +70,6 @@ const auth = {
         scene.home.show();
         // 初始化Personal模块
         user.personal.init();
-        // 初始化设置
-        settings.init();
       },
     });
   },
