@@ -5,7 +5,7 @@ import ticks from "../ticks";
 import user from "../user";
 import logger from "../../components/logger";
 
-const homeScene = {
+const home = {
   rootElement: document.querySelector("#home-scene")!,
   start: document.querySelector("#home-start")!,
   show() {
@@ -56,4 +56,4 @@ const homeScene = {
   },
 };
 
-export default homeScene;
+export default home;

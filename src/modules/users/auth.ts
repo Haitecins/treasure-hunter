@@ -4,7 +4,7 @@ import localstorage from "../../utils/localstorage";
 import logger from "../../components/logger";
 import user from "../user";
 
-const authModule = {
+const auth = {
   rootElement: document.querySelector("#auth-module")!,
   confirm: document.querySelector("#auth-confirm")!,
   tip: document.querySelector("#auth-tip")!,
@@ -84,4 +84,4 @@ const authModule = {
   },
 };
 
-export default authModule;
+export default auth;

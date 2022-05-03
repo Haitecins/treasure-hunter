@@ -3,7 +3,7 @@ import scene from "./scene";
 import convert from "../utils/convert";
 import logger from "../components/logger";
 
-const tickModule = {
+const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
   timer: 30,
@@ -52,4 +52,4 @@ const tickModule = {
   },
 };
 
-export default tickModule;
+export default ticks;

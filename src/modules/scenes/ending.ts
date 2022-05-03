@@ -6,7 +6,7 @@ import stats from "../../conf/ending/stats";
 import rewards from "../../conf/ending/rewards";
 import logger from "../../components/logger";
 
-const endingScene = {
+const ending = {
   rootElement: document.querySelector("#ending-module")!,
   rate: document.querySelector("#ending-rate>span")!,
   stat: document.querySelector("#ending-stat>div")!,
@@ -60,4 +60,4 @@ const endingScene = {
   },
 };
 
-export default endingScene;
+export default ending;

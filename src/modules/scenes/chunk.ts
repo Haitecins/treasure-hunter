@@ -2,7 +2,7 @@ import logger from "../../components/logger";
 import entities from "../entities";
 import listener from "../listener";
 
-const chunkScene = {
+const chunk = {
   rootElement: document.querySelector("#chunk-scene")!,
   play() {
     this.rootElement.classList.remove("hidden");
@@ -23,4 +23,4 @@ const chunkScene = {
   },
 };
 
-export default chunkScene;
+export default chunk;

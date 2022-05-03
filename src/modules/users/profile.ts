@@ -2,7 +2,7 @@ import localstorage from "../../utils/localstorage";
 import formatter from "../../utils/formatter";
 import logger from "../../components/logger";
 
-const profileModule = {
+const profile = {
   rootElement: document.querySelector("#profile-module")!,
   name: document.querySelector("#profile-name")!,
   levels: document.querySelector("#profile-levels")!,
@@ -24,4 +24,4 @@ const profileModule = {
   },
 };
 
-export default profileModule;
+export default profile;

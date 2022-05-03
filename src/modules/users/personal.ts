@@ -3,7 +3,7 @@ import localstorage from "../../utils/localstorage";
 import profile from "./profile";
 import anime from "animejs";
 
-const personalModule = {
+const personal = {
   rootElement: document.querySelector("#personal-module")!,
   closeElement: document.querySelector("#personal-close")!,
   name: document.querySelector("#personal-name")!,
@@ -71,4 +71,5 @@ const personalModule = {
     });
   },
 };
-export default personalModule;
+
+export default personal;

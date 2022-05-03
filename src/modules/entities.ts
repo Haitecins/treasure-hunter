@@ -4,7 +4,7 @@ import chars from "../utils/chars";
 import colors from "./colors";
 import navigate from "./navigate";
 
-const entitiesContainer = {
+const entities = {
   container: document.querySelector("#entities-container")!,
   animeInstance: <anime.AnimeInstance>{},
   enable() {
@@ -55,7 +55,7 @@ const entitiesContainer = {
   },
 };
 
-export default entitiesContainer;
+export default entities;
 export { Entity };
 
 interface Entity extends HTMLDivElement {
