@@ -8,6 +8,7 @@ module.exports = {
       "writable-book": 'url("/src/assets/icons/writable_book.png")',
       close: 'url("/src/assets/icons/close.png")',
       barrier: 'url("/src/assets/icons/barrier.png")',
+      "nether-star": 'url("/src/assets/icons/nether_star.png")',
     },
     extend: {
       colors: {
