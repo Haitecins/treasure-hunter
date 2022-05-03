@@ -1,4 +1,4 @@
-import localstorage from "../../utils/localstorage";
+import storage from "../../libs/storage";
 import formatter from "../../utils/formatter";
 import logger from "../../components/logger";
 
@@ -14,7 +14,7 @@ const profile = {
   update() {
     logger("Profile", "已更新");
     const { copper, iron, gold } = this.balances;
-    const { balances, name, levels } = localstorage.get();
+    const { balances, name, levels } = storage.get();
 
     this.levels.innerHTML = `Lv.${levels}`;
     this.name.innerHTML = name;

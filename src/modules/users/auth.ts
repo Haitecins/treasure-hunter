@@ -1,6 +1,6 @@
 import anime from "animejs";
 import scene from "../scene";
-import localstorage from "../../utils/localstorage";
+import storage from "../../libs/storage";
 import logger from "../../components/logger";
 import user from "../user";
 
@@ -20,7 +20,7 @@ const auth = {
       } else if (input.value.length > 15) {
         tip.innerHTML = "名称的长度不能超过10个字符！";
       } else {
-        localstorage.save((data) => {
+        storage.save((data) => {
           data.name = input.value.trim();
         });
         this.success();
@@ -47,10 +47,10 @@ const auth = {
     // 删除auth-modal元素
     this.isLogin.remove();
     // 修改标题栏
-    document.title += ` (${localstorage.get().name})`;
+    document.title += ` (${storage.get().name})`;
     // 修改欢迎消息
     this.welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
-      localstorage.get().name
+      storage.get().name
     }！`;
     // 显示欢迎消息
     this.welcomeBar.classList.remove("hidden");
@@ -74,7 +74,7 @@ const auth = {
     });
   },
   init() {
-    if (!localstorage.get().name) {
+    if (!storage.get().name) {
       logger("Auth", "载入模块");
       this.load();
     } else {

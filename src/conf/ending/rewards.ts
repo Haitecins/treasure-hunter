@@ -1,5 +1,5 @@
 import cache from "../cache";
-import localstorage from "../../utils/localstorage";
+import storage from "../../libs/storage";
 import loadIcon from "../../components/loadIcon";
 import writeText from "../../components/writeText";
 import logger from "../../components/logger";
@@ -8,7 +8,7 @@ const rewards = {
   list: [
     () => {
       if (cache.props.COPPER_COUNT) {
-        localstorage.save((data) => {
+        storage.save((data) => {
           logger("Reward", `Give 铜锭x${cache.props.COPPER_COUNT}.`);
           data.balances.copper += cache.props.COPPER_COUNT;
         });
@@ -20,7 +20,7 @@ const rewards = {
     },
     () => {
       if (cache.props.IRON_COUNT) {
-        localstorage.save((data) => {
+        storage.save((data) => {
           logger("Reward", `Give 铁锭x${cache.props.IRON_COUNT}.`);
           data.balances.iron += cache.props.IRON_COUNT;
         });
@@ -32,7 +32,7 @@ const rewards = {
     },
     () => {
       if (cache.props.GOLD_COUNT) {
-        localstorage.save((data) => {
+        storage.save((data) => {
           logger("Reward", `Give 金锭x${cache.props.GOLD_COUNT}.`);
           data.balances.gold += cache.props.GOLD_COUNT;
         });

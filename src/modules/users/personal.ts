@@ -1,5 +1,5 @@
 import logger from "../../components/logger";
-import localstorage from "../../utils/localstorage";
+import storage from "../../libs/storage";
 import profile from "./profile";
 import anime from "animejs";
 
@@ -32,7 +32,7 @@ const personal = {
   },
   update() {
     logger("Personal", "已更新");
-    const { balances, name, levels, historyBreak } = localstorage.get();
+    const { balances, name, levels, historyBreak } = storage.get();
 
     this.levels.innerHTML = `Lv.${levels}`;
     this.name.innerHTML = name;

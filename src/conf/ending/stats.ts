@@ -1,5 +1,5 @@
 import cache from "../cache";
-import localstorage from "../../utils/localstorage";
+import storage from "../../libs/storage";
 import writeText from "../../components/writeText";
 import ticks from "../../modules/ticks";
 import convert from "../../utils/convert";
@@ -14,7 +14,7 @@ const stats = {
       return `耗时：${writeText(convert(timeRecorder))}`;
     },
     () => {
-      localstorage.save((data) => {
+      storage.save((data) => {
         logger("Stat", `破坏字符${cache.props.BREAK_CHARS}个`);
         data.historyBreak += cache.props.BREAK_CHARS;
       });

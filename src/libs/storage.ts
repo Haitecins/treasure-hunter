@@ -33,9 +33,9 @@ const metadata: Metadata = {
 const load = (callback?: () => void) => {
   if (!localStorage[db_key]) {
     localStorage[db_key] = JSON.stringify(metadata);
-    logger("Localstorage", "Init...");
+    logger("Storage", "Init...");
   } else {
-    logger("Localstorage", "Loading...");
+    logger("Storage", "Loading...");
   }
   Object.defineProperty(window, temp_key, {
     value: JSON.parse(localStorage[db_key]),
@@ -55,7 +55,7 @@ const save = (callback?: (data: Metadata) => void) => {
     callback?.(db_temp);
     localStorage[db_key] = JSON.stringify(db_temp);
     console.group("本地存储");
-    logger("Localstorage", "数据已保存！");
+    logger("Storage", "数据已保存！");
     console.table(db_temp);
     console.groupEnd();
   } catch (e) {
