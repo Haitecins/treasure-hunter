@@ -4,6 +4,6 @@
   }
 
   .th-modal-close-btn {
-    @apply th-icon-ref bg-close m-0 w-8 h-8 absolute right-6 cursor-pointer;
+    @apply th-icon-ref bg-close m-0 w-8 h-8 cursor-pointer;
   }
 }

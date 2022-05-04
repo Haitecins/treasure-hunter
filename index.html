@@ -132,9 +132,12 @@
     <div id="personal-module" class="absolute inset-0 m-auto hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
       <div class="th-modal">
-        <div class="flex items-end">
-          <div id="personal-name" class="text-3xl"></div>
-          <div id="personal-levels" class="text-2xl pl-4 opacity-75"></div>
+        <div class="flex justify-between items-center">
+          <div class="flex items-end">
+            <div id="personal-name" class="text-3xl"></div>
+            <div id="personal-levels" class="text-2xl pl-4 opacity-75"></div>
+          </div>
+          <i id="personal-close" class="th-modal-close-btn"></i>
         </div>
         <div>
           <div id="personal-bal-copper-ingot" class="th-icon-module">
@@ -154,13 +157,15 @@
             <div></div>
           </div>
         </div>
-        <i id="personal-close" class="th-modal-close-btn"></i>
       </div>
     </div>
     <div id="settings-module" class="absolute inset-0 m-auto hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
       <div class="th-modal justify-start">
-        <div class="text-3xl">游戏设置</div>
+        <div class="flex justify-between items-center">
+          <div class="text-3xl">游戏设置</div>
+          <i id="settings-close-btn" class="th-modal-close-btn"></i>
+        </div>
         <div class="text-2xl mt-3 flex items-center pl-2">
           <label for="resolution-option" class="mr-4">尺寸大小</label>
           <input
@@ -172,7 +177,6 @@
             step="1"
           />
         </div>
-        <i id="settings-close-btn" class="th-modal-close-btn"></i>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
