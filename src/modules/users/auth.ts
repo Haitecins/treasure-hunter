@@ -31,6 +31,10 @@ const auth = {
       targets: rootElement,
       duration: 1000,
       translateY: [-600, 0],
+      begin: () => {
+        // 显示命名模块
+        this.isLogin.classList.remove("hidden");
+      },
     });
     confirm.addEventListener("click", loginHandler);
     input.addEventListener("keydown", (ev) => {
@@ -44,20 +48,20 @@ const auth = {
       targets: this.rootElement,
     });
 
-    // 删除auth-modal元素
-    this.isLogin.remove();
     // 修改标题栏
     document.title += ` (${storage.get().name})`;
     // 修改欢迎消息
     this.welcomeBar.querySelector("h1")!.innerHTML = `欢迎回来，${
       storage.get().name
     }！`;
-    // 显示欢迎消息
-    this.welcomeBar.classList.remove("hidden");
     // 为欢迎消息添加动画
     timeline.add({
       duration: 1000,
       translateY: [clientHeight, 0],
+      begin: () => {
+        // 显示欢迎消息
+        this.welcomeBar.classList.remove("hidden");
+      },
     });
     timeline.add({
       opacity: 0,
@@ -74,6 +78,8 @@ const auth = {
     });
   },
   init() {
+    // 显示Auth模块
+    this.rootElement.classList.remove("hidden");
     if (!storage.get().name) {
       logger("Auth", "载入模块");
       this.load();
