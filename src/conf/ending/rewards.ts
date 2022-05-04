@@ -13,7 +13,7 @@ const rewards = {
           data.balances.copper += cache.props.COPPER_COUNT;
         });
         return `${loadIcon("bg-bal-copper-ingot")}${writeText(
-          cache.props.COPPER_COUNT
+          cache.props.COPPER_COUNT.toLocaleString("en")
         )}`;
       }
       return null;
@@ -25,7 +25,7 @@ const rewards = {
           data.balances.iron += cache.props.IRON_COUNT;
         });
         return `${loadIcon("bg-bal-iron-ingot")}${writeText(
-          cache.props.IRON_COUNT
+          cache.props.IRON_COUNT.toLocaleString("en")
         )}`;
       }
       return null;
@@ -37,7 +37,7 @@ const rewards = {
           data.balances.gold += cache.props.GOLD_COUNT;
         });
         return `${loadIcon("bg-bal-gold-ingot")}${writeText(
-          cache.props.GOLD_COUNT
+          cache.props.GOLD_COUNT.toLocaleString("en")
         )}`;
       }
       return null;

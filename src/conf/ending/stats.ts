@@ -18,7 +18,9 @@ const stats = {
         logger("Stat", `破坏字符${cache.props.BREAK_CHARS}个`);
         data.historyBreak += cache.props.BREAK_CHARS;
       });
-      return `破坏字符：${writeText(cache.props.BREAK_CHARS)}个`;
+      return `破坏字符：${writeText(
+        cache.props.BREAK_CHARS.toLocaleString("en")
+      )}个`;
     },
   ],
   load(container: Element) {
