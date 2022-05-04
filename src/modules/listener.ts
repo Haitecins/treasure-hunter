@@ -15,10 +15,20 @@ const activeCharHandler = (el: Entity) => {
     scale: 0,
     easing: "easeInOutQuad",
     begin() {
-      // 累计此次破坏的字符数
+      // 增加一次字符计数
       cache.props.BREAK_CHARS++;
-      // 有概率获得铜锭x1
-      anime.random(0, 100) >= 75 && cache.props.COPPER_COUNT++;
+      // 有概率获得铜锭x1-3
+      if (anime.random(0, 100) <= 65) {
+        cache.props.COPPER_COUNT += anime.random(1, 3);
+      }
+      // 有概率获得铁锭x1-2
+      if (anime.random(0, 100) <= 40) {
+        cache.props.IRON_COUNT += anime.random(1, 2);
+      }
+      // 有概率获得金锭x1
+      if (anime.random(0, 100) <= 5) {
+        cache.props.GOLD_COUNT += 1;
+      }
     },
     complete() {
       el.remove();
