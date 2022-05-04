@@ -40,6 +40,13 @@ const entities = {
     el.innerHTML = el.activeKey = char;
     el.isActive = false;
     this.container.appendChild(el);
+    // 点击字符被激活
+    // el.onclick = () => {
+    //   if (!el.isActive) {
+    //     activeCharHandler(el);
+    //     el.onclick = null;
+    //   }
+    // };
 
     return el;
   },
