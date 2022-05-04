@@ -23,6 +23,8 @@ const auth = {
         storage.save((data) => {
           data.name = input.value.trim();
         });
+        // 隐藏命名功能
+        this.isLogin.classList.add("hidden");
         this.success();
       }
     };
@@ -59,8 +61,6 @@ const auth = {
       duration: 1000,
       translateY: [clientHeight, 0],
       begin: () => {
-        // 移除命名功能
-        this.isLogin.remove();
         // 显示欢迎消息
         this.welcomeBar.classList.remove("hidden");
       },
