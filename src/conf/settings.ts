@@ -1,6 +1,6 @@
 import anime from "animejs";
 import logger from "../components/logger";
-import storage from "../libs/storage";
+import resolution from "./settings/resolution";
 
 const settings = {
   openElement: document.querySelector("#settings-open-btn")!,
@@ -22,37 +22,9 @@ const settings = {
     };
 
     logger("Settings", "初始化");
-    this.resolutionTracker();
     this.openElement.addEventListener("click", openHandler);
-  },
-  resolutionTracker() {
-    const { settings } = storage.get();
-    const size = (x: string) => (document.documentElement.style.fontSize = x);
-    const labelText = (text: string) =>
-      (this.options.resolution.previousElementSibling!.innerHTML = text);
-
-    // 应用更改的设置
-    size(`${settings.resolution}px`);
-    // 更新滑块的值
-    this.options.resolution.value = String(settings.resolution);
-    // 显示当前尺寸的具体数值
-    labelText(`尺寸大小 (${settings.resolution})`);
-
-    // 添加滑块被改变的事件
-    this.options.resolution.addEventListener("change", (ev) => {
-      const target = <HTMLInputElement>ev.target;
-
-      console.group("Settings Conf Event");
-      logger("Settings", "尺寸大小设置发生改变");
-      // 保存设置
-      storage.save((data) => {
-        data.settings.resolution = Number(target.value);
-      });
-      // 更新大小和文本信息
-      size(`${settings.resolution}px`);
-      labelText(`尺寸大小 (${settings.resolution})`);
-      console.groupEnd();
-    });
+    // 尺寸大小设置
+    resolution.init(this);
   },
   show() {
     anime({

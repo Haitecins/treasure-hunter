@@ -11,6 +11,7 @@ const loading = {
     const loadHandler = () => {
       this.rootElement.removeEventListener("click", loadHandler);
       this.rootElement.remove();
+      // 初始化玩家验证
       auth.init();
     };
 
