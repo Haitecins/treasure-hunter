@@ -2,14 +2,15 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts}"],
   theme: {
     backgroundImage: {
-      "bal-copper-ingot": 'url("/src/assets/icons/copper_ingot.png")',
-      "bal-iron-ingot": 'url("/src/assets/icons/iron_ingot.png")',
-      "bal-gold-ingot": 'url("/src/assets/icons/gold_ingot.png")',
-      "writable-book": 'url("/src/assets/icons/writable_book.png")',
-      close: 'url("/src/assets/icons/close.png")',
       barrier: 'url("/src/assets/icons/barrier.png")',
-      "nether-star": 'url("/src/assets/icons/nether_star.png")',
-      compass: 'url("/src/assets/icons/compass.png")',
+      close: 'url("/src/assets/icons/close.png")',
+      comparator: 'url("/src/assets/icons/comparator.png")',
+      copper_ingot: 'url("/src/assets/icons/copper_ingot.png")',
+      gold_ingot: 'url("/src/assets/icons/gold_ingot.png")',
+      iron_ingot: 'url("/src/assets/icons/iron_ingot.png")',
+      magma_cream: 'url("/src/assets/icons/magma_cream.png")',
+      nether_star: 'url("/src/assets/icons/nether_star.png")',
+      writable_book: 'url("/src/assets/icons/writable_book.png")',
     },
     extend: {
       colors: {

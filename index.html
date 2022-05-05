@@ -20,7 +20,7 @@
       class="absolute inset-0 z-[9999] flex justify-center items-center text-th-white bg-th-black"
     >
       <div class="th-icon-module text-6xl flex-col">
-        <i class="th-icon-ref bg-nether-star w-32 h-32 m-0"></i>
+        <i class="th-icon-ref bg-nether_star w-32 h-32 m-0"></i>
         <div class="mt-10 text-center font-['cn']">Treasure Hunter</div>
       </div>
       <div class="absolute bottom-10 text-3xl opacity-75">点击任意处继续</div>
@@ -54,7 +54,7 @@
         <!-- account status bar -->
         <div id="profile-module" class="th-profile-module">
           <div class="th-icon-module">
-            <i class="bg-writable-book th-icon-ref"></i>
+            <i class="bg-writable_book th-icon-ref"></i>
             <div class="cursor-pointer flex items-center">
               <div id="profile-name" class="text-3xl"></div>
               <div id="profile-levels" class="text-2xl pl-4 opacity-75"></div>
@@ -62,32 +62,35 @@
           </div>
           <div class="flex">
             <div id="bal-copper-ingot" class="th-icon-module">
-              <i class="th-icon-ref bg-bal-copper-ingot"></i>
+              <i class="th-icon-ref bg-copper_ingot"></i>
               <div></div>
             </div>
             <div id="bal-iron-ingot" class="pl-6 th-icon-module">
-              <i class="th-icon-ref bg-bal-iron-ingot"></i>
+              <i class="th-icon-ref bg-iron_ingot"></i>
               <div></div>
             </div>
             <div id="bal-gold-ingot" class="pl-6 th-icon-module">
-              <i class="th-icon-ref bg-bal-gold-ingot"></i>
+              <i class="th-icon-ref bg-gold_ingot"></i>
               <div></div>
             </div>
           </div>
         </div>
         <!-- controls -->
-        <div class="flex justify-end absolute top-16 inset-x-0 py-2 px-6">
+        <div class="flex justify-end absolute top-16 inset-x-0 p-4">
           <div class="th-icon-module flex-col">
             <i
               id="settings-open-btn"
-              class="th-icon-ref bg-compass m-0 cursor-pointer"
+              class="th-icon-ref bg-comparator m-0 cursor-pointer"
             ></i>
-            <div class="text-2xl opacity-75">游戏设置</div>
+            <div class="text-xl opacity-75 pt-1">游戏设置</div>
           </div>
-        </div>
-        <!-- start game button -->
-        <div class="absolute right-0 bottom-0">
-          <button id="home-start" class="text-2xl">开始游戏</button>
+          <div class="th-icon-module flex-col ml-4">
+            <i
+              id="home-start"
+              class="th-icon-ref bg-magma_cream m-0 cursor-pointer"
+            ></i>
+            <div class="text-xl opacity-75 pt-1">开始游戏</div>
+          </div>
         </div>
       </div>
       <!-- game area -->
@@ -141,15 +144,15 @@
         </div>
         <div>
           <div id="personal-bal-copper-ingot" class="th-icon-module">
-            <i class="th-icon-ref bg-bal-copper-ingot w-10 h-10"></i>
+            <i class="th-icon-ref bg-copper_ingot w-10 h-10"></i>
             <div></div>
           </div>
           <div id="personal-bal-iron-ingot" class="th-icon-module">
-            <i class="th-icon-ref bg-bal-iron-ingot w-10 h-10"></i>
+            <i class="th-icon-ref bg-iron_ingot w-10 h-10"></i>
             <div></div>
           </div>
           <div id="personal-bal-gold-ingot" class="th-icon-module">
-            <i class="th-icon-ref bg-bal-gold-ingot w-10 h-10"></i>
+            <i class="th-icon-ref bg-gold_ingot w-10 h-10"></i>
             <div></div>
           </div>
           <div id="personal-break-chars" class="th-icon-module">
@@ -165,7 +168,7 @@
         <div class="flex justify-between items-center">
           <div class="text-3xl flex items-end">
             <span>游戏设置</span
-            ><span class="pl-2 opacity-75 text-xl">（更改将在关闭后生效）</span>
+            ><span class="pl-2 opacity-75 text-xl">更改将在关闭后生效</span>
           </div>
           <i id="settings-close-btn" class="th-modal-close-btn"></i>
         </div>

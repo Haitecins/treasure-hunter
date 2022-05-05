@@ -12,7 +12,7 @@ const rewards = {
           logger("Reward", `Give 铜锭x${cache.props.COPPER_COUNT}.`);
           data.balances.copper += cache.props.COPPER_COUNT;
         });
-        return `${loadIcon("bg-bal-copper-ingot")}${writeText(
+        return `${loadIcon("bg-copper_ingot")}${writeText(
           cache.props.COPPER_COUNT.toLocaleString("en")
         )}`;
       }
@@ -24,7 +24,7 @@ const rewards = {
           logger("Reward", `Give 铁锭x${cache.props.IRON_COUNT}.`);
           data.balances.iron += cache.props.IRON_COUNT;
         });
-        return `${loadIcon("bg-bal-iron-ingot")}${writeText(
+        return `${loadIcon("bg-iron_ingot")}${writeText(
           cache.props.IRON_COUNT.toLocaleString("en")
         )}`;
       }
@@ -36,7 +36,7 @@ const rewards = {
           logger("Reward", `Give 金锭x${cache.props.GOLD_COUNT}.`);
           data.balances.gold += cache.props.GOLD_COUNT;
         });
-        return `${loadIcon("bg-bal-gold-ingot")}${writeText(
+        return `${loadIcon("bg-gold_ingot")}${writeText(
           cache.props.GOLD_COUNT.toLocaleString("en")
         )}`;
       }
