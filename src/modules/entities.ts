@@ -18,7 +18,8 @@ const entities = {
     // 生成实体
     this.animeInstance = anime({
       loop: true,
-      duration: 400,
+      // 45s / 0.3s = 150chars
+      duration: 300,
       begin() {
         logger("Entities", "开始生成实体");
       },
@@ -40,13 +41,6 @@ const entities = {
     el.innerHTML = el.activeKey = char;
     el.isActive = false;
     this.container.appendChild(el);
-    // 点击字符被激活
-    // el.onclick = () => {
-    //   if (!el.isActive) {
-    //     activeCharHandler(el);
-    //     el.onclick = null;
-    //   }
-    // };
 
     return el;
   },

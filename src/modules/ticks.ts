@@ -6,7 +6,7 @@ import logger from "../components/logger";
 const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  timer: 30,
+  timer: 45,
   timeRecorder: 0,
   start() {
     logger("Ticks", "计时开始");
@@ -46,7 +46,7 @@ const ticks = {
     logger("Ticks", "计时停止");
   },
   reset() {
-    this.timer = 30;
+    this.timer = 45;
     this.timeRecorder = 0;
     logger("Ticks", "已重置计时");
   },

@@ -1,9 +1,9 @@
 @import "auth.css";
-@import "profile.css";
-@import "modal.css";
 @import "chunk.css";
-@import "icons.css";
 @import "entity.css";
+@import "icons.css";
+@import "modal.css";
+@import "profile.css";
 
 @tailwind base;
 @tailwind components;
