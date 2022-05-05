@@ -10,6 +10,11 @@
 @tailwind utilities;
 
 @font-face {
+  src: url("../fonts/Ubuntu-Bold.ttf");
+  font-family: "en";
+}
+
+@font-face {
   src: url("../fonts/zh-cn.ttf");
   font-family: "cn";
 }

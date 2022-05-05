@@ -34,7 +34,7 @@ const personal = {
     logger("Personal", "已更新");
     const { balances, name, levels, historyBreak } = storage.get();
 
-    this.levels.innerHTML = `Lv.${levels}`;
+    this.levels.innerHTML = `${levels} Levels`;
     this.name.innerHTML = name;
     this.balances.copper.innerHTML = balances.copper.toLocaleString("en");
     this.balances.iron.innerHTML = balances.iron.toLocaleString("en");
