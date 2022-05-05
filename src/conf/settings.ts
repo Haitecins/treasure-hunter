@@ -18,13 +18,16 @@ const settings = {
     const closeHandler = () => {
       this.closeElement.removeEventListener("click", closeHandler);
       this.openElement.addEventListener("click", openHandler);
-      this.hide();
+      this.hide(() => {
+        // 保存更改
+        resolution.save();
+      });
     };
 
     logger("Settings", "初始化");
     this.openElement.addEventListener("click", openHandler);
-    // 尺寸大小设置
-    resolution.init(this);
+    // 初始化分辨率设置选项
+    resolution.init();
   },
   show() {
     anime({
@@ -41,12 +44,13 @@ const settings = {
       },
     });
   },
-  hide() {
+  hide(beginExtraCallback?: () => void) {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
       duration: 250,
       easing: "easeInOutQuad",
+      begin: beginExtraCallback,
       complete: () => {
         this.rootElement.classList.add("hidden");
         logger("Settings", "已隐藏");

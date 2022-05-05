@@ -1,44 +1,44 @@
 import storage from "../../libs/storage";
-import logger from "../../components/logger";
 import settings from "../settings";
 
 const resolution = {
-  init(settingObj: typeof settings) {
-    const { settings } = storage.get();
-    // 设置尺寸大小
-    const setSize = (x: string) =>
-      (document.documentElement.style.fontSize = x);
+  value: 0,
+  apply: (size: number | null, label: string) => {
+    // 调整分辨率
+    if (size) document.documentElement.style.fontSize = `${size}px`;
     // 修改标签的文本
-    const setLabelText = (text: string) =>
-      (settingObj.options.resolution.previousElementSibling!.innerHTML = text);
-
-    // 应用更改的设置
-    setSize(`${settings.resolution}px`);
-    // 显示当前尺寸的具体数值
-    setLabelText(`尺寸大小 (${settings.resolution}x)`);
+    settings.options.resolution.previousElementSibling!.innerHTML = label;
+  },
+  init() {
+    // 修改分辨率value属性的值为localStorage中的值
+    this.value = storage.get().settings.resolution;
+    // 应用设置
+    this.apply(this.value, `分辨率 (${this.value}x)`);
     // 更新滑块的值
-    settingObj.options.resolution.value = settings.resolution + "";
+    settings.options.resolution.value = this.value + "";
     // 添加滑块被改变的事件
-    settingObj.options.resolution.addEventListener("change", (ev) => {
+    settings.options.resolution.addEventListener("change", (ev) => {
       const target = <HTMLInputElement>ev.target;
 
-      console.group("Settings Change Event");
-      logger("Settings", "尺寸大小设置发生改变");
-      // 保存设置
-      storage.save((data) => {
-        if (Number(target.value) > 30) {
-          data.settings.resolution = 30;
-        } else if (Number(target.value) < 12) {
-          data.settings.resolution = 12;
-        } else {
-          data.settings.resolution = +target.value;
-        }
-      });
-      // 更新大小和文本信息
-      setSize(`${settings.resolution}px`);
-      setLabelText(`尺寸大小 (${settings.resolution}x)`);
-      console.groupEnd();
+      // 修改为最新滑块的值
+      this.value = +target.value;
+      // 不修改分辨率，只改变分辨率的文本信息。
+      this.apply(null, `分辨率 (${this.value}x)`);
     });
+  },
+  save() {
+    // 保存设置
+    storage.save((data) => {
+      if (this.value > 30) {
+        data.settings.resolution = 30;
+      } else if (this.value < 8) {
+        data.settings.resolution = 8;
+      } else {
+        data.settings.resolution = this.value;
+      }
+    });
+    // 更新信息
+    this.apply(this.value, `分辨率 (${this.value}x)`);
   },
 };
 
