@@ -33,8 +33,8 @@ module.exports = {
         "th-light-pink": "#FB89FB",
       },
       fontFamily: {
-        sans: ['"default"', "sans-serif"],
-        serif: ['"default"', "serif"],
+        sans: ['"cn"', "sans-serif"],
+        serif: ['"cn"', "serif"],
       },
       spacing: {
         192: "44rem",

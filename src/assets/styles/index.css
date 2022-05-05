@@ -11,7 +11,7 @@
 
 @font-face {
   src: url("../fonts/zh-cn.ttf");
-  font-family: "default";
+  font-family: "cn";
 }
 
 @layer base {
