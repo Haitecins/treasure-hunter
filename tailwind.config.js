@@ -10,6 +10,7 @@ module.exports = {
       iron_ingot: 'url("/src/assets/icons/iron_ingot.png")',
       magma_cream: 'url("/src/assets/icons/magma_cream.png")',
       nether_star: 'url("/src/assets/icons/nether_star.png")',
+      paper: 'url("/src/assets/icons/paper.png")',
       writable_book: 'url("/src/assets/icons/writable_book.png")',
     },
     extend: {
