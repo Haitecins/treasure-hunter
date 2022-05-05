@@ -14,12 +14,7 @@ const ticks = {
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        if (this.timer !== 0) {
-          this.rootElement.innerHTML = convert(() => {
-            this.timeRecorder++;
-            return this.timer--;
-          });
-        } else {
+        if (this.timer <= 0) {
           this.rootElement.innerHTML = "时间到！";
           // 停止计时
           this.stop();
@@ -35,6 +30,11 @@ const ticks = {
               // 清空tick节点遗留下的内容
               this.rootElement.innerHTML = "";
             },
+          });
+        } else {
+          this.rootElement.innerHTML = convert(() => {
+            this.timeRecorder++;
+            return this.timer--;
           });
         }
       },
