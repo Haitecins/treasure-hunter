@@ -1,6 +1,6 @@
 @layer components {
   .th-modal-space {
-    @apply absolute inset-0 flex justify-center items-center;
+    @apply absolute inset-0 p-10 flex justify-center items-center;
   }
 
   .th-modal {

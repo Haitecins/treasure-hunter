@@ -26,24 +26,26 @@
       <div class="absolute bottom-10 text-3xl opacity-75">点击任意处继续</div>
     </div>
     <div id="root" class="w-full h-full relative">
-      <div id="auth-module" class="th-auth-module hidden">
-        <div id="is-login" class="hidden">
-          <div class="text-5xl text-center m-auto mb-8 text-th-white">
-            你想使用的名称是？
+      <div id="auth-module" class="th-modal-space hidden">
+        <div class="th-auth-modal">
+          <div id="is-login" class="hidden">
+            <div class="text-5xl text-center m-auto mb-8 text-th-white">
+              你想使用的名称是？
+            </div>
+            <label>
+              <input
+                id="auth-input"
+                class="th-auth-input"
+                type="text"
+                maxlength="15"
+              />
+            </label>
+            <div id="auth-tip" class="th-auth-tip"></div>
+            <button id="auth-confirm" class="th-auth-confirm">我决定了</button>
           </div>
-          <label>
-            <input
-              id="auth-input"
-              class="th-auth-input"
-              type="text"
-              maxlength="15"
-            />
-          </label>
-          <div id="auth-tip" class="th-auth-tip"></div>
-          <button id="auth-confirm" class="th-auth-confirm">我决定了</button>
-        </div>
-        <div id="welcome-bar" class="hidden">
-          <h1 class="text-3xl text-center m-auto text-th-white"></h1>
+          <div id="welcome-bar" class="hidden">
+            <h1 class="text-3xl text-center m-auto text-th-white"></h1>
+          </div>
         </div>
       </div>
       <!-- main page -->
