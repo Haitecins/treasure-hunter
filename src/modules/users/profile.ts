@@ -1,6 +1,6 @@
 import storage from "../../libs/storage";
-import formatter from "../../utils/formatter";
 import logger from "../../components/logger";
+import formatter from "../../utils/formatter";
 
 const profile = {
   rootElement: document.querySelector("#profile-module")!,
@@ -15,12 +15,19 @@ const profile = {
     logger("Profile", "已更新");
     const { copper, iron, gold } = this.balances;
     const { balances, name, levels } = storage.get();
+    const convertFormat = (x: number): string => {
+      if (x >= 1e6) {
+        return formatter(x, 2);
+      } else {
+        return x.toLocaleString("en");
+      }
+    };
 
     this.levels.innerHTML = `Lv.${levels}`;
     this.name.innerHTML = name;
-    copper.innerHTML = formatter(balances.copper, 2);
-    iron.innerHTML = formatter(balances.iron, 2);
-    gold.innerHTML = formatter(balances.gold, 2);
+    copper.innerHTML = convertFormat(balances.copper);
+    iron.innerHTML = convertFormat(balances.iron);
+    gold.innerHTML = convertFormat(balances.gold);
   },
 };
 
