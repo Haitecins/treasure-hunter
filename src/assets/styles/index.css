@@ -4,7 +4,6 @@
 @import "chunk.css";
 @import "icons.css";
 @import "entity.css";
-@import "ending.css";
 
 @tailwind base;
 @tailwind components;

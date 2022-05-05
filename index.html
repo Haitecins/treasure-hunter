@@ -105,12 +105,12 @@
         <div id="entities-container"></div>
       </div>
     </div>
-    <div id="ending-module" class="absolute inset-0 m-auto hidden">
+    <div id="ending-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
-      <div class="th-ending-module">
+      <div class="th-modal flex-row">
         <div
           id="ending-rate"
-          class="text-th-info text-8xl flex h-full items-center px-10"
+          class="text-th-info text-8xl flex items-center pl-10"
         >
           <span></span>
         </div>
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div id="personal-module" class="absolute inset-0 m-auto hidden">
+    <div id="personal-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
       <div class="th-modal">
         <div class="flex justify-between items-center">
@@ -159,20 +159,23 @@
         </div>
       </div>
     </div>
-    <div id="settings-module" class="absolute inset-0 m-auto hidden">
+    <div id="settings-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
       <div class="th-modal justify-start">
         <div class="flex justify-between items-center">
-          <div class="text-3xl">游戏设置</div>
+          <div class="text-3xl flex items-end">
+            <span>游戏设置</span
+            ><span class="pl-2 opacity-75 text-xl">（更改将在关闭后生效）</span>
+          </div>
           <i id="settings-close-btn" class="th-modal-close-btn"></i>
         </div>
-        <div class="text-2xl mt-3 flex items-center pl-2">
-          <label for="resolution-option" class="mr-4">尺寸大小</label>
+        <div class="text-2xl flex items-center pl-3 pt-3">
+          <label for="resolution-option" class="mr-4"></label>
           <input
             id="resolution-option"
             class="w-64"
             type="range"
-            min="12"
+            min="8"
             max="30"
             step="1"
           />

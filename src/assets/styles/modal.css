@@ -1,6 +1,10 @@
 @layer components {
+  .th-modal-space {
+    @apply absolute inset-0 flex justify-center items-center;
+  }
+
   .th-modal {
-    @apply absolute inset-0 m-auto w-192 h-96 border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
+    @apply relative z-10 w-192 h-96 border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
   }
 
   .th-modal-close-btn {
