@@ -3,13 +3,14 @@ module.exports = {
   theme: {
     backgroundImage: {
       barrier: 'url("/src/assets/icons/barrier.png")',
-      close: 'url("/src/assets/icons/close.png")',
+      cancel: 'url("/src/assets/icons/cancel.png")',
       comparator: 'url("/src/assets/icons/comparator.png")',
       copper_ingot: 'url("/src/assets/icons/copper_ingot.png")',
       gold_ingot: 'url("/src/assets/icons/gold_ingot.png")',
       iron_ingot: 'url("/src/assets/icons/iron_ingot.png")',
       magma_cream: 'url("/src/assets/icons/magma_cream.png")',
       nether_star: 'url("/src/assets/icons/nether_star.png")',
+      ok: 'url("/src/assets/icons/ok.png")',
       paper: 'url("/src/assets/icons/paper.png")',
       writable_book: 'url("/src/assets/icons/writable_book.png")',
     },

@@ -7,7 +7,11 @@
     @apply relative z-10 w-192 h-96 border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
   }
 
-  .th-modal-close-btn {
-    @apply th-icon-ref bg-close m-0 w-8 h-8 cursor-pointer;
+  .th-modal-ok-btn {
+    @apply th-icon-ref bg-ok m-0 w-8 h-8 cursor-pointer;
+  }
+
+  .th-modal-cancel-btn {
+    @apply th-icon-ref bg-cancel m-0 w-8 h-8 cursor-pointer;
   }
 }

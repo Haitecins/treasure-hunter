@@ -143,7 +143,7 @@
             <div id="personal-name" class="text-3xl"></div>
             <div id="personal-levels" class="text-2xl pl-4 opacity-75"></div>
           </div>
-          <i id="personal-close" class="th-modal-close-btn"></i>
+          <i id="personal-close" class="th-modal-cancel-btn"></i>
         </div>
         <div>
           <div id="personal-bal-copper-ingot" class="th-icon-module">
@@ -176,7 +176,7 @@
             <span>游戏设置</span
             ><span class="pl-2 opacity-75 text-xl">更改将在关闭后生效</span>
           </div>
-          <i id="settings-close-btn" class="th-modal-close-btn"></i>
+          <i id="settings-close-btn" class="th-modal-cancel-btn"></i>
         </div>
         <div class="text-2xl flex items-center pl-3 pt-3">
           <label for="resolution-option" class="mr-4"></label>
@@ -188,6 +188,32 @@
             max="30"
             step="1"
           />
+        </div>
+      </div>
+    </div>
+    <div id="stage-select-module" class="th-modal-space hidden">
+      <div class="absolute inset-0 bg-th-dark"></div>
+      <div class="th-modal">
+        <div class="flex flex-col h-full">
+          <div class="text-3xl">难度选择</div>
+          <div class="text-2xl flex items-center pl-3 pt-3">
+            <div>时间限制：</div>
+            <span class="text-th-info">45s</span>
+          </div>
+          <div class="text-2xl flex items-center pl-3 pt-3">
+            <div>生成速度：</div>
+            <span class="text-th-info">300ms</span>
+          </div>
+        </div>
+        <div class="flex justify-center items-center">
+          <div class="th-icon-module flex-col">
+            <i id="stage-ok-btn" class="th-modal-ok-btn"></i>
+            <div class="text-xl opacity-75 pt-1">确认</div>
+          </div>
+          <div class="th-icon-module flex-col ml-8">
+            <i id="stage-cancel-btn" class="th-modal-cancel-btn"></i>
+            <div class="text-xl opacity-75 pt-1">取消</div>
+          </div>
         </div>
       </div>
     </div>
