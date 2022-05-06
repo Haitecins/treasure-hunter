@@ -1,30 +1,9 @@
 import anime from "animejs";
 import logger from "../components/logger";
 import scene from "./scene";
-import { homeEventHandler } from "./scenes/home";
 import listener from "./listener";
 import ticks from "./ticks";
 
-const okHandler = () => {
-  // 销毁确认与取消的事件
-  stages.destroyEvent(() => {
-    stages.hide();
-    // 隐藏Home模块
-    scene.home.hide(() => {
-      // 载入游戏
-      scene.chunk.play();
-      // 开启键盘监听器
-      listener.enable();
-      // 开启计时
-      ticks.start();
-    });
-  });
-};
-const cancelHandler = () => {
-  stages.hide();
-  // 为开始按钮绑定事件
-  scene.home.start.addEventListener("click", homeEventHandler);
-};
 const stages = {
   rootElement: document.querySelector("#stage-select-module")!,
   okBtn: document.querySelector("#stage-ok-btn")!,
@@ -41,8 +20,8 @@ const stages = {
       },
       complete: () => {
         logger("Stages", "载入模块");
-        this.okBtn.addEventListener("click", okHandler);
-        this.cancelBtn.addEventListener("click", cancelHandler);
+        // 绑定两个按钮的事件
+        this.event();
       },
     });
   },
@@ -58,10 +37,36 @@ const stages = {
       },
     });
   },
-  destroyEvent(callback?: () => void) {
-    this.okBtn.removeEventListener("click", okHandler);
-    this.cancelBtn.removeEventListener("click", cancelHandler);
-    callback?.();
+  event() {
+    const okHandler = () => {
+      this.hide();
+      // 移除两个按钮的事件
+      removeHandler();
+      // 隐藏Home模块
+      scene.home.hide(() => {
+        // 载入游戏
+        scene.chunk.play();
+        // 开启键盘监听器
+        listener.enable();
+        // 开启计时
+        ticks.start();
+      });
+    };
+    const cancelHandler = () => {
+      // 移除两个按钮的事件
+      removeHandler();
+      this.hide();
+      // 重新绑定开始按钮的事件
+      scene.home.event();
+    };
+    const removeHandler = () => {
+      this.okBtn.removeEventListener("click", okHandler);
+      this.cancelBtn.removeEventListener("click", cancelHandler);
+    };
+
+    // 绑定事件
+    this.okBtn.addEventListener("click", okHandler);
+    this.cancelBtn.addEventListener("click", cancelHandler);
   },
 };
 
