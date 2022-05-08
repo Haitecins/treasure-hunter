@@ -38,6 +38,7 @@ const stages = {
       easing: "easeInOutSine",
       begin: () => {
         this.rootElement.classList.remove("hidden");
+        // 加载选择器
         this.loadSelector();
       },
       complete: () => {
@@ -53,7 +54,11 @@ const stages = {
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
-      begin: () => beginCallback?.(),
+      begin: () => {
+        beginCallback?.();
+        // 销毁选择器
+        this.destroySelector();
+      },
       complete: () => {
         this.rootElement.classList.add("hidden");
         logger("Stages", "已隐藏");
@@ -78,8 +83,8 @@ const stages = {
     const cancelHandler = () => {
       // 移除两个按钮的事件
       resetEvents();
-      // 关闭后重置玩家选择的内容
-      this.hide(() => this.reset());
+      // 关闭后重置选择器
+      this.hide(() => this.resetSelector());
       // 重新绑定开始按钮的事件
       scene.home.event();
     };
@@ -175,6 +180,19 @@ const stages = {
       }
     );
   },
+  destroySelector() {
+    // 清空选择器列表
+    this.selectorElement.innerHTML = "";
+  },
+  resetSelector() {
+    // 清除难度系数
+    this.degree.innerHTML = "0";
+    // 重置项目的更变
+    this.target = { ...readonlyTarget };
+    // 重置迭代器
+    this.iterator = { ...readonlyIterator };
+    logger("Stages", "重置选择器");
+  },
   iteratorAnimation() {
     const { exponents } = this.iterator;
 
@@ -188,17 +206,6 @@ const stages = {
       update: () =>
         (this.degree.innerHTML = this.iterator.indicator.toFixed(0)),
     });
-  },
-  reset() {
-    // 清空选择器列表
-    this.selectorElement.innerHTML = "";
-    // 清除难度指数
-    this.degree.innerHTML = "0";
-    // 重置难度的更变
-    this.target = { ...readonlyTarget };
-    // 重置迭代器
-    this.iterator = { ...readonlyIterator };
-    logger("Stages", "重置选择器");
   },
 };
 
