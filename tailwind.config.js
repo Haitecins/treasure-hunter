@@ -40,6 +40,7 @@ module.exports = {
         serif: ['"en"', '"cn"', "serif"],
       },
       spacing: {
+        144: "33rem",
         192: "44rem",
       },
     },

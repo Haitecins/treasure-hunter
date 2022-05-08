@@ -3,6 +3,7 @@ import logger from "../components/logger";
 import chars from "../utils/chars";
 import colors from "../utils/colors";
 import navigate from "./navigate";
+import stages from "./stages";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;
@@ -18,8 +19,7 @@ const entities = {
     // 生成实体
     this.animeInstance = anime({
       loop: true,
-      // 45s / 0.3s = 150chars
-      duration: 300,
+      duration: stages.opts.speed,
       begin() {
         logger("Entities", "开始生成实体");
       },

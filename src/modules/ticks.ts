@@ -2,19 +2,21 @@ import anime from "animejs";
 import scene from "./scene";
 import convert from "../utils/convert";
 import logger from "../components/logger";
+import stages from "./stages";
 
 const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  timer: 45,
   timeRecorder: 0,
   start() {
+    let time = stages.opts.time;
+
     logger("Ticks", "计时开始");
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        if (this.timer <= 0) {
+        if (time <= 0) {
           this.rootElement.innerHTML = "时间到！";
           // 停止计时
           this.stop();
@@ -34,7 +36,7 @@ const ticks = {
         } else {
           this.rootElement.innerHTML = convert(() => {
             this.timeRecorder++;
-            return this.timer--;
+            return time--;
           });
         }
       },
@@ -46,7 +48,6 @@ const ticks = {
     logger("Ticks", "计时停止");
   },
   reset() {
-    this.timer = 45;
     this.timeRecorder = 0;
     logger("Ticks", "已重置计时");
   },

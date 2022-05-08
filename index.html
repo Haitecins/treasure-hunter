@@ -193,26 +193,27 @@
     </div>
     <div id="stage-select-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
-      <div class="th-modal">
-        <div class="flex flex-col h-full">
-          <div class="text-3xl">难度选择</div>
-          <div class="text-2xl flex items-center pl-3 pt-3">
-            <div>时间限制：</div>
-            <span class="text-th-info">45s</span>
-          </div>
-          <div class="text-2xl flex items-center pl-3 pt-3">
-            <div>生成速度：</div>
-            <span class="text-th-info">300ms</span>
-          </div>
+      <div class="th-modal h-144">
+        <div class="flex flex-col">
+          <div class="text-3xl">调整难度</div>
+          <div
+            id="stages-selector"
+            class="flex flex-col h-[19.8rem] overflow-x-hidden overflow-y-scroll"
+          ></div>
         </div>
-        <div class="flex justify-center items-center">
-          <div class="th-icon-module flex-col">
-            <i id="stage-ok-btn" class="th-modal-ok-btn"></i>
-            <div class="text-xl opacity-75 pt-1">确认</div>
+        <div class="flex flex-col items-center">
+          <div class="text-2xl mb-4">
+            难度指数：<span id="lv-index" class="text-th-warn">0</span>
           </div>
-          <div class="th-icon-module flex-col ml-8">
-            <i id="stage-cancel-btn" class="th-modal-cancel-btn"></i>
-            <div class="text-xl opacity-75 pt-1">取消</div>
+          <div class="flex">
+            <div class="th-icon-module flex-col">
+              <i id="stage-ok-btn" class="th-modal-ok-btn"></i>
+              <div class="text-xl opacity-75 pt-1">选好了</div>
+            </div>
+            <div class="th-icon-module flex-col ml-8">
+              <i id="stage-cancel-btn" class="th-modal-cancel-btn"></i>
+              <div class="text-xl opacity-75 pt-1">再等等</div>
+            </div>
           </div>
         </div>
       </div>
