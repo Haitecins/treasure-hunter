@@ -4,24 +4,31 @@ import scene from "./scene";
 import listener from "./listener";
 import ticks from "./ticks";
 
-interface Selector {
+interface Items {
   value: number;
-  index: number;
+  exponent: number;
 }
 
+const readonlyTarget = {
+  // 计时器
+  TIMER: 0,
+  // 生成速度
+  SUMMON_SPEED: 0,
+};
+const readonlyIterator = {
+  // 难度指数
+  exponents: <number[]>[],
+  // 指数迭代器
+  indicator: 0,
+};
 const stages = {
   rootElement: document.querySelector("#stage-select-module")!,
+  selectorElement: document.querySelector("#stages-selector")!,
   okBtn: document.querySelector("#stage-ok-btn")!,
   cancelBtn: document.querySelector("#stage-cancel-btn")!,
-  stageSelector: document.querySelector("#stages-selector")!,
-  levelIndex: document.querySelector("#lv-index")!,
-  animeObj: {
-    value: 0,
-  },
-  opts: {
-    time: 0,
-    speed: 0,
-  },
+  degree: document.querySelector("#degree-levels")!,
+  target: { ...readonlyTarget },
+  iterator: { ...readonlyIterator },
   show() {
     logger("Stages", "正在加载");
     anime({
@@ -31,67 +38,33 @@ const stages = {
       easing: "easeInOutSine",
       begin: () => {
         this.rootElement.classList.remove("hidden");
-        // 加载选择器
-        this.selector(
-          "时间限制",
-          "time",
-          [
-            { value: 15, index: 100 },
-            { value: 30, index: 75 },
-            { value: 45, index: 50 },
-            { value: 60, index: 25 },
-          ],
-          "秒",
-          (value) => {
-            this.opts.time = value;
-          }
-        );
-        this.selector(
-          "生成速度",
-          "speed",
-          [
-            { value: 150, index: 100 },
-            { value: 300, index: 75 },
-            { value: 450, index: 50 },
-            { value: 600, index: 25 },
-          ],
-          "毫秒",
-          (value) => {
-            this.opts.speed = value;
-          }
-        );
+        this.loadSelector();
       },
       complete: () => {
         logger("Stages", "载入模块");
         // 绑定两个按钮的事件
         this.event();
-        // 默认选项
-        (<HTMLInputElement>(
-          this.stageSelector.children[0].querySelectorAll(".stages-option")[2]
-        )).click();
       },
     });
   },
-  hide() {
+  hide(beginCallback?: () => void) {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
+      begin: () => beginCallback?.(),
       complete: () => {
         this.rootElement.classList.add("hidden");
-        // 清空选择器
-        this.stageSelector.innerHTML = "";
         logger("Stages", "已隐藏");
       },
     });
   },
   event() {
     const okHandler = () => {
-      if (!this.opts.time || !this.opts.speed) return;
-      this.hide();
       // 移除两个按钮的事件
-      removeHandler();
+      resetEvents();
+      this.hide();
       // 隐藏Home模块
       scene.home.hide(() => {
         // 载入游戏
@@ -104,12 +77,13 @@ const stages = {
     };
     const cancelHandler = () => {
       // 移除两个按钮的事件
-      removeHandler();
-      this.hide();
+      resetEvents();
+      // 关闭后重置玩家选择的内容
+      this.hide(() => this.reset());
       // 重新绑定开始按钮的事件
       scene.home.event();
     };
-    const removeHandler = () => {
+    const resetEvents = () => {
       this.okBtn.removeEventListener("click", okHandler);
       this.cancelBtn.removeEventListener("click", cancelHandler);
     };
@@ -120,17 +94,18 @@ const stages = {
   },
   selector(
     title: string,
-    name: string,
-    selector: Selector[],
+    id: string,
+    options: Items[],
     digits: string,
-    callback: (value: number) => void
+    onchange: (selected: Items) => void
   ) {
     const container = document.createElement("div");
     const label = document.createElement("div");
     const selects = document.createElement("div");
 
-    container.classList.add("text-2xl", "my-3");
+    container.classList.add("my-3");
     label.classList.add(
+      "text-2xl",
       "text-center",
       "border-b-2",
       "border-b-th-white",
@@ -139,57 +114,91 @@ const stages = {
       "mb-2"
     );
     label.innerHTML = title;
-    selects.classList.add("flex", "justify-evenly");
-    // 遍历所有的选项
-    selector.forEach((props) => {
-      const box = document.createElement("div");
+    selects.classList.add("flex", "justify-evenly", "text-xl");
+    options.forEach((props) => {
       const label = document.createElement("label");
       const input = document.createElement("input");
 
-      input.type = "radio";
-      input.name = name;
-      input.value = props.value + "";
+      // 设置按钮的属性
       input.classList.add("mr-2", "cursor-pointer");
-      label.classList.add(
-        "stages-option",
-        "flex",
-        "items-center",
-        "cursor-pointer"
-      );
-      label.appendChild(input);
-      label.innerHTML += `${props.value}${digits}`;
-      Object.defineProperty(label, "props", {
-        value: { ...props },
-      });
-      box.addEventListener("input", () => {
-        callback((<Element & { props: Selector }>box.children[0]).props.value);
-        const available = Array.prototype.slice.call(
-          document.querySelectorAll(".stages-option")
-        );
-        const selected = available.filter((el) => el.children[0].checked);
-        const index = selected.reduce((previousValue, currentValue) => {
-          return previousValue + currentValue.props.index;
-        }, 0);
+      input.type = "radio";
+      input.name = id;
 
-        anime({
-          targets: this.animeObj,
-          value: index,
-          easing: "easeInOutQuad",
-          duration: 250,
-          update: () => {
-            this.levelIndex.innerHTML = this.animeObj.value.toFixed(0);
-          },
-          complete: () => {
-            this.animeObj.value = +this.levelIndex.innerHTML;
-          },
-        });
-      });
-      box.appendChild(label);
-      selects.appendChild(box);
+      // 设置标题的属性
+      label.appendChild(input);
+      label.classList.add("flex", "items-center", "cursor-pointer");
+      label.innerHTML += `${props.value}${digits}`;
+      label.addEventListener("change", () => onchange(props));
+      selects.appendChild(label);
     });
     container.appendChild(label);
     container.appendChild(selects);
-    this.stageSelector.appendChild(container);
+    this.selectorElement.appendChild(container);
+  },
+  loadSelector() {
+    // 加载难度选择器
+    this.selector(
+      "时间限制",
+      "time",
+      [
+        { value: 15, exponent: 100 },
+        { value: 30, exponent: 75 },
+        { value: 45, exponent: 50 },
+        { value: 60, exponent: 25 },
+      ],
+      "秒",
+      ({ value, exponent }) => {
+        // 修改设定的时间
+        this.target.TIMER = value;
+        // 修改难度指数
+        this.iterator.exponents[0] = exponent;
+        // 执行迭代器动画
+        this.iteratorAnimation();
+      }
+    );
+    this.selector(
+      "生成速度",
+      "speed",
+      [
+        { value: 150, exponent: 100 },
+        { value: 300, exponent: 75 },
+        { value: 450, exponent: 50 },
+        { value: 600, exponent: 25 },
+      ],
+      "毫秒",
+      ({ value, exponent }) => {
+        // 修改设定的生成速度
+        this.target.SUMMON_SPEED = value;
+        // 修改难度指数
+        this.iterator.exponents[1] = exponent;
+        this.iteratorAnimation();
+      }
+    );
+  },
+  iteratorAnimation() {
+    const { exponents } = this.iterator;
+
+    // 难度指数改变的动画
+    // animeJS会自动根据当前值进行改变
+    anime({
+      targets: this.target,
+      indicator: exponents.reduce((prev, current) => prev + current, 0),
+      duration: 250,
+      easing: "linear",
+      update: () =>
+        (this.degree.innerHTML = this.iterator.indicator.toFixed(0)),
+    });
+  },
+  reset() {
+    // 清空选择器列表
+    this.selectorElement.innerHTML = "";
+    // 清除难度指数
+    this.degree.innerHTML = "0";
+    // 重置难度的更变
+    this.target = { ...readonlyTarget };
+    // 重置迭代器
+    this.iterator = { ...readonlyIterator };
+    logger("Stages", "重置选择器");
   },
 };
 

@@ -19,9 +19,13 @@ const entities = {
     // 生成实体
     this.animeInstance = anime({
       loop: true,
-      duration: stages.opts.speed,
+      duration: stages.target.SUMMON_SPEED,
       begin() {
         logger("Entities", "开始生成实体");
+        logger(
+          "Entities",
+          `当前生成实体的速度为${stages.target.SUMMON_SPEED}毫秒`
+        );
       },
       loopComplete: () => {
         // 超过20个实体则停止生成

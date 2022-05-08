@@ -8,15 +8,17 @@ const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
   timeRecorder: 0,
+  timer: 0,
   start() {
-    let time = stages.opts.time;
-
     logger("Ticks", "计时开始");
+    logger("Ticks", `此次设定的时间为${stages.target.TIMER}秒`);
+    // 每次开始计时前把设定的值赋值给timer计时器
+    this.timer = stages.target.TIMER;
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       loopBegin: () => {
-        if (time <= 0) {
+        if (this.timer <= 0) {
           this.rootElement.innerHTML = "时间到！";
           // 停止计时
           this.stop();
@@ -36,7 +38,7 @@ const ticks = {
         } else {
           this.rootElement.innerHTML = convert(() => {
             this.timeRecorder++;
-            return time--;
+            return this.timer--;
           });
         }
       },

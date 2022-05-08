@@ -194,16 +194,21 @@
     <div id="stage-select-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-dark"></div>
       <div class="th-modal h-144">
-        <div class="flex flex-col">
-          <div class="text-3xl">调整难度</div>
+        <div class="flex flex-col overflow-hidden">
+          <div class="text-3xl flex items-end">
+            <span>难度选择</span
+            ><span class="pl-2 opacity-75 text-xl"
+              >难度系数越高，获得的奖励越好。</span
+            >
+          </div>
           <div
             id="stages-selector"
-            class="flex flex-col h-[19.8rem] overflow-x-hidden overflow-y-scroll"
+            class="flex flex-col h-[19.8rem] overflow-x-hidden overflow-y-scroll mr-[-20px] pr-[3px]"
           ></div>
         </div>
         <div class="flex flex-col items-center">
           <div class="text-2xl mb-4">
-            难度指数：<span id="lv-index" class="text-th-warn">0</span>
+            难度系数：<span id="degree-levels" class="text-th-warn">0</span>
           </div>
           <div class="flex">
             <div class="th-icon-module flex-col">
