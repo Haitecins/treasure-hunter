@@ -219,7 +219,7 @@ const stages = {
     anime({
       targets: this.iterator,
       indicator: exponents.reduce((prev, current) => prev + current, 0),
-      duration: 2000,
+      duration: 200,
       easing: "linear",
       update: (el) => {
         // 如果模块被隐藏了，那么迭代器也没有必要工作。
