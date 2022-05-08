@@ -199,9 +199,9 @@ const stages = {
     // 难度指数改变的动画
     // animeJS会自动根据当前值进行改变
     anime({
-      targets: this.target,
+      targets: this.iterator,
       indicator: exponents.reduce((prev, current) => prev + current, 0),
-      duration: 250,
+      duration: 200,
       easing: "linear",
       update: () =>
         (this.degree.innerHTML = this.iterator.indicator.toFixed(0)),
