@@ -2,4 +2,4 @@
 
 ## How to play
 
-[vercel.com](https://treasure-hunter-chiyukikana.vercel.app/)
+[vercel.com](https://treasure-hunter-phi.vercel.app/)
