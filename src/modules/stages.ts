@@ -26,6 +26,8 @@ const stages = {
     exponents: <number[]>[],
     // 指数迭代器
     indicator: 0,
+    // 是否停止迭代器迭代数值
+    stopped: false,
   },
   show() {
     logger("Stages", "正在加载");
@@ -36,6 +38,8 @@ const stages = {
       easing: "easeInOutSine",
       begin: () => {
         this.rootElement.classList.remove("hidden");
+        // 初始化难度系数为0
+        this.degree.innerHTML = "0";
         // 加载选择器
         this.loadSelector();
       },
@@ -52,12 +56,18 @@ const stages = {
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
+      begin: () => {
+        // 停止迭代器的迭代
+        this.iterator.stopped = true;
+      },
       complete: () => {
         this.rootElement.classList.add("hidden");
-        // 只要模块被隐藏，都需要把选择器销毁！
-        this.destroySelector();
+        // 重置难度系数
+        this.degree.innerHTML = "0";
         // 完全隐藏后需要做的事情？
         animeComplete?.();
+        // 只要模块被隐藏，就需要把选择器全部销毁！
+        this.destroySelector();
         logger("Stages", "已隐藏");
       },
     });
@@ -188,8 +198,6 @@ const stages = {
     logger("Stages", "销毁选择器");
   },
   resetSelector() {
-    // 清除难度系数
-    this.degree.innerHTML = "0";
     // 重置项目的更变
     this.target = {
       TIMER: 0,
@@ -199,6 +207,7 @@ const stages = {
     this.iterator = {
       exponents: [],
       indicator: 0,
+      stopped: false,
     };
     logger("Stages", "重置选择器");
   },
@@ -210,10 +219,13 @@ const stages = {
     anime({
       targets: this.iterator,
       indicator: exponents.reduce((prev, current) => prev + current, 0),
-      duration: 200,
+      duration: 2000,
       easing: "linear",
-      update: () =>
-        (this.degree.innerHTML = this.iterator.indicator.toFixed(0)),
+      update: (el) => {
+        // 如果模块被隐藏了，那么迭代器也没有必要工作。
+        if (this.iterator.stopped) el.pause();
+        this.degree.innerHTML = this.iterator.indicator.toFixed(0);
+      },
     });
   },
 };
