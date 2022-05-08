@@ -46,7 +46,7 @@ const stages = {
       },
     });
   },
-  hide() {
+  hide(animeComplete?: () => void) {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
@@ -54,8 +54,10 @@ const stages = {
       easing: "easeInOutSine",
       complete: () => {
         this.rootElement.classList.add("hidden");
-        // 销毁选择器
+        // 只要模块被隐藏，都需要把选择器销毁！
         this.destroySelector();
+        // 完全隐藏后需要做的事情？
+        animeComplete?.();
         logger("Stages", "已隐藏");
       },
     });
@@ -64,6 +66,8 @@ const stages = {
     const okHandler = () => {
       // 移除两个按钮的事件
       resetEvents();
+      // 隐藏模块，但不重置选择器，选择器将在一局游戏结束后重置。
+      // 如果在此处重置选择器，那么Entities模块和Ticks模块无法获取到此模块的SUMMON_SPEED和TIMER属性。
       this.hide();
       // 隐藏Home模块
       scene.home.hide(() => {
@@ -78,9 +82,12 @@ const stages = {
     const cancelHandler = () => {
       // 移除两个按钮的事件
       resetEvents();
-      // 重置选择器
-      this.resetSelector();
-      this.hide();
+      // 如果取消选择，那么一定要重置选择器。
+      // 如果在此处不重置，那么下一次打开难度选择器时，仍然拥有上一次更改的属性！
+      this.hide(() => {
+        // 在完全隐藏后，重置选择器
+        this.resetSelector();
+      });
       // 重新绑定开始按钮的事件
       scene.home.event();
     };

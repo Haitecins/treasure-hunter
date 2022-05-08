@@ -34,6 +34,8 @@ const ending = {
       begin: () => {
         // 加载评价/统计/奖励
         this.update();
+        // 返回首页前重置难度选择器
+        stages.resetSelector();
         this.rootElement.classList.remove("hidden");
       },
       complete: () => {
@@ -49,8 +51,6 @@ const ending = {
           this.rate.innerHTML = "";
           this.stat.innerHTML = "";
           this.reward.innerHTML = "";
-          // 返回首页前重置难度选择器
-          stages.resetSelector();
         };
 
         this.returnLobby.addEventListener("click", lobbyHandler);
