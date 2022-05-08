@@ -14,7 +14,7 @@ const cache = {
   props: { ...props },
   reset() {
     this.props = { ...props };
-    logger("Cache", "重置Cache模块");
+    logger("Cache", "重置缓存");
   },
 };
 

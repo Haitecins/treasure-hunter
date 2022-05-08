@@ -1,5 +1,6 @@
 import anime from "animejs";
 import scene from "../scene";
+import stages from "../stages";
 import cache from "../../conf/cache";
 import ratings from "../../conf/ending/ratings";
 import stats from "../../conf/ending/stats";
@@ -48,6 +49,8 @@ const ending = {
           this.rate.innerHTML = "";
           this.stat.innerHTML = "";
           this.reward.innerHTML = "";
+          // 返回首页前重置难度选择器
+          stages.resetSelector();
         };
 
         this.returnLobby.addEventListener("click", lobbyHandler);

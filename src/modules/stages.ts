@@ -9,26 +9,24 @@ interface Items {
   exponent: number;
 }
 
-const readonlyTarget = {
-  // 计时器
-  TIMER: 0,
-  // 生成速度
-  SUMMON_SPEED: 0,
-};
-const readonlyIterator = {
-  // 难度指数
-  exponents: <number[]>[],
-  // 指数迭代器
-  indicator: 0,
-};
 const stages = {
   rootElement: document.querySelector("#stage-select-module")!,
   selectorElement: document.querySelector("#stages-selector")!,
   okBtn: document.querySelector("#stage-ok-btn")!,
   cancelBtn: document.querySelector("#stage-cancel-btn")!,
   degree: document.querySelector("#degree-levels")!,
-  target: { ...readonlyTarget },
-  iterator: { ...readonlyIterator },
+  target: {
+    // 计时器
+    TIMER: 0,
+    // 生成速度
+    SUMMON_SPEED: 0,
+  },
+  iterator: {
+    // 难度指数
+    exponents: <number[]>[],
+    // 指数迭代器
+    indicator: 0,
+  },
   show() {
     logger("Stages", "正在加载");
     anime({
@@ -48,19 +46,16 @@ const stages = {
       },
     });
   },
-  hide(beginCallback?: () => void) {
+  hide() {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
-      begin: () => {
-        beginCallback?.();
-        // 销毁选择器
-        this.destroySelector();
-      },
       complete: () => {
         this.rootElement.classList.add("hidden");
+        // 销毁选择器
+        this.destroySelector();
         logger("Stages", "已隐藏");
       },
     });
@@ -83,8 +78,9 @@ const stages = {
     const cancelHandler = () => {
       // 移除两个按钮的事件
       resetEvents();
-      // 关闭后重置选择器
-      this.hide(() => this.resetSelector());
+      // 重置选择器
+      this.resetSelector();
+      this.hide();
       // 重新绑定开始按钮的事件
       scene.home.event();
     };
@@ -174,7 +170,6 @@ const stages = {
       ({ value, exponent }) => {
         // 修改设定的生成速度
         this.target.SUMMON_SPEED = value;
-        // 修改难度指数
         this.iterator.exponents[1] = exponent;
         this.iteratorAnimation();
       }
@@ -183,20 +178,27 @@ const stages = {
   destroySelector() {
     // 清空选择器列表
     this.selectorElement.innerHTML = "";
+    logger("Stages", "销毁选择器");
   },
   resetSelector() {
     // 清除难度系数
     this.degree.innerHTML = "0";
     // 重置项目的更变
-    this.target = { ...readonlyTarget };
+    this.target = {
+      TIMER: 0,
+      SUMMON_SPEED: 0,
+    };
     // 重置迭代器
-    this.iterator = { ...readonlyIterator };
+    this.iterator = {
+      exponents: [],
+      indicator: 0,
+    };
     logger("Stages", "重置选择器");
   },
   iteratorAnimation() {
     const { exponents } = this.iterator;
 
-    // 难度指数改变的动画
+    // 改变难度系数
     // animeJS会自动根据当前值进行改变
     anime({
       targets: this.iterator,
