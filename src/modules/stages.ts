@@ -7,6 +7,7 @@ import ticks from "./ticks";
 interface Items {
   value: number;
   exponent: number;
+  title: (props: Items) => string;
 }
 
 const stages = {
@@ -113,13 +114,13 @@ const stages = {
   selector(
     title: string,
     id: string,
-    options: Items[],
-    digits: string,
+    options: [Items[], number],
     onchange: (selected: Items) => void
   ) {
     const container = document.createElement("div");
     const label = document.createElement("div");
     const selects = document.createElement("div");
+    const [list, index] = options;
 
     container.classList.add("my-3");
     label.classList.add(
@@ -133,7 +134,7 @@ const stages = {
     );
     label.innerHTML = title;
     selects.classList.add("flex", "justify-evenly", "text-xl");
-    options.forEach((props) => {
+    list.forEach((props) => {
       const label = document.createElement("label");
       const input = document.createElement("input");
 
@@ -145,26 +146,32 @@ const stages = {
       // 设置标题的属性
       label.appendChild(input);
       label.classList.add("flex", "items-center", "cursor-pointer");
-      label.innerHTML += `${props.value}${digits}`;
+      label.innerHTML += `${props.title(props)}`;
       label.addEventListener("change", () => onchange(props));
       selects.appendChild(label);
     });
     container.appendChild(label);
     container.appendChild(selects);
     this.selectorElement.appendChild(container);
+    // 每个项目的默认值
+    (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
+    const title = (props: Items) => `${props.value}秒`;
+
     // 加载难度选择器
     this.selector(
       "时间限制",
       "time",
       [
-        { value: 15, exponent: 100 },
-        { value: 30, exponent: 75 },
-        { value: 45, exponent: 50 },
-        { value: 60, exponent: 25 },
+        [
+          { value: 15, exponent: 100, title },
+          { value: 30, exponent: 75, title },
+          { value: 45, exponent: 50, title },
+          { value: 60, exponent: 25, title },
+        ],
+        0,
       ],
-      "秒",
       ({ value, exponent }) => {
         // 修改设定的时间
         this.target.TIMER = value;
@@ -178,12 +185,14 @@ const stages = {
       "生成速度",
       "speed",
       [
-        { value: 150, exponent: 100 },
-        { value: 300, exponent: 75 },
-        { value: 450, exponent: 50 },
-        { value: 600, exponent: 25 },
+        [
+          { value: 250, exponent: 100, title: () => `非常快` },
+          { value: 450, exponent: 75, title: () => `快` },
+          { value: 600, exponent: 50, title: () => `慢` },
+          { value: 1000, exponent: 25, title: () => `非常慢` },
+        ],
+        2,
       ],
-      "毫秒",
       ({ value, exponent }) => {
         // 修改设定的生成速度
         this.target.SUMMON_SPEED = value;
