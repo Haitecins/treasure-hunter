@@ -4,6 +4,8 @@
 
 [vercel.com](https://treasure-hunter-phi.vercel.app/)
 
+[cloud.tencent.com](https://treasure-hunter-8guesx1c28d6e82c-1256732922.ap-shanghai.app.tcloudbase.com)
+
 ## Q&A
 
 Q：打开网页出现空白，怎么解决？
