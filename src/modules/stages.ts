@@ -3,6 +3,7 @@ import logger from "../components/logger";
 import scene from "./scene";
 import listener from "./listener";
 import ticks from "./ticks";
+import query from "../components/query";
 
 interface Items {
   value: number;
@@ -11,11 +12,11 @@ interface Items {
 }
 
 const stages = {
-  rootElement: document.querySelector("#stage-select-module")!,
-  selectorElement: document.querySelector("#stages-selector")!,
-  okBtn: document.querySelector("#stage-ok-btn")!,
-  cancelBtn: document.querySelector("#stage-cancel-btn")!,
-  degree: document.querySelector("#degree-levels")!,
+  rootElement: query<Element>("#stage-select-module"),
+  selectorElement: query<Element>("#stages-selector"),
+  okBtn: query<Element>("#stage-ok-btn"),
+  cancelBtn: query<Element>("#stage-cancel-btn"),
+  degree: query<Element>("#degree-levels"),
   target: {
     // 计时器
     TIMER: 0,

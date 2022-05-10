@@ -1,9 +1,10 @@
 import storage from "../libs/storage";
 import auth from "./users/auth";
 import settings from "../conf/settings";
+import query from "../components/query";
 
 const loading = {
-  rootElement: document.querySelector("#loading")!,
+  rootElement: query<Element>("#loading"),
   init() {
     // 加载或初始化游戏数据，接着初始化游戏设置。
     storage.load(() => settings.init());

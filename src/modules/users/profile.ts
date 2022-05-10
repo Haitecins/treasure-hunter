@@ -1,15 +1,16 @@
 import storage from "../../libs/storage";
 import logger from "../../components/logger";
 import formatter from "../../utils/formatter";
+import query from "../../components/query";
 
 const profile = {
-  rootElement: document.querySelector("#profile-module")!,
-  name: document.querySelector("#profile-name")!,
-  levels: document.querySelector("#profile-levels")!,
+  rootElement: query<Element>("#profile-module")!,
+  name: query<Element>("#profile-name")!,
+  levels: query<Element>("#profile-levels")!,
   balances: {
-    copper: document.querySelector("#bal-copper-ingot>div")!,
-    iron: document.querySelector("#bal-iron-ingot>div")!,
-    gold: document.querySelector("#bal-gold-ingot>div")!,
+    copper: query<Element>("#bal-copper-ingot>div")!,
+    iron: query<Element>("#bal-iron-ingot>div")!,
+    gold: query<Element>("#bal-gold-ingot>div")!,
   },
   update() {
     logger("Profile", "已更新");

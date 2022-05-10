@@ -3,9 +3,10 @@ import scene from "./scene";
 import convert from "../utils/convert";
 import logger from "../components/logger";
 import stages from "./stages";
+import query from "../components/query";
 
 const ticks = {
-  rootElement: document.querySelector("#ticks-module")!,
+  rootElement: query<Element>("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
   timeRecorder: 0,
   timer: 0,
