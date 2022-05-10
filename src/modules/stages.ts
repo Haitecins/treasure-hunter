@@ -165,12 +165,12 @@ const stages = {
       "time",
       [
         [
-          { value: 15, exponent: 100, title },
-          { value: 30, exponent: 75, title },
-          { value: 45, exponent: 50, title },
-          { value: 60, exponent: 25, title },
+          { value: 60, exponent: 100, title },
+          { value: 45, exponent: 75, title },
+          { value: 30, exponent: 50, title },
+          { value: 15, exponent: 25, title },
         ],
-        0,
+        1,
       ],
       ({ value, exponent }) => {
         // 修改设定的时间
@@ -186,10 +186,10 @@ const stages = {
       "speed",
       [
         [
-          { value: 250, exponent: 100, title: () => `非常快` },
-          { value: 450, exponent: 75, title: () => `快` },
+          { value: 200, exponent: 100, title: () => `非常快` },
+          { value: 400, exponent: 75, title: () => `快` },
           { value: 600, exponent: 50, title: () => `慢` },
-          { value: 1000, exponent: 25, title: () => `非常慢` },
+          { value: 800, exponent: 25, title: () => `非常慢` },
         ],
         2,
       ],
