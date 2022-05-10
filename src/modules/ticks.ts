@@ -6,7 +6,7 @@ import stages from "./stages";
 import query from "../components/query";
 
 const ticks = {
-  rootElement: query<Element>("#ticks-module")!,
+  rootElement: query<Element>("#ticks-module"),
   animeInstance: <anime.AnimeInstance>{},
   timeRecorder: 0,
   timer: 0,

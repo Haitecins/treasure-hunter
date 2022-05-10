@@ -13,7 +13,7 @@ interface Entity extends HTMLDivElement {
 }
 
 const entities = {
-  container: query<Element>("#entities-container")!,
+  container: query<Element>("#entities-container"),
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     logger("Entities", "载入模块");

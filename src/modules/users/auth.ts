@@ -11,7 +11,7 @@ const auth = {
   tip: query<Element>("#auth-tip"),
   input: query<HTMLInputElement>("#auth-input"),
   isLogin: query<Element>("#is-login"),
-  welcomeBar: query<Element>("#welcome-bar")!,
+  welcomeBar: query<Element>("#welcome-bar"),
   load() {
     const { rootElement, confirm, tip, input } = this;
     // 命名处理程序
