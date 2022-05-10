@@ -1,10 +1,9 @@
 import logger from "../../components/logger";
 import entities from "../entities";
 import listener from "../listener";
-import query from "../../components/query";
 
 const chunk = {
-  rootElement: query<Element>("#chunk-scene"),
+  rootElement: document.querySelector("#chunk-scene")!,
   play() {
     this.rootElement.classList.remove("hidden");
     logger("Chunk", "载入模块");

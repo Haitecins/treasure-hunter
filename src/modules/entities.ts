@@ -1,6 +1,5 @@
 import anime from "animejs";
 import logger from "../components/logger";
-import query from "../components/query";
 import chars from "../utils/chars";
 import colors from "../utils/colors";
 import navigate from "./navigate";
@@ -13,7 +12,7 @@ interface Entity extends HTMLDivElement {
 }
 
 const entities = {
-  container: query<Element>("#entities-container"),
+  container: document.querySelector("#entities-container")!,
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     logger("Entities", "载入模块");

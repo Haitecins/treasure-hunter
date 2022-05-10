@@ -1,14 +1,13 @@
 import anime from "animejs";
 import logger from "../components/logger";
 import resolution from "./settings/resolution";
-import query from "../components/query";
 
 const settings = {
-  openElement: query<Element>("#settings-open-btn"),
-  closeElement: query<Element>("#settings-close-btn"),
-  rootElement: query<Element>("#settings-module"),
+  openElement: document.querySelector("#settings-open-btn")!,
+  closeElement: document.querySelector("#settings-close-btn")!,
+  rootElement: document.querySelector("#settings-module")!,
   options: {
-    resolution: query<HTMLInputElement>("#resolution-option"),
+    resolution: <HTMLInputElement>document.querySelector("#resolution-option"),
   },
   init() {
     const openHandler = () => {

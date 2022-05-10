@@ -3,15 +3,14 @@ import scene from "../scene";
 import storage from "../../libs/storage";
 import logger from "../../components/logger";
 import user from "../user";
-import query from "../../components/query";
 
 const auth = {
-  rootElement: query<Element>("#auth-module"),
-  confirm: query<Element>("#auth-confirm"),
-  tip: query<Element>("#auth-tip"),
-  input: query<HTMLInputElement>("#auth-input"),
-  isLogin: query<Element>("#is-login"),
-  welcomeBar: query<Element>("#welcome-bar"),
+  rootElement: document.querySelector("#auth-module")!,
+  confirm: document.querySelector("#auth-confirm")!,
+  tip: document.querySelector("#auth-tip")!,
+  input: <HTMLInputElement>document.querySelector("#auth-input"),
+  isLogin: document.querySelector("#is-login")!,
+  welcomeBar: document.querySelector("#welcome-bar")!,
   load() {
     const { rootElement, confirm, tip, input } = this;
     // 命名处理程序

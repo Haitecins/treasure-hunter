@@ -2,19 +2,18 @@ import logger from "../../components/logger";
 import storage from "../../libs/storage";
 import profile from "./profile";
 import anime from "animejs";
-import query from "../../components/query";
 
 const personal = {
-  rootElement: query<Element>("#personal-module"),
-  closeElement: query<Element>("#personal-close"),
-  name: query<Element>("#personal-name"),
-  levels: query<Element>("#personal-levels"),
+  rootElement: document.querySelector("#personal-module")!,
+  closeElement: document.querySelector("#personal-close")!,
+  name: document.querySelector("#personal-name")!,
+  levels: document.querySelector("#personal-levels")!,
   balances: {
-    copper: query<Element>("#personal-bal-copper-ingot>div"),
-    iron: query<Element>("#personal-bal-iron-ingot>div"),
-    gold: query<Element>("#personal-bal-gold-ingot>div"),
+    copper: document.querySelector("#personal-bal-copper-ingot>div")!,
+    iron: document.querySelector("#personal-bal-iron-ingot>div")!,
+    gold: document.querySelector("#personal-bal-gold-ingot>div")!,
   },
-  totalBreaks: query<Element>("#personal-break-chars>div"),
+  totalBreaks: document.querySelector("#personal-break-chars>div")!,
   init() {
     const bindElement = <HTMLDivElement>profile.name.parentNode;
     const openHandler = () => {
