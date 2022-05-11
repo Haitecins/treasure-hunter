@@ -249,7 +249,7 @@ const stages = {
     });
   },
   loadDiff() {
-    this.degreeDisplay.innerHTML = `x${this.diffReduces()} 难度系数`;
+    this.degreeDisplay.innerHTML = `难度系数 ${this.diffReduces()}`;
     logger("Stages", "加载难度系数指示器");
   },
   cleanDiff() {
