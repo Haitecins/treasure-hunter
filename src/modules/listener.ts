@@ -2,6 +2,7 @@ import anime from "animejs";
 import entities, { Entity } from "./entities";
 import cache from "../conf/cache";
 import logger from "../components/logger";
+import quests from "./quests";
 
 const activeCharHandler = (el: Entity) => {
   // 防止重复执行
@@ -17,6 +18,8 @@ const activeCharHandler = (el: Entity) => {
     begin() {
       // 增加一次字符计数
       cache.props.BREAK_CHARS++;
+      // 增加一次任务计数
+      quests.update();
       // 有概率获得铜锭x1-3
       if (anime.random(0, 100) <= 65) {
         cache.props.COPPER_COUNT += anime.random(1, 3);

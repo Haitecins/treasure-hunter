@@ -96,15 +96,18 @@
       </div>
       <!-- game area -->
       <div id="chunk-scene" class="th-chunk-scene hidden">
-        <!-- difficulty -->
+        <!-- degree levels -->
         <div
-          id="diff-module"
-          class="text-4xl absolute inset-x-0 text-center top-24"
-        ></div>
-        <div
-          id="ticks-module"
-          class="text-th-warn text-3xl absolute inset-x-0 top-48 text-center"
-        ></div>
+          class="mask-text absolute z-50 inset-x-0 top-32 flex flex-col items-center"
+        >
+          <div id="degree-levels-display" class="text-th-err text-xl"></div>
+          <div id="ticks-module" class="text-th-warn text-3xl"></div>
+          <div id="quests-progress" class="flex items-center text-2xl hidden">
+            <div id="quest-current" class="text-th-white"></div>
+            <span class="text-th-white text-xl px-2">/</span>
+            <div id="quest-target" class="text-th-white opacity-75"></div>
+          </div>
+        </div>
         <!-- summon entities -->
         <div id="entities-container"></div>
       </div>

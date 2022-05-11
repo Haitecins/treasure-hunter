@@ -3,6 +3,7 @@ import scene from "./scene";
 import convert from "../utils/convert";
 import logger from "../components/logger";
 import stages from "./stages";
+import quests from "./quests";
 
 const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
@@ -19,9 +20,13 @@ const ticks = {
       duration: 1000,
       loopBegin: () => {
         if (this.timer <= 0) {
-          this.rootElement.innerHTML = "时间到！";
+          this.rootElement.innerHTML = "倒计时结束";
           // 停止计时
           this.stop();
+          // 移除难度系数显示
+          stages.cleanDiff();
+          // 隐藏任务目标
+          quests.hide();
           // 清理Chunk模块，移除实体/关闭监听器。
           scene.chunk.clear();
           anime({

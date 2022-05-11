@@ -3,6 +3,7 @@ import logger from "../components/logger";
 import scene from "./scene";
 import listener from "./listener";
 import ticks from "./ticks";
+import quests from "./quests";
 
 interface Items {
   value: number;
@@ -16,6 +17,7 @@ const stages = {
   okBtn: document.querySelector("#stage-ok-btn")!,
   cancelBtn: document.querySelector("#stage-cancel-btn")!,
   degree: document.querySelector("#degree-levels")!,
+  degreeDisplay: document.querySelector("#degree-levels-display")!,
   target: {
     // 计时器
     TIMER: 0,
@@ -29,6 +31,9 @@ const stages = {
     indicator: 0,
     // 是否停止迭代器迭代数值
     stopped: false,
+  },
+  diffReduces() {
+    return this.iterator.exponents.reduce((prev, current) => prev + current, 0);
   },
   show() {
     logger("Stages", "正在加载");
@@ -81,14 +86,22 @@ const stages = {
       // 如果在此处重置选择器，那么Entities模块和Ticks模块无法获取到此模块的SUMMON_SPEED和TIMER属性。
       this.hide();
       // 隐藏Home模块
-      scene.home.hide(() => {
-        // 载入游戏
-        scene.chunk.play();
-        // 开启键盘监听器
-        listener.enable();
-        // 开启计时
-        ticks.start();
-      });
+      scene.home.hide(
+        () => {
+          // 在游戏区域内显示难度系数
+          stages.loadDiff();
+          // 初始化任务目标
+          quests.load();
+          // 开启计时
+          ticks.start();
+        },
+        () => {
+          // 载入游戏
+          scene.chunk.play();
+          // 开启键盘监听器
+          listener.enable();
+        }
+      );
     };
     const cancelHandler = () => {
       // 移除两个按钮的事件
@@ -221,13 +234,11 @@ const stages = {
     logger("Stages", "重置选择器");
   },
   iteratorAnimation() {
-    const { exponents } = this.iterator;
-
     // 改变难度系数
     // animeJS会自动根据当前值进行改变
     anime({
       targets: this.iterator,
-      indicator: exponents.reduce((prev, current) => prev + current, 0),
+      indicator: this.diffReduces(),
       duration: 200,
       easing: "linear",
       update: (el) => {
@@ -236,6 +247,14 @@ const stages = {
         this.degree.innerHTML = this.iterator.indicator.toFixed(0);
       },
     });
+  },
+  loadDiff() {
+    this.degreeDisplay.innerHTML = `x${this.diffReduces()} 难度系数`;
+    logger("Stages", "加载难度系数指示器");
+  },
+  cleanDiff() {
+    this.degreeDisplay.innerHTML = "";
+    logger("Stages", "移除难度系数指示器");
   },
 };
 

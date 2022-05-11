@@ -26,16 +26,19 @@ const home = {
       },
     });
   },
-  hide(animeComplete: () => void) {
+  hide(animeBegin?: () => void, animeComplete?: () => void) {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
+      begin: () => {
+        animeBegin?.();
+      },
       complete: () => {
         this.rootElement.classList.add("hidden");
         logger("Home", "已隐藏");
-        animeComplete();
+        animeComplete?.();
       },
     });
   },
