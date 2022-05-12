@@ -1,4 +1,4 @@
-import stages from "./stages";
+import difficult from "./difficult";
 import logger from "../components/logger";
 import cache from "../conf/cache";
 
@@ -9,8 +9,8 @@ const quests = {
   targetValue: 0,
   init() {
     const value = Math.floor(
-      (stages.target.TIMER * 1000) / stages.target.SUMMON_SPEED -
-        (stages.target.TIMER * 1000) / stages.target.SUMMON_SPEED / 3
+      (difficult.target.TIMER * 1000) / difficult.target.SUMMON_SPEED -
+        (difficult.target.TIMER * 1000) / difficult.target.SUMMON_SPEED / 3
     );
 
     this.targetValue = value;

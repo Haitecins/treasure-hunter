@@ -3,7 +3,7 @@ import logger from "../components/logger";
 import chars from "../utils/chars";
 import colors from "../utils/colors";
 import navigate from "./navigate";
-import stages from "./stages";
+import difficult from "./difficult";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;
@@ -19,12 +19,12 @@ const entities = {
     // 生成实体
     this.animeInstance = anime({
       loop: true,
-      duration: stages.target.SUMMON_SPEED,
+      duration: difficult.target.SUMMON_SPEED,
       begin() {
         logger("Entities", "开始生成实体");
         logger(
           "Entities",
-          `当前生成实体的速度为${stages.target.SUMMON_SPEED}毫秒`
+          `当前生成实体的速度为${difficult.target.SUMMON_SPEED}毫秒`
         );
       },
       loopComplete: () => {

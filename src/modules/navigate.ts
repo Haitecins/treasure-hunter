@@ -1,11 +1,15 @@
 import anime from "animejs";
 import { Entity } from "./entities";
+import difficult from "./difficult";
 
 const navigate = (el: Entity) => {
   const { clientWidth, clientHeight } = document.documentElement;
-  const timeline = anime.timeline({
-    targets: el,
-  });
+  const timeline = anime.timeline({ targets: el });
+  const keyframes = [...Array(difficult.target.STEP_COUNTS)].map(() => ({
+    duration: anime.random(500, 3000),
+    translateX: anime.random(0, clientWidth - el.clientWidth),
+    translateY: anime.random(0, clientHeight - el.clientHeight),
+  }));
 
   // 将路线动画实例对象给tracker属性控制
   el.tracker = timeline;
@@ -22,23 +26,7 @@ const navigate = (el: Entity) => {
   });
   timeline.add({
     easing: "linear",
-    keyframes: [
-      {
-        duration: anime.random(500, 4000),
-        translateX: anime.random(0, clientWidth - el.clientWidth),
-        translateY: anime.random(0, clientHeight - el.clientHeight),
-      },
-      {
-        duration: anime.random(500, 3000),
-        translateX: anime.random(0, clientWidth - el.clientWidth),
-        translateY: anime.random(0, clientHeight - el.clientHeight),
-      },
-      {
-        duration: anime.random(500, 2000),
-        translateX: anime.random(0, clientWidth - el.clientWidth),
-        translateY: anime.random(0, clientHeight - el.clientHeight),
-      },
-    ],
+    keyframes,
   });
   timeline.add({
     delay: 500,

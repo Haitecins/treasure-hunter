@@ -11,11 +11,11 @@ interface Items {
   title: (props: Items) => string;
 }
 
-const stages = {
-  rootElement: document.querySelector("#stage-select-module")!,
-  selectorElement: document.querySelector("#stages-selector")!,
-  okBtn: document.querySelector("#stage-ok-btn")!,
-  cancelBtn: document.querySelector("#stage-cancel-btn")!,
+const difficult = {
+  rootElement: document.querySelector("#difficult-select-module")!,
+  selectorElement: document.querySelector("#difficult-selector")!,
+  okBtn: document.querySelector("#difficult-ok-btn")!,
+  cancelBtn: document.querySelector("#difficult-cancel-btn")!,
   degree: document.querySelector("#degree-levels")!,
   degreeDisplay: document.querySelector("#degree-levels-display")!,
   target: {
@@ -23,6 +23,8 @@ const stages = {
     TIMER: 0,
     // 生成速度
     SUMMON_SPEED: 0,
+    // 移动次数
+    STEP_COUNTS: 0,
   },
   iterator: {
     // 难度指数
@@ -36,7 +38,7 @@ const stages = {
     return this.iterator.exponents.reduce((prev, current) => prev + current, 0);
   },
   show() {
-    logger("Stages", "正在加载");
+    logger("Difficult", "正在加载");
     anime({
       targets: this.rootElement,
       opacity: [0, 1],
@@ -50,7 +52,7 @@ const stages = {
         this.loadSelector();
       },
       complete: () => {
-        logger("Stages", "载入模块");
+        logger("Difficult", "载入模块");
         // 绑定两个按钮的事件
         this.event();
       },
@@ -74,7 +76,7 @@ const stages = {
         animeComplete?.();
         // 只要模块被隐藏，就需要把选择器全部销毁！
         this.destroySelector();
-        logger("Stages", "已隐藏");
+        logger("Difficult", "已隐藏");
       },
     });
   },
@@ -89,7 +91,7 @@ const stages = {
       scene.home.hide(
         () => {
           // 在游戏区域内显示难度系数
-          stages.loadDiff();
+          difficult.loadDiff();
           // 初始化任务目标
           quests.load();
           // 开启计时
@@ -170,18 +172,19 @@ const stages = {
     (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
-    const title = (props: Items) => `${props.value}秒`;
+    const timerLimit = (props: Items) => `${props.value}秒`;
+    const runningLimit = (props: Items) => `${props.value}次`;
 
     // 加载难度选择器
     this.selector(
-      "时间限制",
+      "时间",
       "time",
       [
         [
-          { value: 60, exponent: 90, title },
-          { value: 45, exponent: 60, title },
-          { value: 30, exponent: 45, title },
-          { value: 15, exponent: 15, title },
+          { value: 60, exponent: 90, title: timerLimit },
+          { value: 45, exponent: 60, title: timerLimit },
+          { value: 30, exponent: 45, title: timerLimit },
+          { value: 15, exponent: 15, title: timerLimit },
         ],
         2,
       ],
@@ -195,7 +198,7 @@ const stages = {
       }
     );
     this.selector(
-      "生成速度",
+      "字块生成速度",
       "speed",
       [
         [
@@ -214,17 +217,36 @@ const stages = {
         this.iteratorAnimation();
       }
     );
+    this.selector(
+      "字块移动次数",
+      "navigation",
+      [
+        [
+          { value: 1, exponent: 60, title: runningLimit },
+          { value: 3, exponent: 40, title: runningLimit },
+          { value: 5, exponent: 20, title: runningLimit },
+        ],
+        1,
+      ],
+      ({ value, exponent }) => {
+        // 修改设定的生成速度
+        this.target.STEP_COUNTS = value;
+        this.iterator.exponents[2] = exponent;
+        this.iteratorAnimation();
+      }
+    );
   },
   destroySelector() {
     // 清空选择器列表
     this.selectorElement.innerHTML = "";
-    logger("Stages", "销毁选择器");
+    logger("Difficult", "销毁选择器");
   },
   resetSelector() {
     // 重置项目的更变
     this.target = {
       TIMER: 0,
       SUMMON_SPEED: 0,
+      STEP_COUNTS: 0,
     };
     // 重置迭代器
     this.iterator = {
@@ -232,7 +254,7 @@ const stages = {
       indicator: 0,
       stopped: false,
     };
-    logger("Stages", "重置选择器");
+    logger("Difficult", "重置选择器");
   },
   iteratorAnimation() {
     // 改变难度系数
@@ -251,12 +273,12 @@ const stages = {
   },
   loadDiff() {
     this.degreeDisplay.innerHTML = `难度系数 ${this.diffReduces()}`;
-    logger("Stages", "加载难度系数指示器");
+    logger("Difficult", "加载难度系数指示器");
   },
   cleanDiff() {
     this.degreeDisplay.innerHTML = "";
-    logger("Stages", "移除难度系数指示器");
+    logger("Difficult", "移除难度系数指示器");
   },
 };
 
-export default stages;
+export default difficult;

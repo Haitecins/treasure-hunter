@@ -1,6 +1,6 @@
 import anime from "animejs";
 import scene from "../scene";
-import stages from "../stages";
+import difficult from "../difficult";
 import cache from "../../conf/cache";
 import ratings from "../../conf/ending/ratings";
 import stats from "../../conf/ending/stats";
@@ -35,7 +35,7 @@ const ending = {
         // 加载评价/统计/奖励
         this.update();
         // 返回首页前重置难度选择器
-        stages.resetSelector();
+        difficult.resetSelector();
         this.rootElement.classList.remove("hidden");
       },
       complete: () => {

@@ -2,7 +2,7 @@ import anime from "animejs";
 import scene from "./scene";
 import convert from "../utils/convert";
 import logger from "../components/logger";
-import stages from "./stages";
+import difficult from "./difficult";
 import quests from "./quests";
 
 const ticks = {
@@ -12,9 +12,9 @@ const ticks = {
   timer: 0,
   start() {
     logger("Ticks", "计时开始");
-    logger("Ticks", `此次设定的时间为${stages.target.TIMER}秒`);
+    logger("Ticks", `此次设定的时间为${difficult.target.TIMER}秒`);
     // 每次开始计时前把设定的值赋值给timer计时器
-    this.timer = stages.target.TIMER;
+    this.timer = difficult.target.TIMER;
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
@@ -24,7 +24,7 @@ const ticks = {
           // 停止计时
           this.stop();
           // 移除难度系数显示
-          stages.cleanDiff();
+          difficult.cleanDiff();
           // 隐藏任务目标
           quests.hide();
           // 清理Chunk模块，移除实体/关闭监听器。

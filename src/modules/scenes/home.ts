@@ -1,7 +1,7 @@
 import anime from "animejs";
 import user from "../user";
 import logger from "../../components/logger";
-import stages from "../stages";
+import difficult from "../difficult";
 
 const home = {
   rootElement: document.querySelector("#home-scene")!,
@@ -47,7 +47,7 @@ const home = {
     const startBtnHandler = () => {
       this.startBtn.removeEventListener("click", startBtnHandler);
       // 显示难度选择模块
-      stages.show();
+      difficult.show();
     };
 
     this.startBtn.addEventListener("click", startBtnHandler);
