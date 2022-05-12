@@ -178,12 +178,12 @@ const stages = {
       "time",
       [
         [
-          { value: 60, exponent: 100, title },
-          { value: 45, exponent: 75, title },
-          { value: 30, exponent: 50, title },
-          { value: 15, exponent: 25, title },
+          { value: 60, exponent: 90, title },
+          { value: 45, exponent: 60, title },
+          { value: 30, exponent: 45, title },
+          { value: 15, exponent: 15, title },
         ],
-        1,
+        2,
       ],
       ({ value, exponent }) => {
         // 修改设定的时间
@@ -199,10 +199,11 @@ const stages = {
       "speed",
       [
         [
-          { value: 200, exponent: 100, title: () => `非常快` },
-          { value: 400, exponent: 75, title: () => `快` },
-          { value: 600, exponent: 50, title: () => `慢` },
-          { value: 800, exponent: 25, title: () => `非常慢` },
+          { value: 320, exponent: 125, title: () => `非常快` },
+          { value: 410, exponent: 100, title: () => `快` },
+          { value: 530, exponent: 75, title: () => `中` },
+          { value: 590, exponent: 50, title: () => `慢` },
+          { value: 610, exponent: 25, title: () => `非常慢` },
         ],
         2,
       ],
@@ -239,7 +240,7 @@ const stages = {
     anime({
       targets: this.iterator,
       indicator: this.diffReduces(),
-      duration: 200,
+      duration: 250,
       easing: "linear",
       update: (el) => {
         // 如果模块被隐藏了，那么迭代器也没有必要工作。
