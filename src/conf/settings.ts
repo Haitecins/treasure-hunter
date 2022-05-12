@@ -25,9 +25,10 @@ const settings = {
     };
 
     logger("Settings", "初始化");
-    this.openElement.addEventListener("click", openHandler);
     // 初始化分辨率设置选项
     resolution.init();
+    // 绑定设置按钮的点击事件
+    this.openElement.addEventListener("click", openHandler);
   },
   show() {
     anime({
