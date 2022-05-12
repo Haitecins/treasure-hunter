@@ -16,9 +16,7 @@ const activeCharHandler = (el: Entity) => {
     scale: 0,
     easing: "easeInOutQuad",
     begin() {
-      // 增加一次字符计数
-      cache.props.BREAK_CHARS++;
-      // 增加一次任务计数
+      // 更新一次任务目标
       quests.update();
       // 有概率获得铜锭x1-3
       if (anime.random(0, 100) <= 65) {

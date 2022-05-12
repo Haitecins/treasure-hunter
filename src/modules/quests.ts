@@ -4,35 +4,36 @@ import cache from "../conf/cache";
 
 const quests = {
   rootElement: document.querySelector("#quests-progress")!,
-  current: document.querySelector("#quest-current")!,
-  target: document.querySelector("#quest-target")!,
-  completeValue: 0,
-  initTarget() {
-    const totals = Math.floor(
+  currentElement: document.querySelector("#quest-current")!,
+  targetElement: document.querySelector("#quest-target")!,
+  targetValue: 0,
+  init() {
+    const value = Math.floor(
       (stages.target.TIMER * 1000) / stages.target.SUMMON_SPEED -
         (stages.target.TIMER * 1000) / stages.target.SUMMON_SPEED / 3
     );
 
-    this.completeValue = totals;
-    this.target.innerHTML = totals + "";
+    this.targetValue = value;
+    this.currentElement.innerHTML = "0";
+    this.targetElement.innerHTML = value + "";
   },
   update() {
-    this.current.innerHTML = cache.props.BREAK_CHARS + "";
-    if (cache.props.BREAK_CHARS >= this.completeValue) {
-      this.target.innerHTML = "Completed";
+    // 增加一次字符计数，并将数值写到current元素中。
+    this.currentElement.innerHTML = ++cache.props.BREAK_CHARS + "";
+    if (cache.props.BREAK_CHARS >= this.targetValue) {
+      this.targetElement.innerHTML = "Completed";
     }
   },
   load() {
-    this.current.innerHTML = "0";
-    this.initTarget();
+    this.init();
     this.rootElement.classList.remove("hidden");
     logger("Quests", "载入模块");
   },
   hide() {
     this.rootElement.classList.add("hidden");
-    this.current.innerHTML = "";
-    this.target.innerHTML = "";
-    this.completeValue = 0;
+    this.currentElement.innerHTML = "";
+    this.targetElement.innerHTML = "";
+    this.targetValue = 0;
     logger("Quests", "已隐藏");
   },
 };

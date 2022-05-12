@@ -46,9 +46,7 @@ const navigate = (el: Entity) => {
     easing: "easeInOutQuad",
     scale: [1, 0],
     opacity: [1, 0],
-    complete() {
-      el.remove();
-    },
+    complete: () => el.remove(),
   });
 };
 
