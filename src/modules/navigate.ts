@@ -13,12 +13,12 @@ const navigate = (el: Entity) => {
 
   // 将路线动画实例对象给tracker属性控制
   el.tracker = timeline;
-  // 实体生成后改变生成的位置
+  // 字块生成后改变生成的位置
   anime.set(el, {
     translateX: anime.random(0, clientWidth - el.clientWidth),
     translateY: anime.random(0, clientHeight - el.clientHeight),
   });
-  // 实体出现的过渡效果
+  // 字块出现的过渡效果
   timeline.add({
     duration: 1000,
     scale: [0, 1],

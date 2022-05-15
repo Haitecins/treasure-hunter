@@ -27,7 +27,7 @@ const ticks = {
           difficult.cleanDiff();
           // 隐藏任务目标
           quests.hide();
-          // 清理Chunk模块，移除实体/关闭监听器。
+          // 清理Chunk模块，移除字块/关闭监听器。
           scene.chunk.clear();
           anime({
             duration: 1000,

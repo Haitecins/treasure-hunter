@@ -1,7 +1,7 @@
 import logger from "../components/logger";
 
 const props = {
-  // 破坏的字符数
+  // 破坏的字块数
   BREAK_CHARS: 0,
   // 铜锭计数
   COPPER_COUNT: 0,

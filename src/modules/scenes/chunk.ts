@@ -7,7 +7,7 @@ const chunk = {
   play() {
     this.rootElement.classList.remove("hidden");
     logger("Chunk", "载入模块");
-    // 启用实体生成模块
+    // 启用字块生成模块
     entities.enable();
   },
   hide() {
@@ -15,7 +15,7 @@ const chunk = {
     logger("Chunk", "已隐藏");
   },
   clear() {
-    // 销毁实体模块
+    // 销毁字块生成模块
     entities.destroy();
     // 关闭键盘监听器
     listener.disable();

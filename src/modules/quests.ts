@@ -18,7 +18,7 @@ const quests = {
     this.targetElement.innerHTML = value + "";
   },
   update() {
-    // 增加一次字符计数，并将数值写到current元素中。
+    // 增加一次字块计数，并将数值写到current元素中。
     this.currentElement.innerHTML = ++cache.props.BREAK_CHARS + "";
     if (cache.props.BREAK_CHARS >= this.targetValue) {
       this.targetElement.innerHTML = "Completed";

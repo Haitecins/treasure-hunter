@@ -15,10 +15,10 @@ const stats = {
     },
     () => {
       storage.save((data) => {
-        logger("Stat", `破坏字符${cache.props.BREAK_CHARS}个`);
+        logger("Stat", `破坏字块${cache.props.BREAK_CHARS}个`);
         data.historyBreak += cache.props.BREAK_CHARS;
       });
-      return `破坏字符：${writeText(
+      return `破坏字块：${writeText(
         cache.props.BREAK_CHARS.toLocaleString("en")
       )}个`;
     },

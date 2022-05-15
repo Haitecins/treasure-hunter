@@ -16,19 +16,19 @@ const entities = {
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     logger("Entities", "载入模块");
-    // 生成实体
+    // 生成字块
     this.animeInstance = anime({
       loop: true,
       duration: difficult.target.SUMMON_SPEED,
       begin() {
-        logger("Entities", "开始生成实体");
+        logger("Entities", "开始生成字块");
         logger(
           "Entities",
-          `当前生成实体的速度为${difficult.target.SUMMON_SPEED}毫秒`
+          `当前生成字块的速度为${difficult.target.SUMMON_SPEED}毫秒`
         );
       },
       loopComplete: () => {
-        // 超过20个实体则停止生成
+        // 超过20个字块则停止生成
         if (this.container.children.length >= 20) return;
         const el = this.spawn();
 
@@ -52,12 +52,12 @@ const entities = {
     // 停止生成
     this.animeInstance.restart();
     this.animeInstance.pause();
-    logger("Entities", "已停止生成实体");
+    logger("Entities", "已停止生成字块");
   },
   clear() {
-    // 清空实体
+    // 清空字块
     this.container.innerHTML = "";
-    logger("Entities", "已清空实体");
+    logger("Entities", "已清空字块");
   },
   destroy() {
     this.stop();

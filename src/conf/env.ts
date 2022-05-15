@@ -19,34 +19,34 @@ if (import.meta.env.MODE === "development") {
       return `已将计时设为${ts}秒`;
     },
   });
-  // 快速生成实体
+  // 快速生成字块
   Object.defineProperty(window, "_summon", {
     value(amount: number) {
       const amounts = amount || 20;
 
       for (let i = 0; i < amounts; i++) {
-        // 生成实体并移动
+        // 生成字块并移动
         navigate(entities.spawn());
       }
-      return `已生成数量为${amounts}的实体`;
+      return `已生成数量为${amounts}的字块`;
     },
   });
-  // 增加累计破坏的字符个数
+  // 增加累计破坏的字块个数
   Object.defineProperty(window, "_chars", {
     value(amount: number) {
       const amounts = amount || 100;
 
       cache.props.BREAK_CHARS += amounts;
-      return `增加了${amounts}个累计破坏字符的个数`;
+      return `增加了${amounts}个累计破坏字块的个数`;
     },
   });
-  // 强制激活区域内所有的字符
+  // 强制激活区域内所有的字块
   Object.defineProperty(window, "_activate", {
     value() {
       (<Entity[]>(
         Array.prototype.slice.call(entities.container.children)
       )).forEach((child) => activeCharHandler(child));
-      return "强制激活了区域内的字符";
+      return "强制激活了区域内的字块";
     },
   });
 }

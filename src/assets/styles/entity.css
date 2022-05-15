@@ -1,5 +1,5 @@
 @layer components {
-  /* 由entities模块自动为实体添加该类名 */
+  /* 由entities模块自动为字块添加该类名 */
   .th-entity {
     @apply w-24 h-24 text-2xl flex justify-center items-center rounded-full absolute;
   }
