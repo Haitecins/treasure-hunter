@@ -3,14 +3,15 @@ import scene from "../scene";
 import storage from "../storage";
 import logger from "../../components/logger";
 import user from "../user";
+import { querySelector } from "../../components/querySelector";
 
 const auth = {
-  rootElement: document.querySelector("#auth-module")!,
-  confirmElement: document.querySelector("#auth-confirm")!,
-  tipElement: document.querySelector("#auth-tip")!,
-  inputElement: <HTMLInputElement>document.querySelector("#auth-input"),
-  isLoginElement: document.querySelector("#is-login")!,
-  joinMessageElement: document.querySelector("#welcome-bar")!,
+  rootElement: querySelector("#auth-module"),
+  confirmElement: querySelector("#auth-confirm"),
+  tipElement: querySelector("#auth-tip"),
+  inputElement: <HTMLInputElement>querySelector("#auth-input"),
+  isLoginElement: querySelector("#is-login"),
+  joinMessageElement: querySelector("#welcome-bar"),
   load() {
     // 命名处理程序
     const loginHandler = () => {
@@ -48,7 +49,7 @@ const auth = {
   },
   success() {
     const { clientHeight } = document.documentElement;
-    const label = this.joinMessageElement.querySelector("h1")!;
+    const label = this.joinMessageElement.children[0];
     const timeline = anime.timeline({
       targets: this.rootElement,
     });

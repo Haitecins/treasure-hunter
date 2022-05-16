@@ -1,9 +1,10 @@
 import settings from "../conf/settings";
 import storage from "./storage";
 import auth from "./users/auth";
+import { querySelector } from "../components/querySelector";
 
 const createApp = () => {
-  const loadingElement = document.querySelector("#loading-page")!;
+  const loadingElement = querySelector("#loading-page");
   const loadHandler = () => {
     // 移除点击事件
     loadingElement.removeEventListener("click", loadHandler);

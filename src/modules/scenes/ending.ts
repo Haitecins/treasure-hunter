@@ -6,13 +6,14 @@ import ratings from "../../conf/ending/ratings";
 import stats from "../../conf/ending/stats";
 import rewards from "../../conf/ending/rewards";
 import logger from "../../components/logger";
+import { querySelector } from "../../components/querySelector";
 
 const ending = {
-  rootElement: document.querySelector("#ending-module")!,
-  rateElement: document.querySelector("#ending-rate>span")!,
-  statElement: document.querySelector("#ending-stat>div")!,
-  rewardElement: document.querySelector("#ending-reward>div")!,
-  returnLobbyElement: document.querySelector("#return-lobby")!,
+  rootElement: querySelector("#ending-module"),
+  rateElement: querySelector("#ending-rate>span"),
+  statElement: querySelector("#ending-stat>div"),
+  rewardElement: querySelector("#ending-reward>div"),
+  returnLobbyElement: querySelector("#return-lobby"),
   update() {
     logger("Ending", "已更新");
     // 加载评价等级

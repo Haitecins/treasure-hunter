@@ -1,11 +1,12 @@
 import difficult from "./difficult";
 import logger from "../components/logger";
 import cache from "../conf/cache";
+import { querySelector } from "../components/querySelector";
 
 const quests = {
-  rootElement: document.querySelector("#quests-progress")!,
-  currentElement: document.querySelector("#quest-current")!,
-  targetElement: document.querySelector("#quest-target")!,
+  rootElement: querySelector("#quests-progress"),
+  currentElement: querySelector("#quest-current"),
+  targetElement: querySelector("#quest-target"),
   targetValue: 0,
   init() {
     const value = Math.floor(

@@ -5,12 +5,12 @@ const resolutionSetting = {
   value: 0,
   apply: (size: number | null, label: string) => {
     const screen = document.documentElement.style;
-    const el = settings.settingOptions.resolution.previousElementSibling!;
+    const resLabel = settings.settingOptions.resolution.previousElementSibling!;
 
     // 调整分辨率
     if (size) screen.fontSize = `${size}px`;
     // 修改标签的文本
-    el.innerHTML = label;
+    resLabel.innerHTML = label;
   },
   init() {
     const savedSettings = storage.get().settings;

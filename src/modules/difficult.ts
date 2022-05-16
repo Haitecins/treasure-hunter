@@ -4,6 +4,7 @@ import scene from "./scene";
 import listener from "./listener";
 import ticks from "./ticks";
 import quests from "./quests";
+import { querySelector } from "../components/querySelector";
 
 interface Items {
   value: number;
@@ -12,12 +13,12 @@ interface Items {
 }
 
 const difficult = {
-  rootElement: document.querySelector("#difficult-select-module")!,
-  selectorElement: document.querySelector("#difficult-selector")!,
-  confirmElement: document.querySelector("#difficult-ok-btn")!,
-  cancelElement: document.querySelector("#difficult-cancel-btn")!,
-  degreeElement: document.querySelector("#degree-levels")!,
-  degreeDisplayElement: document.querySelector("#degree-levels-display")!,
+  rootElement: querySelector("#difficult-select-module"),
+  selectorElement: querySelector("#difficult-selector"),
+  confirmElement: querySelector("#difficult-ok-btn"),
+  cancelElement: querySelector("#difficult-cancel-btn"),
+  degreeElement: querySelector("#degree-levels"),
+  degreeDisplayElement: querySelector("#degree-levels-display"),
   target: {
     // 计时器
     TIMER: 0,

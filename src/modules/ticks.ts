@@ -4,9 +4,10 @@ import convert from "../utils/convert";
 import logger from "../components/logger";
 import difficult from "./difficult";
 import quests from "./quests";
+import { querySelector } from "../components/querySelector";
 
 const ticks = {
-  rootElement: document.querySelector("#ticks-module")!,
+  rootElement: querySelector("#ticks-module"),
   animeInstance: <anime.AnimeInstance>{},
   timer: 0,
   timeRecorder: 0,

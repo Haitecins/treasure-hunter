@@ -1,14 +1,15 @@
 import anime from "animejs";
 import logger from "../components/logger";
+import { querySelector } from "../components/querySelector";
 import resolutionSetting from "./settings/resolutionSetting";
 
 const settings = {
-  rootElement: document.querySelector("#settings-module")!,
-  openElement: document.querySelector("#settings-open-btn")!,
-  closeElement: document.querySelector("#settings-close-btn")!,
+  rootElement: querySelector("#settings-module"),
+  openElement: querySelector("#settings-open-btn"),
+  closeElement: querySelector("#settings-close-btn"),
   settingOptions: {
     // 分辨率设置
-    resolution: <HTMLInputElement>document.querySelector("#resolution-option"),
+    resolution: <HTMLInputElement>querySelector("#resolution-option"),
   },
   init() {
     const openHandler = () => {

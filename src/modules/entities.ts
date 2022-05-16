@@ -4,6 +4,7 @@ import chars from "../utils/chars";
 import colors from "../utils/colors";
 import navigate from "./navigate";
 import difficult from "./difficult";
+import { querySelector } from "../components/querySelector";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;
@@ -12,7 +13,7 @@ interface Entity extends HTMLDivElement {
 }
 
 const entities = {
-  container: document.querySelector("#entities-container")!,
+  container: querySelector("#entities-container"),
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     logger("Entities", "载入模块");

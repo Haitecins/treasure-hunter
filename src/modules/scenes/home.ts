@@ -2,10 +2,11 @@ import anime from "animejs";
 import user from "../user";
 import logger from "../../components/logger";
 import difficult from "../difficult";
+import { querySelector } from "../../components/querySelector";
 
 const home = {
-  rootElement: document.querySelector("#home-scene")!,
-  startElement: document.querySelector("#home-start")!,
+  rootElement: querySelector("#home-scene"),
+  startElement: querySelector("#home-start"),
   show() {
     logger("Home", "正在加载");
     anime({
