@@ -4,7 +4,7 @@
   }
 
   .th-modal {
-    @apply relative z-10 w-192 h-96 max-w-full max-h-full border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
+    @apply relative z-10 w-192 h-96 max-w-full max-h-full bg-th-dark border border-th-grey rounded-2xl text-2xl p-6 flex flex-col justify-between text-th-white;
   }
 
   .th-modal-ok-btn {
