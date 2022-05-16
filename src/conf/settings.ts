@@ -13,23 +13,25 @@ const settings = {
   },
   init() {
     const openHandler = () => {
-      cleanEvents();
+      // 移除打开设置事件
+      this.openElement.removeEventListener("click", openHandler);
+      // 添加关闭设置事件
+      this.closeElement.addEventListener("click", closeHandler);
       this.show();
     };
     const closeHandler = () => {
-      cleanEvents();
+      // 移除关闭设置事件
+      this.closeElement.removeEventListener("click", closeHandler);
+      // 添加打开设置事件
+      this.openElement.addEventListener("click", openHandler);
       // 在模块隐藏前保存更改
       this.hide(() => resolutionSetting.save());
-    };
-    const cleanEvents = () => {
-      this.openElement.removeEventListener("click", openHandler);
-      this.closeElement.addEventListener("click", closeHandler);
     };
 
     logger("Settings", "初始化");
     // 初始化分辨率设置选项
     resolutionSetting.init();
-    // 绑定设置按钮的点击事件
+    // 初始化绑定打开设置按钮的事件
     this.openElement.addEventListener("click", openHandler);
   },
   show() {
