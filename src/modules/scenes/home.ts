@@ -5,7 +5,7 @@ import difficult from "../difficult";
 
 const home = {
   rootElement: document.querySelector("#home-scene")!,
-  startBtn: document.querySelector("#home-start")!,
+  startElement: document.querySelector("#home-start")!,
   show() {
     logger("Home", "正在加载");
     anime({
@@ -26,31 +26,32 @@ const home = {
       },
     });
   },
-  hide(animeBegin?: () => void, animeComplete?: () => void) {
+  hide(animeBeginCallback?: () => void, animeCompleteCallback?: () => void) {
     anime({
       targets: this.rootElement,
       opacity: [1, 0],
       duration: 200,
       easing: "easeInOutSine",
       begin: () => {
-        animeBegin?.();
+        animeBeginCallback?.();
       },
       complete: () => {
         this.rootElement.classList.add("hidden");
         logger("Home", "已隐藏");
-        animeComplete?.();
+        animeCompleteCallback?.();
       },
     });
   },
   event() {
     // 开始按钮事件
     const startBtnHandler = () => {
-      this.startBtn.removeEventListener("click", startBtnHandler);
+      this.startElement.removeEventListener("click", startBtnHandler);
+
       // 显示难度选择模块
       difficult.show();
     };
 
-    this.startBtn.addEventListener("click", startBtnHandler);
+    this.startElement.addEventListener("click", startBtnHandler);
   },
 };
 

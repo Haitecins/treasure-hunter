@@ -14,10 +14,10 @@ interface Items {
 const difficult = {
   rootElement: document.querySelector("#difficult-select-module")!,
   selectorElement: document.querySelector("#difficult-selector")!,
-  okBtn: document.querySelector("#difficult-ok-btn")!,
-  cancelBtn: document.querySelector("#difficult-cancel-btn")!,
-  degree: document.querySelector("#degree-levels")!,
-  degreeDisplay: document.querySelector("#degree-levels-display")!,
+  confirmElement: document.querySelector("#difficult-ok-btn")!,
+  cancelElement: document.querySelector("#difficult-cancel-btn")!,
+  degreeElement: document.querySelector("#degree-levels")!,
+  degreeDisplayElement: document.querySelector("#degree-levels-display")!,
   target: {
     // 计时器
     TIMER: 0,
@@ -47,7 +47,7 @@ const difficult = {
       begin: () => {
         this.rootElement.classList.remove("hidden");
         // 初始化难度系数为0
-        this.degree.innerHTML = "0";
+        this.degreeElement.innerHTML = "0";
         // 加载选择器
         this.loadSelector();
       },
@@ -71,10 +71,10 @@ const difficult = {
       complete: () => {
         this.rootElement.classList.add("hidden");
         // 重置难度系数
-        this.degree.innerHTML = "0";
+        this.degreeElement.innerHTML = "0";
         // 完全隐藏后需要做的事情？
         animeComplete?.();
-        // 只要模块被隐藏，就需要把选择器全部销毁！
+        // 隐藏模块必须把选择器全部销毁！
         this.destroySelector();
         logger("Difficult", "已隐藏");
       },
@@ -83,7 +83,7 @@ const difficult = {
   event() {
     const okHandler = () => {
       // 移除两个按钮的事件
-      resetEvents();
+      cleanEvents();
       // 隐藏模块，但不重置选择器，选择器将在一局游戏结束后重置。
       // 如果在此处重置选择器，那么Entities模块和Ticks模块无法获取到此模块的SUMMON_SPEED和TIMER属性。
       this.hide();
@@ -107,7 +107,7 @@ const difficult = {
     };
     const cancelHandler = () => {
       // 移除两个按钮的事件
-      resetEvents();
+      cleanEvents();
       // 如果取消选择，那么一定要重置选择器。
       // 如果在此处不重置，那么下一次打开难度选择器时，仍然拥有上一次更改的属性！
       this.hide(() => {
@@ -117,14 +117,14 @@ const difficult = {
       // 重新绑定开始按钮的事件
       scene.home.event();
     };
-    const resetEvents = () => {
-      this.okBtn.removeEventListener("click", okHandler);
-      this.cancelBtn.removeEventListener("click", cancelHandler);
+    const cleanEvents = () => {
+      this.confirmElement.removeEventListener("click", okHandler);
+      this.cancelElement.removeEventListener("click", cancelHandler);
     };
 
     // 绑定事件
-    this.okBtn.addEventListener("click", okHandler);
-    this.cancelBtn.addEventListener("click", cancelHandler);
+    this.confirmElement.addEventListener("click", okHandler);
+    this.cancelElement.addEventListener("click", cancelHandler);
   },
   selector(
     title: string,
@@ -168,7 +168,7 @@ const difficult = {
     container.appendChild(label);
     container.appendChild(selects);
     this.selectorElement.appendChild(container);
-    // 每个项目的默认值
+    // 默认选择的值
     (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
@@ -267,16 +267,16 @@ const difficult = {
       update: (el) => {
         // 如果模块被隐藏了，那么迭代器也没有必要工作。
         if (this.iterator.stopped) el.pause();
-        this.degree.innerHTML = this.iterator.indicator.toFixed(0);
+        this.degreeElement.innerHTML = this.iterator.indicator.toFixed(0);
       },
     });
   },
   loadDiff() {
-    this.degreeDisplay.innerHTML = `难度系数 ${this.reduce()}`;
+    this.degreeDisplayElement.innerHTML = `难度系数 ${this.reduce()}`;
     logger("Difficult", "加载难度系数指示器");
   },
   cleanDiff() {
-    this.degreeDisplay.innerHTML = "";
+    this.degreeDisplayElement.innerHTML = "";
     logger("Difficult", "移除难度系数指示器");
   },
 };

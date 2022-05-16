@@ -2,6 +2,7 @@ type Handler = () => number;
 
 const convert = (handler: Handler | number) => {
   let t: number;
+
   if (typeof handler === "function") {
     t = handler();
   } else {
@@ -9,6 +10,7 @@ const convert = (handler: Handler | number) => {
   }
   let m: string | number = Math.floor(t / 60);
   let s: string | number = t % 60;
+
   m = m < 10 ? `0${m}` : m;
   s = s < 10 ? `0${s}` : s;
 

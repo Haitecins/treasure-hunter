@@ -8,19 +8,21 @@ import quests from "./quests";
 const ticks = {
   rootElement: document.querySelector("#ticks-module")!,
   animeInstance: <anime.AnimeInstance>{},
-  timeRecorder: 0,
   timer: 0,
+  timeRecorder: 0,
   start() {
+    const timer = difficult.target.TIMER;
+
     logger("Ticks", "计时开始");
-    logger("Ticks", `此次设定的时间为${difficult.target.TIMER}秒`);
+    logger("Ticks", `此次设定的时间为${timer}秒`);
     // 每次开始计时前把设定的值赋值给timer计时器
-    this.timer = difficult.target.TIMER;
+    this.timer = timer;
     this.animeInstance = anime({
       loop: true,
       duration: 1000,
       loopBegin: () => {
         if (this.timer <= 0) {
-          this.rootElement.innerHTML = "倒计时结束";
+          this.rootElement.innerHTML = "时间到";
           // 停止计时
           this.stop();
           // 移除难度系数显示

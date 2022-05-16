@@ -30,9 +30,7 @@ const entities = {
       loopComplete: () => {
         // 超过20个字块则停止生成
         if (this.container.children.length >= 20) return;
-        const el = this.spawn();
-
-        navigate(el);
+        navigate(this.spawn());
       },
     });
   },

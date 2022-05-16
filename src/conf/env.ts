@@ -36,7 +36,7 @@ if (import.meta.env.MODE === "development") {
     value(amount: number) {
       const amounts = amount || 100;
 
-      cache.props.BREAK_CHARS += amounts;
+      cache.provides.BREAK_CHARS += amounts;
       return `增加了${amounts}个累计破坏字块的个数`;
     },
   });

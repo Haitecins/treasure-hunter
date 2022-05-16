@@ -7,6 +7,7 @@ const chunk = {
   play() {
     this.rootElement.classList.remove("hidden");
     logger("Chunk", "载入模块");
+
     // 启用字块生成模块
     entities.enable();
   },

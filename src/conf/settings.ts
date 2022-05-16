@@ -1,32 +1,33 @@
 import anime from "animejs";
 import logger from "../components/logger";
-import resolution from "./settings/resolution";
+import resolutionSetting from "./settings/resolutionSetting";
 
 const settings = {
+  rootElement: document.querySelector("#settings-module")!,
   openElement: document.querySelector("#settings-open-btn")!,
   closeElement: document.querySelector("#settings-close-btn")!,
-  rootElement: document.querySelector("#settings-module")!,
-  options: {
+  settingOptions: {
+    // 分辨率设置
     resolution: <HTMLInputElement>document.querySelector("#resolution-option"),
   },
   init() {
     const openHandler = () => {
-      this.openElement.removeEventListener("click", openHandler);
-      this.closeElement.addEventListener("click", closeHandler);
+      cleanEvents();
       this.show();
     };
     const closeHandler = () => {
-      this.closeElement.removeEventListener("click", closeHandler);
-      this.openElement.addEventListener("click", openHandler);
-      this.hide(() => {
-        // 保存更改
-        resolution.save();
-      });
+      cleanEvents();
+      // 在模块隐藏前保存更改
+      this.hide(() => resolutionSetting.save());
+    };
+    const cleanEvents = () => {
+      this.openElement.removeEventListener("click", openHandler);
+      this.closeElement.addEventListener("click", closeHandler);
     };
 
     logger("Settings", "初始化");
     // 初始化分辨率设置选项
-    resolution.init();
+    resolutionSetting.init();
     // 绑定设置按钮的点击事件
     this.openElement.addEventListener("click", openHandler);
   },

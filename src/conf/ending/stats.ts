@@ -9,30 +9,31 @@ const stats = {
   list: [
     () => {
       const timeRecorder = ticks.timeRecorder;
+
       // 重置计时
       ticks.reset();
+
       return `耗时：${writeText(convert(timeRecorder))}`;
     },
     () => {
-      storage.save((data) => {
-        logger("Stat", `破坏字块${cache.props.BREAK_CHARS}个`);
-        data.historyBreak += cache.props.BREAK_CHARS;
-      });
-      return `破坏字块：${writeText(
-        cache.props.BREAK_CHARS.toLocaleString("en")
-      )}个`;
+      const breakChars = cache.provides.BREAK_CHARS;
+
+      logger("Stat", `破坏字块${breakChars}个`);
+      storage.save((data) => (data.historyBreak += breakChars));
+
+      return `破坏字块：${writeText(breakChars.toLocaleString("en"))}个`;
     },
   ],
   load(container: Element) {
     console.group("Stats Module Event");
     logger("Stats", "载入模块");
-    this.list.forEach((stat) => {
-      const result = stat();
+    this.list.forEach((fillStats) => {
+      const fill = fillStats();
 
-      if (result) {
+      if (fill) {
         const el = document.createElement("p");
 
-        el.innerHTML = result;
+        el.innerHTML = fill;
         container.appendChild(el);
       }
     });

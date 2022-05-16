@@ -5,6 +5,8 @@ import logger from "../components/logger";
 import quests from "./quests";
 
 const activeCharHandler = (el: Entity) => {
+  const { provides } = cache;
+
   // 防止重复执行
   el.isActive = !el.isActive;
   // 停止路线动画
@@ -20,15 +22,15 @@ const activeCharHandler = (el: Entity) => {
       quests.update();
       // 有概率获得铜锭x1-3
       if (anime.random(0, 100) <= 65) {
-        cache.props.COPPER_COUNT += anime.random(1, 3);
+        provides.COPPER_COUNT += anime.random(1, 3);
       }
       // 有概率获得铁锭x1-2
       if (anime.random(0, 100) <= 40) {
-        cache.props.IRON_COUNT += anime.random(1, 2);
+        provides.IRON_COUNT += anime.random(1, 2);
       }
       // 有概率获得金锭x1
       if (anime.random(0, 100) <= 5) {
-        cache.props.GOLD_COUNT += 1;
+        provides.GOLD_COUNT += 1;
       }
     },
     complete() {

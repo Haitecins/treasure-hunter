@@ -7,52 +7,58 @@ import logger from "../../components/logger";
 const rewards = {
   list: [
     () => {
-      if (cache.props.COPPER_COUNT) {
-        storage.save((data) => {
-          logger("Reward", `Give 铜锭x${cache.props.COPPER_COUNT}.`);
-          data.balances.copper += cache.props.COPPER_COUNT;
-        });
+      const coins = cache.provides.COPPER_COUNT;
+
+      if (coins) {
+        storage.save(({ balances }) => (balances.copper += coins));
+        logger("Reward", `Give 铜锭x${coins}.`);
+
         return `${loadIcon("bg-copper_ingot")}${writeText(
-          cache.props.COPPER_COUNT.toLocaleString("en")
+          coins.toLocaleString("en")
         )}`;
       }
+
       return null;
     },
     () => {
-      if (cache.props.IRON_COUNT) {
-        storage.save((data) => {
-          logger("Reward", `Give 铁锭x${cache.props.IRON_COUNT}.`);
-          data.balances.iron += cache.props.IRON_COUNT;
-        });
+      const coins = cache.provides.IRON_COUNT;
+
+      if (coins) {
+        storage.save(({ balances }) => (balances.iron = coins));
+        logger("Reward", `Give 铁锭x${coins}.`);
+
         return `${loadIcon("bg-iron_ingot")}${writeText(
-          cache.props.IRON_COUNT.toLocaleString("en")
+          coins.toLocaleString("en")
         )}`;
       }
+
       return null;
     },
     () => {
-      if (cache.props.GOLD_COUNT) {
-        storage.save((data) => {
-          logger("Reward", `Give 金锭x${cache.props.GOLD_COUNT}.`);
-          data.balances.gold += cache.props.GOLD_COUNT;
-        });
+      const coins = cache.provides.GOLD_COUNT;
+
+      if (coins) {
+        storage.save(({ balances }) => (balances.gold += coins));
+        logger("Reward", `Give 金锭x${coins}.`);
+
         return `${loadIcon("bg-gold_ingot")}${writeText(
-          cache.props.GOLD_COUNT.toLocaleString("en")
+          coins.toLocaleString("en")
         )}`;
       }
+
       return null;
     },
   ],
   load(container: Element) {
     console.group("Rewards Module Event");
     logger("Rewards", "载入模块");
-    this.list.forEach((reward) => {
-      const result = reward();
+    this.list.forEach((fillRewards) => {
+      const fill = fillRewards();
 
-      if (result) {
+      if (fill) {
         const el = document.createElement("p");
 
-        el.innerHTML = result;
+        el.innerHTML = fill;
         el.classList.add("th-icon-module");
         container.appendChild(el);
       }

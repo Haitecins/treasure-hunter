@@ -6,14 +6,14 @@ import anime from "animejs";
 const personal = {
   rootElement: document.querySelector("#personal-module")!,
   closeElement: document.querySelector("#personal-close")!,
-  name: document.querySelector("#personal-name")!,
-  levels: document.querySelector("#personal-levels")!,
-  balances: {
+  nameElement: document.querySelector("#personal-name")!,
+  levelsElement: document.querySelector("#personal-levels")!,
+  balanceElement: {
     copper: document.querySelector("#personal-bal-copper-ingot>div")!,
     iron: document.querySelector("#personal-bal-iron-ingot>div")!,
     gold: document.querySelector("#personal-bal-gold-ingot>div")!,
   },
-  totalBreaks: document.querySelector("#personal-break-chars>div")!,
+  totalBreaksElement: document.querySelector("#personal-break-chars>div")!,
   init() {
     const bindElement = <HTMLDivElement>profile.name.parentNode;
     const openHandler = () => {
@@ -32,14 +32,19 @@ const personal = {
   },
   update() {
     logger("Personal", "已更新");
-    const { balances, name, levels, historyBreak } = storage.get();
+    const savedStorage = storage.get();
+    const savedBalances = savedStorage.balances;
 
-    this.levels.innerHTML = `${levels} Levels`;
-    this.name.innerHTML = name;
-    this.balances.copper.innerHTML = balances.copper.toLocaleString("en");
-    this.balances.iron.innerHTML = balances.iron.toLocaleString("en");
-    this.balances.gold.innerHTML = balances.gold.toLocaleString("en");
-    this.totalBreaks.innerHTML = historyBreak.toLocaleString("en");
+    this.levelsElement.innerHTML = `${savedStorage.levels} Levels`;
+    this.nameElement.innerHTML = savedStorage.name;
+    this.balanceElement.copper.innerHTML =
+      savedBalances.copper.toLocaleString("en");
+    this.balanceElement.iron.innerHTML =
+      savedBalances.iron.toLocaleString("en");
+    this.balanceElement.gold.innerHTML =
+      savedBalances.gold.toLocaleString("en");
+    this.totalBreaksElement.innerHTML =
+      savedStorage.historyBreak.toLocaleString("en");
   },
   show() {
     anime({

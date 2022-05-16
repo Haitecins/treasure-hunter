@@ -19,13 +19,15 @@ const quests = {
   },
   update() {
     // 增加一次字块计数，并将数值写到current元素中。
-    this.currentElement.innerHTML = ++cache.props.BREAK_CHARS + "";
-    if (cache.props.BREAK_CHARS >= this.targetValue) {
+    this.currentElement.innerHTML = ++cache.provides.BREAK_CHARS + "";
+    if (cache.provides.BREAK_CHARS >= this.targetValue) {
       this.targetElement.innerHTML = "Completed";
     }
   },
   load() {
+    // 初始化
     this.init();
+    // 显示目标元素
     this.rootElement.classList.remove("hidden");
     logger("Quests", "载入模块");
   },

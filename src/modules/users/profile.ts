@@ -6,15 +6,15 @@ const profile = {
   rootElement: document.querySelector("#profile-module")!,
   name: document.querySelector("#profile-name")!,
   levels: document.querySelector("#profile-levels")!,
-  balances: {
+  balancesElement: {
     copper: document.querySelector("#bal-copper-ingot>div")!,
     iron: document.querySelector("#bal-iron-ingot>div")!,
     gold: document.querySelector("#bal-gold-ingot>div")!,
   },
   update() {
     logger("Profile", "已更新");
-    const { copper, iron, gold } = this.balances;
-    const { balances, name, levels } = storage.get();
+    const savedStorage = storage.get();
+    const savedBalances = storage.get().balances;
     const convertFormat = (x: number): string => {
       if (x >= 1e6) {
         return formatter(x, 2);
@@ -23,11 +23,11 @@ const profile = {
       }
     };
 
-    this.levels.innerHTML = `Lv.${levels}`;
-    this.name.innerHTML = name;
-    copper.innerHTML = convertFormat(balances.copper);
-    iron.innerHTML = convertFormat(balances.iron);
-    gold.innerHTML = convertFormat(balances.gold);
+    this.levels.innerHTML = `Lv.${savedStorage.levels}`;
+    this.name.innerHTML = savedStorage.name;
+    this.balancesElement.copper.innerHTML = convertFormat(savedBalances.copper);
+    this.balancesElement.iron.innerHTML = convertFormat(savedBalances.iron);
+    this.balancesElement.gold.innerHTML = convertFormat(savedBalances.gold);
   },
 };
 
