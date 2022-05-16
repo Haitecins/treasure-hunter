@@ -2,22 +2,21 @@ import storage from "../libs/storage";
 import auth from "./users/auth";
 import settings from "../conf/settings";
 
-const loading = {
-  rootElement: document.querySelector("#loading")!,
+const app = {
+  loadingPage: document.querySelector("#loading-page")!,
   init() {
     // 加载或初始化游戏数据，接着初始化游戏设置。
     storage.load(() => settings.init());
-
     const loadHandler = () => {
-      this.rootElement.removeEventListener("click", loadHandler);
-      this.rootElement.remove();
+      this.loadingPage.removeEventListener("click", loadHandler);
+      this.loadingPage.remove();
       // 初始化玩家验证
       auth.init();
     };
 
     document.body.removeAttribute("style");
-    this.rootElement.addEventListener("click", loadHandler);
+    this.loadingPage.addEventListener("click", loadHandler);
   },
 };
 
-export default loading;
+export default app.init;

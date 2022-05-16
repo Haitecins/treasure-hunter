@@ -1,9 +1,5 @@
-import "./assets/styles/index.css";
+import "./assets/styles/index.css"; // CSS文件
+import "./conf/env"; // 环境功能配置
+import createApp from "./modules/app"; // 初始化
 
-// 环境功能配置
-import "./conf/env";
-
-// 初始化
-import loading from "./modules/loading";
-
-loading.init();
+createApp();
