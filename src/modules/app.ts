@@ -4,7 +4,7 @@ import settings from "../conf/settings";
 
 const app = {
   loadingPage: document.querySelector("#loading-page")!,
-  init() {
+  createApp() {
     // 加载或初始化游戏数据，接着初始化游戏设置。
     storage.load(() => settings.init());
     const loadHandler = () => {
@@ -19,4 +19,4 @@ const app = {
   },
 };
 
-export default app.init;
+export default app;
