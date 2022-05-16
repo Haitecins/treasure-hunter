@@ -21,11 +21,11 @@ const activeCharHandler = (el: Entity) => {
       // 更新一次任务目标
       quests.update();
       // 有概率获得铜锭x1-3
-      if (anime.random(0, 100) <= 65) {
+      if (anime.random(0, 100) <= 30) {
         provides.COPPER_COUNT += anime.random(1, 3);
       }
       // 有概率获得铁锭x1-2
-      if (anime.random(0, 100) <= 40) {
+      if (anime.random(0, 100) <= 15) {
         provides.IRON_COUNT += anime.random(1, 2);
       }
       // 有概率获得金锭x1
