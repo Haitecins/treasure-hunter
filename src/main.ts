@@ -1,5 +1,5 @@
 import "./assets/styles/index.css"; // CSS文件
 import "./conf/env"; // 环境功能配置
-import app from "./modules/app"; // 初始化
+import createApp from "./modules/createApp";
 
-app.createApp();
+createApp();
