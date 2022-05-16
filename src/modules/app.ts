@@ -1,4 +1,4 @@
-import storage from "../libs/storage";
+import storage from "./storage";
 import auth from "./users/auth";
 import settings from "../conf/settings";
 

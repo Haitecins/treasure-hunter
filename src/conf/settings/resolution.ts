@@ -1,4 +1,4 @@
-import storage from "../../libs/storage";
+import storage from "../../modules/storage";
 import settings from "../settings";
 
 const resolution = {

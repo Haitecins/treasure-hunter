@@ -1,4 +1,4 @@
-import storage from "../../libs/storage";
+import storage from "../storage";
 import logger from "../../components/logger";
 import formatter from "../../utils/formatter";
 

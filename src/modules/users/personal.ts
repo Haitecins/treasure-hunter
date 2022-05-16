@@ -1,5 +1,5 @@
 import logger from "../../components/logger";
-import storage from "../../libs/storage";
+import storage from "../storage";
 import profile from "./profile";
 import anime from "animejs";
 

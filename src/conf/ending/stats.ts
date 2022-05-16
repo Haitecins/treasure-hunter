@@ -1,5 +1,5 @@
 import cache from "../cache";
-import storage from "../../libs/storage";
+import storage from "../../modules/storage";
 import writeText from "../../components/writeText";
 import ticks from "../../modules/ticks";
 import convert from "../../utils/convert";
