@@ -4,6 +4,16 @@ interface Metadata {
   pid: number;
   name: any;
   levels: number;
+  history: {
+    date: number;
+    difficultLevels: number;
+    breakChars: number;
+    balances: {
+      copper: number;
+      iron: number;
+      gold: number;
+    };
+  }[];
   historyBreak: number;
   version: string;
   settings: {
@@ -22,6 +32,7 @@ const metadata: Metadata = {
   pid: new Date().getTime(),
   name: null,
   levels: 1,
+  history: [],
   historyBreak: 0,
   settings: {
     resolution: 16,

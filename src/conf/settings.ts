@@ -2,6 +2,7 @@ import anime from "animejs";
 import logger from "../components/logger";
 import { querySelector } from "../components/querySelector";
 import resolutionSetting from "./settings/resolutionSetting";
+import analyzes from "../modules/analyzes";
 
 const settings = {
   rootElement: querySelector("#settings-module"),
@@ -25,7 +26,12 @@ const settings = {
       // 添加打开设置事件
       this.openElement.addEventListener("click", openHandler);
       // 在模块隐藏前保存更改
-      this.hide(() => resolutionSetting.save());
+      this.hide(() => {
+        // 应用分辨率设置
+        resolutionSetting.save();
+        // 刷新分析器的大小
+        analyzes.chart.resize();
+      });
     };
 
     logger("Settings", "初始化");

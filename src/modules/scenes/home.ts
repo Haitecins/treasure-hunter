@@ -7,7 +7,7 @@ import { querySelector } from "../../components/querySelector";
 const home = {
   rootElement: querySelector("#home-scene"),
   startElement: querySelector("#home-start"),
-  show() {
+  show(animeComplete?: () => void) {
     logger("Home", "正在加载");
     anime({
       targets: this.rootElement,
@@ -22,6 +22,8 @@ const home = {
       // 加载完成后添加按钮事件
       complete: () => {
         logger("Home", "载入模块");
+        // 加载完成后需要做的事情
+        animeComplete?.();
         // 绑定模块的点击事件
         this.event();
       },
