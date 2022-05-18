@@ -1,9 +1,39 @@
 import { querySelector } from "../components/querySelector";
-import * as echarts from "echarts";
 import storage from "./storage";
 import dayjs from "dayjs";
 import logger from "../components/logger";
+import * as echarts from "echarts/core";
+import {
+  TitleComponent,
+  TitleComponentOption,
+  TooltipComponent,
+  TooltipComponentOption,
+  GridComponent,
+  GridComponentOption,
+  LegendComponent,
+  LegendComponentOption,
+} from "echarts/components";
+import { LineChart, LineSeriesOption } from "echarts/charts";
+import { UniversalTransition } from "echarts/features";
+import { SVGRenderer } from "echarts/renderers";
 
+type EChartsOption = echarts.ComposeOption<
+  | TitleComponentOption
+  | TooltipComponentOption
+  | GridComponentOption
+  | LegendComponentOption
+  | LineSeriesOption
+>;
+
+echarts.use([
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  LineChart,
+  SVGRenderer,
+  UniversalTransition,
+]);
 const analyzes = {
   rootElement: <HTMLElement>querySelector("#data-analyze"),
   chart: <echarts.EChartsType>{},
@@ -11,7 +41,7 @@ const analyzes = {
     logger("Analyzes", "刷新数据");
     const history = storage.get().history.slice(0, 10);
 
-    return <echarts.EChartsOption>{
+    return <EChartsOption>{
       backgroundColor: "transparent",
       textStyle: {
         fontFamily: '"en", "cn", "sans-serif"',
@@ -96,7 +126,6 @@ const analyzes = {
   },
   init() {
     this.chart = echarts.init(this.rootElement, "dark", {
-      renderer: "svg",
       locale: "ZH",
     });
     window.addEventListener("resize", () => this.chart.resize());
