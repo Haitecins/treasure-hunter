@@ -62,7 +62,7 @@ const analyzes = {
       grid: {
         top: 10,
         left: "3%",
-        right: "4%",
+        right: "3%",
         bottom: 50,
         containLabel: true,
       },
@@ -84,9 +84,7 @@ const analyzes = {
       yAxis: {
         type: "value",
         axisLabel: {
-          color: "#F6F4F2",
-          fontSize: "1rem",
-          fontFamily: '"en", "cn", "sans-serif"',
+          show: false,
         },
         splitLine: {
           lineStyle: {
@@ -125,9 +123,7 @@ const analyzes = {
     };
   },
   init() {
-    this.chart = echarts.init(this.rootElement, "dark", {
-      locale: "ZH",
-    });
+    this.chart = echarts.init(this.rootElement, "dark", { locale: "ZH" });
     window.addEventListener("resize", () => this.chart.resize());
     logger("Analyzes", "初始化");
     this.update();
