@@ -1,8 +1,13 @@
 import { defineConfig } from "vite";
 
+const mainChunk = ["animejs", "howler"];
+const libChunk = ["echarts"];
+const utilChunk = ["dayjs"];
+
 export default defineConfig({
   build: {
     minify: "terser",
+    sourcemap: false,
     terserOptions: {
       compress: {
         drop_console: true,
@@ -13,11 +18,12 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      // @ts-ignore
-      manualChunks(id) {
-        if (id.includes("node_modules")) {
-          return id.split("node_modules/")[1].split("/")[0];
-        }
+      output: {
+        manualChunks: {
+          vendor: mainChunk,
+          vendor2: libChunk,
+          vendor3: utilChunk,
+        },
       },
     },
   },
