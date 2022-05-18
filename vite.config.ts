@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 
-const chunk1 = ["animeJS", "howler"];
+const chunk1 = ["animejs", "howler"];
 const chunk2 = ["echarts"];
 const chunk3 = ["dayjs"];
 
