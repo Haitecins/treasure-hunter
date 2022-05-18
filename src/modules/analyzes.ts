@@ -51,19 +51,18 @@ const analyzes = {
       },
       legend: {
         data: ["难度系数", "破坏字块", "铜锭获取", "铁锭获取", "金锭获取"],
-        bottom: 10,
+        top: 10,
         textStyle: {
           color: "#F6F4F2",
           fontSize: "1rem",
         },
-        selected: {},
-        itemGap: 15,
+        itemStyle: {},
       },
       grid: {
-        top: 10,
+        top: 50,
         left: "3%",
         right: "3%",
-        bottom: 50,
+        bottom: 10,
         containLabel: true,
       },
       xAxis: {
