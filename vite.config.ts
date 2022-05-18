@@ -1,17 +1,15 @@
 import { defineConfig } from "vite";
 
-const mainChunk = ["animejs", "howler"];
-const libChunk = ["echarts"];
-const utilChunk = ["dayjs"];
+const chunk1 = ["animeJS", "howler"];
+const chunk2 = ["echarts"];
+const chunk3 = ["dayjs"];
 
 export default defineConfig({
   build: {
     minify: "terser",
-    sourcemap: false,
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true,
       },
       format: {
         ascii_only: true,
@@ -20,9 +18,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: mainChunk,
-          vendor2: libChunk,
-          vendor3: utilChunk,
+          vendor: chunk1,
+          vendor2: chunk2,
+          vendor3: chunk3,
         },
       },
     },
