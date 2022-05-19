@@ -32,19 +32,21 @@ const entities = {
       loopComplete: () => {
         // 超过20个字块则停止生成
         if (this.container.children.length >= 20) return;
-        navigate(this.spawn());
+        const spawner = this.spawn();
+
+        navigate(spawner);
       },
     });
   },
   spawn() {
     const el = <Entity>document.createElement("div");
     const char = chars.random().toUpperCase();
-    const [qualityColor, bonus] = quality.get();
+    const [qualityColor, activeHandler] = quality.get();
 
     el.classList.add(...qualityColor, "th-entity");
-    el.activeAward = bonus;
     el.innerHTML = el.activeKey = char;
     el.isActive = false;
+    el.activeAward = activeHandler;
     this.container.appendChild(el);
 
     return el;
