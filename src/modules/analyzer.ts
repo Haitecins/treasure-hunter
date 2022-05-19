@@ -35,11 +35,11 @@ echarts.use([
   SVGRenderer,
   UniversalTransition,
 ]);
-const analyzes = {
+const analyzer = {
   rootElement: <HTMLElement>querySelector("#data-analyze"),
   chart: <echarts.EChartsType>{},
   refresh() {
-    logger("Analyzes", "刷新数据");
+    logger("Analyzer", "刷新数据");
     const history = storage.get().history.slice(0, 14);
 
     return <EChartsOption>{
@@ -128,11 +128,11 @@ const analyzes = {
       begin: () => {
         this.chart = echarts.init(this.rootElement, "dark", { locale: "ZH" });
         window.addEventListener("resize", () => this.chart.resize());
-        logger("Analyzes", "初始化");
+        logger("Analyzer", "初始化");
         this.update();
       },
       complete() {
-        logger("Analyzes", "载入模块");
+        logger("Analyzer", "载入模块");
       },
     });
   },
@@ -144,4 +144,4 @@ const analyzes = {
   },
 };
 
-export default analyzes;
+export default analyzer;

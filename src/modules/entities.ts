@@ -1,15 +1,14 @@
 import anime from "animejs";
 import logger from "../components/logger";
 import chars from "../utils/chars";
+import colors from "../utils/colors";
 import navigate from "./navigate";
 import difficult from "./difficult";
 import { querySelector } from "../components/querySelector";
-import quality from "../conf/quality";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;
   isActive: boolean;
-  activeAward: () => void;
   tracker: anime.AnimeInstance;
 }
 
@@ -41,12 +40,11 @@ const entities = {
   spawn() {
     const el = <Entity>document.createElement("div");
     const char = chars.random().toUpperCase();
-    const [qualityColor, activeHandler] = quality.get();
+    const color = colors.random();
 
-    el.classList.add(...qualityColor, "th-entity");
-    el.innerHTML = el.activeKey = char;
     el.isActive = false;
-    el.activeAward = activeHandler;
+    el.innerHTML = el.activeKey = char;
+    el.classList.add(...color, "th-entity");
     this.container.appendChild(el);
 
     return el;

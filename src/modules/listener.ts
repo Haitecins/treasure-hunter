@@ -1,9 +1,12 @@
 import anime from "animejs";
 import entities, { Entity } from "./entities";
+import cache from "../conf/cache";
 import logger from "../components/logger";
 import quests from "./quests";
 
 const activeCharHandler = (el: Entity) => {
+  const { provides } = cache;
+
   // 防止重复执行
   el.isActive = !el.isActive;
   // 停止路线动画
@@ -17,8 +20,18 @@ const activeCharHandler = (el: Entity) => {
     begin() {
       // 更新一次任务目标
       quests.update();
-      // 激活字块的奖励
-      el.activeAward();
+      // 有概率获得铜锭x1-3
+      if (anime.random(0, 100) <= 30) {
+        provides.COPPER_COUNT += anime.random(1, 3);
+      }
+      // 有概率获得铁锭x1-2
+      if (anime.random(0, 100) <= 15) {
+        provides.IRON_COUNT += anime.random(1, 2);
+      }
+      // 有概率获得金锭x1
+      if (anime.random(0, 100) <= 5) {
+        provides.GOLD_COUNT += 1;
+      }
     },
     complete() {
       el.remove();

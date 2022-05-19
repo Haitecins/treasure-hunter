@@ -2,7 +2,7 @@ import anime from "animejs";
 import logger from "../components/logger";
 import { querySelector } from "../components/querySelector";
 import resolutionSetting from "./settings/resolutionSetting";
-import analyzes from "../modules/analyzes";
+import analyzer from "../modules/analyzer";
 
 const settings = {
   rootElement: querySelector("#settings-module"),
@@ -30,7 +30,7 @@ const settings = {
         // 应用分辨率设置
         resolutionSetting.save();
         // 刷新分析器的大小
-        analyzes.chart.resize();
+        analyzer.chart.resize();
       });
     };
 

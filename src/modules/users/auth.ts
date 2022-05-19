@@ -4,7 +4,7 @@ import storage from "../storage";
 import logger from "../../components/logger";
 import user from "../user";
 import { querySelector } from "../../components/querySelector";
-import analyzes from "../analyzes";
+import analyzer from "../analyzer";
 
 const auth = {
   rootElement: querySelector("#auth-module"),
@@ -78,7 +78,7 @@ const auth = {
         // 显示Home模块
         scene.home.show(() => {
           // Home模块显示后，初始化分析模块。
-          analyzes.init();
+          analyzer.init();
         });
         // 初始化Personal模块
         user.personal.init();
