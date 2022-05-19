@@ -40,7 +40,7 @@ const analyzes = {
   chart: <echarts.EChartsType>{},
   refresh() {
     logger("Analyzes", "刷新数据");
-    const history = storage.get().history.slice(0, 10);
+    const history = storage.get().history.slice(0, 14);
 
     return <EChartsOption>{
       backgroundColor: "transparent",
@@ -52,7 +52,7 @@ const analyzes = {
       },
       legend: {
         data: ["难度系数", "破坏字块", "铜锭获取", "铁锭获取", "金锭获取"],
-        top: 0,
+        bottom: 0,
         textStyle: {
           color: "#F6F4F2",
           fontSize: "1rem",
@@ -60,16 +60,20 @@ const analyzes = {
       },
       grid: {
         containLabel: true,
-        top: 40,
+        top: 5,
         left: 5,
         right: 5,
-        bottom: 5,
+        bottom: 40,
       },
       xAxis: {
         show: false,
         boundaryGap: false,
         type: "category",
-        data: history.map(({ date }) => dayjs(date).fromNow()),
+        data: history.map(({ date }) => (<
+            {
+              fromNow(withoutSuffix?: boolean): string;
+            }
+          >(<any>dayjs(date))).fromNow()),
         axisLabel: {
           show: false,
         },
@@ -133,7 +137,9 @@ const analyzes = {
     });
   },
   update() {
-    this.chart.setOption(this.refresh());
+    const newOptions = this.refresh();
+
+    this.chart.setOption(newOptions);
     logger("Analyzes", "已更新");
   },
 };
