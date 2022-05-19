@@ -1,3 +1,4 @@
+import anime from "animejs";
 import { querySelector } from "../components/querySelector";
 import storage from "./storage";
 import dayjs from "dayjs";
@@ -51,33 +52,26 @@ const analyzes = {
       },
       legend: {
         data: ["难度系数", "破坏字块", "铜锭获取", "铁锭获取", "金锭获取"],
-        top: 10,
+        top: 0,
         textStyle: {
           color: "#F6F4F2",
           fontSize: "1rem",
         },
-        itemStyle: {},
       },
       grid: {
-        top: 50,
-        left: "3%",
-        right: "3%",
-        bottom: 10,
         containLabel: true,
+        top: 40,
+        left: 5,
+        right: 5,
+        bottom: 5,
       },
       xAxis: {
+        show: false,
         boundaryGap: false,
         type: "category",
         data: history.map(({ date }) => dayjs(date).fromNow()),
-        axisLine: {
-          lineStyle: {
-            color: "#F6F4F2",
-          },
-        },
         axisLabel: {
-          color: "#F6F4F2",
-          fontSize: "1rem",
-          fontFamily: '"en", "cn", "sans-serif"',
+          show: false,
         },
       },
       yAxis: {
@@ -122,10 +116,21 @@ const analyzes = {
     };
   },
   init() {
-    this.chart = echarts.init(this.rootElement, "dark", { locale: "ZH" });
-    window.addEventListener("resize", () => this.chart.resize());
-    logger("Analyzes", "初始化");
-    this.update();
+    anime({
+      targets: this.rootElement,
+      opacity: [0, 1],
+      duration: 200,
+      easing: "easeInOutSine",
+      begin: () => {
+        this.chart = echarts.init(this.rootElement, "dark", { locale: "ZH" });
+        window.addEventListener("resize", () => this.chart.resize());
+        logger("Analyzes", "初始化");
+        this.update();
+      },
+      complete() {
+        logger("Analyzes", "载入模块");
+      },
+    });
   },
   update() {
     this.chart.setOption(this.refresh());
