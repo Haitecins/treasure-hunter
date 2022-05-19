@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="dayjs/plugin/relativeTime" />
+
 import { Dayjs } from "dayjs";
 
 type DateType = string | number | Date | Dayjs;

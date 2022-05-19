@@ -2,6 +2,7 @@ import cache from "../cache";
 import anime from "animejs";
 import logger from "../../components/logger";
 
+const { provides } = cache;
 const ratings = {
   load(container: Element) {
     let rank;
@@ -30,8 +31,6 @@ const ratings = {
     container.innerHTML = rank;
   },
   rankS() {
-    const { provides } = cache;
-
     provides.COPPER_COUNT += anime.random(50, 70);
     provides.IRON_COUNT += anime.random(15, 30);
     provides.GOLD_COUNT += anime.random(7, 10);
@@ -39,8 +38,6 @@ const ratings = {
     return "S";
   },
   rankA() {
-    const { provides } = cache;
-
     provides.COPPER_COUNT += anime.random(30, 50);
     provides.IRON_COUNT += anime.random(5, 15);
     provides.GOLD_COUNT += anime.random(5, 7);
@@ -48,8 +45,6 @@ const ratings = {
     return "A";
   },
   rankB() {
-    const { provides } = cache;
-
     provides.COPPER_COUNT += anime.random(10, 30);
     provides.IRON_COUNT += anime.random(2, 5);
     provides.GOLD_COUNT += anime.random(0, 1);
@@ -57,16 +52,12 @@ const ratings = {
     return "B";
   },
   rankC() {
-    const { provides } = cache;
-
     provides.COPPER_COUNT += anime.random(5, 10);
     provides.IRON_COUNT += anime.random(1, 2);
 
     return "C";
   },
   rankD() {
-    const { provides } = cache;
-
     provides.COPPER_COUNT += anime.random(0, 5);
 
     return "D";

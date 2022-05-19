@@ -46,7 +46,7 @@ const ending = {
           data.history = [
             {
               date: new Date().getTime(),
-              difficultLevels: difficult.reduce(),
+              difficultLevels: difficult.levels(),
               breakChars: BREAK_CHARS,
               balances: {
                 copper: COPPER_COUNT,

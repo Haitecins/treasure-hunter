@@ -35,7 +35,7 @@ const difficult = {
     // 是否停止迭代器迭代数值
     stopped: false,
   },
-  reduce() {
+  levels() {
     return this.iterator.exponents.reduce((prev, current) => prev + current, 0);
   },
   show() {
@@ -262,7 +262,7 @@ const difficult = {
     // animeJS会自动根据当前值进行改变
     anime({
       targets: this.iterator,
-      indicator: this.reduce(),
+      indicator: this.levels(),
       duration: 250,
       easing: "linear",
       update: (el) => {
@@ -273,7 +273,7 @@ const difficult = {
     });
   },
   loadDiff() {
-    this.degreeDisplayElement.innerHTML = `难度系数 ${this.reduce()}`;
+    this.degreeDisplayElement.innerHTML = `Lv.${this.levels()}`;
     logger("Difficult", "加载难度系数指示器");
   },
   cleanDiff() {
