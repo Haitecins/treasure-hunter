@@ -22,7 +22,9 @@
         <i class="th-icon-ref bg-nether_star w-32 h-32 m-0"></i>
         <div class="mt-10 text-center">Treasure Hunter</div>
       </div>
-      <div class="absolute bottom-10 text-3xl opacity-75">点击任意处继续</div>
+      <div class="absolute bottom-10 text-3xl text-th-lightgrey">
+        点击任意处继续
+      </div>
     </div>
     <div id="root" class="w-full h-full relative">
       <div id="auth-module" class="th-modal-space hidden">
@@ -58,7 +60,10 @@
             <i class="bg-writable_book th-icon-ref"></i>
             <div class="cursor-pointer flex items-center">
               <div id="profile-name" class="text-3xl"></div>
-              <div id="profile-levels" class="text-2xl pl-4 opacity-75"></div>
+              <div
+                id="profile-levels"
+                class="text-2xl pl-4 text-th-lightgrey"
+              ></div>
             </div>
           </div>
           <div class="flex">
@@ -83,14 +88,14 @@
               id="settings-open-btn"
               class="th-icon-ref bg-comparator m-0 cursor-pointer"
             ></i>
-            <div class="text-xl opacity-75 pt-1">游戏设置</div>
+            <div class="text-xl text-th-lightgrey pt-1">游戏设置</div>
           </div>
           <div class="th-icon-module flex-col ml-4">
             <i
               id="home-start"
               class="th-icon-ref bg-emerald m-0 cursor-pointer"
             ></i>
-            <div class="text-xl opacity-75 pt-1">开始游戏</div>
+            <div class="text-xl text-th-lightgrey pt-1">开始游戏</div>
           </div>
         </div>
         <!-- data analyze -->
@@ -105,12 +110,15 @@
         <div
           class="mask-text absolute z-50 inset-x-0 top-32 flex flex-col items-center"
         >
-          <div id="ticks-module" class="text-th-warn text-3xl mb-4"></div>
-          <div id="degree-levels-display" class="text-th-err text-2xl"></div>
+          <div id="ticks-module" class="text-th-yellow text-3xl mb-4"></div>
+          <div id="degree-levels-display" class="text-th-red text-2xl"></div>
           <div id="quests-progress" class="flex items-center text-2xl hidden">
             <div id="quest-current" class="text-th-white"></div>
             <span class="text-th-white text-xl px-2">/</span>
-            <div id="quest-target" class="text-th-white opacity-75"></div>
+            <div
+              id="quest-target"
+              class="text-th-white text-th-lightgrey"
+            ></div>
           </div>
         </div>
         <!-- summon entities -->
@@ -118,22 +126,22 @@
       </div>
     </div>
     <div id="ending-module" class="th-modal-space hidden">
-      <div class="absolute inset-0 bg-th-dark"></div>
+      <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal">
         <div class="flex justify-between h-full">
           <div
             id="ending-rate"
-            class="text-th-info text-8xl flex items-center pl-10"
+            class="text-th-blue text-8xl flex items-center pl-10"
           >
             <span></span>
           </div>
           <div id="ending-stat">
-            <h1 class="text-th-warn text-4xl mb-6">统计</h1>
+            <h1 class="text-th-yellow text-4xl mb-6">统计</h1>
             <!-- statistics show -->
             <div></div>
           </div>
           <div id="ending-reward">
-            <h2 class="text-th-warn text-4xl mb-6">结束奖励</h2>
+            <h2 class="text-th-yellow text-4xl mb-6">结束奖励</h2>
             <!-- reward list -->
             <div></div>
           </div>
@@ -144,12 +152,15 @@
       </div>
     </div>
     <div id="personal-module" class="th-modal-space hidden">
-      <div class="absolute inset-0 bg-th-dark"></div>
+      <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal">
         <div class="flex justify-between items-center">
           <div class="flex items-center">
             <div id="personal-name" class="text-3xl"></div>
-            <div id="personal-levels" class="text-2xl pl-4 opacity-75"></div>
+            <div
+              id="personal-levels"
+              class="text-2xl pl-4 text-th-lightgrey"
+            ></div>
           </div>
           <i id="personal-close" class="th-modal-cancel-btn"></i>
         </div>
@@ -177,12 +188,14 @@
       </div>
     </div>
     <div id="settings-module" class="th-modal-space hidden">
-      <div class="absolute inset-0 bg-th-dark"></div>
+      <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal justify-start">
         <div class="flex justify-between items-center">
           <div class="text-3xl flex items-end">
             <span>游戏设置</span
-            ><span class="pl-2 opacity-75 text-xl">更改将在关闭后生效</span>
+            ><span class="pl-2 text-th-lightgrey text-xl"
+              >更改将在关闭后生效</span
+            >
           </div>
           <i id="settings-close-btn" class="th-modal-cancel-btn"></i>
         </div>
@@ -200,12 +213,12 @@
       </div>
     </div>
     <div id="difficult-select-module" class="th-modal-space hidden">
-      <div class="absolute inset-0 bg-th-dark"></div>
+      <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal h-144">
         <div class="flex flex-col overflow-hidden">
           <div class="text-3xl flex items-end">
             <span>难度选择</span
-            ><span class="pl-2 opacity-75 text-xl"
+            ><span class="pl-2 text-th-lightgrey text-xl"
               >难度系数越高，获得的奖励越好。</span
             >
           </div>
@@ -216,16 +229,16 @@
         </div>
         <div class="flex flex-col items-center">
           <div class="text-2xl mb-4">
-            难度系数：<span id="degree-levels" class="text-th-warn">0</span>
+            难度系数：<span id="degree-levels" class="text-th-yellow">0</span>
           </div>
           <div class="flex">
             <div class="th-icon-module flex-col">
               <i id="difficult-ok-btn" class="th-modal-ok-btn"></i>
-              <div class="text-xl opacity-75 pt-1">选好了</div>
+              <div class="text-xl text-th-lightgrey pt-1">选好了</div>
             </div>
             <div class="th-icon-module flex-col ml-8">
               <i id="difficult-cancel-btn" class="th-modal-cancel-btn"></i>
-              <div class="text-xl opacity-75 pt-1">再等等</div>
+              <div class="text-xl text-th-lightgrey pt-1">再等等</div>
             </div>
           </div>
         </div>

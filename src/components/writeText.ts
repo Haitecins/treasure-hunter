@@ -1,5 +1,5 @@
 const writeText = (text: any) => {
-  return `<span class="text-th-info">${text}</span>`;
+  return `<span class="text-th-blue">${text}</span>`;
 };
 
 export default writeText;

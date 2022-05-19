@@ -2,23 +2,17 @@ import anime from "animejs";
 
 const colors = {
   list: [
-    ["bg-th-orange", null],
-    ["bg-th-yellow", "text-th-black"],
-    ["bg-th-light-yellow", "text-th-black"],
-    ["bg-th-green", "text-th-black"],
-    ["bg-th-lime", "text-th-black"],
-    ["bg-th-aqua", "text-th-black"],
-    ["bg-th-light-blue", null],
-    ["bg-th-purple", null],
-    ["bg-th-light-purple", null],
-    ["bg-th-deep-purple", null],
-    ["bg-th-light-pink", null],
+    ["bg-th-char-common", "text-th-black"],
+    ["bg-th-char-rare", "text-th-white"],
+    ["bg-th-char-epic", "text-th-white"],
+    ["bg-th-char-legendary", "text-th-white"],
+    ["bg-th-char-omega", "text-th-white"],
+    ["bg-th-char-unique", "text-th-white"],
   ],
   random() {
     const i = anime.random(0, this.list.length - 1);
-    const [bgColor, text] = this.list[i];
 
-    return [bgColor!, text || "text-th-white"];
+    return this.list[i];
   },
 };
 

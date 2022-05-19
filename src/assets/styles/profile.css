@@ -1,5 +1,5 @@
 @layer components {
   .th-profile-module {
-    @apply h-14 absolute inset-x-0 top-0 border-b-th-dark border-b flex justify-between items-center text-2xl px-6;
+    @apply h-14 absolute inset-x-0 top-0 border-b-th-mask border-b flex justify-between items-center text-2xl px-6;
   }
 }
