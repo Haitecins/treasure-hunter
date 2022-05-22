@@ -13,7 +13,7 @@
     <title>Treasure &#9733; Hunter</title>
   </head>
   <body style="display: none" class="w-full h-full bg-th-black">
-    <!-- treasure-hunter -->
+    <!-- 加载界面 -->
     <div
       id="loading-page"
       class="absolute inset-0 z-[9999] flex justify-center items-center text-th-white bg-th-black"
@@ -26,6 +26,7 @@
         点击任意处继续
       </div>
     </div>
+    <!-- App -->
     <div id="root" class="w-full h-full relative">
       <div id="auth-module" class="th-modal-space hidden">
         <div class="th-auth-modal">
@@ -49,12 +50,12 @@
           </div>
         </div>
       </div>
-      <!-- main page -->
+      <!-- 首页 -->
       <div
         id="home-scene"
         class="hidden absolute inset-0 text-th-white text-2xl"
       >
-        <!-- account status bar -->
+        <!-- 个人信息模块 -->
         <div id="profile-module" class="th-profile-module">
           <div class="th-icon-module">
             <i class="bg-writable_book th-icon-ref"></i>
@@ -81,7 +82,7 @@
             </div>
           </div>
         </div>
-        <!-- controls -->
+        <!-- 按钮集合 -->
         <div class="flex justify-end absolute top-16 inset-x-0 p-4">
           <div class="th-icon-module flex-col">
             <i
@@ -106,9 +107,9 @@
           </div>
         </div>
       </div>
-      <!-- game area -->
+      <!-- 游戏区域 -->
       <div id="chunk-scene" class="th-chunk-scene hidden">
-        <!-- degree levels -->
+        <!-- 游戏指示器 -->
         <div
           class="mask-text absolute z-50 inset-x-0 top-32 flex flex-col items-center"
         >
@@ -123,10 +124,11 @@
             ></div>
           </div>
         </div>
-        <!-- summon entities -->
+        <!-- 实体容器 -->
         <div id="entities-container"></div>
       </div>
     </div>
+    <!-- 游戏结算模块 -->
     <div id="ending-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal">
@@ -153,6 +155,7 @@
         </div>
       </div>
     </div>
+    <!-- 个人详细模块 -->
     <div id="detail-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal">
@@ -189,6 +192,7 @@
         </div>
       </div>
     </div>
+    <!-- 历史记录模块 -->
     <div id="analytics-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal justify-start w-full h-full">
@@ -199,6 +203,7 @@
         <div id="analytics-chart" class="h-full pt-3"></div>
       </div>
     </div>
+    <!-- 设置模块 -->
     <div id="settings-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal justify-start">
@@ -224,6 +229,7 @@
         </div>
       </div>
     </div>
+    <!-- 难度选择器模块 -->
     <div id="difficult-select-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal h-144">
