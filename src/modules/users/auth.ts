@@ -4,7 +4,6 @@ import storage from "../storage";
 import logger from "../../components/logger";
 import user from "../user";
 import { querySelector } from "../../components/querySelector";
-import analyzer from "../analyzer";
 
 const auth = {
   rootElement: querySelector("#auth-module"),
@@ -76,12 +75,11 @@ const auth = {
         // 删除Auth模块
         this.rootElement.remove();
         // 显示Home模块
-        scene.home.show(() => {
-          // Home模块显示后，初始化分析模块。
-          analyzer.init();
-        });
-        // 初始化Personal模块
-        user.personal.init();
+        scene.home.show();
+        // 初始化Analytics模块
+        scene.analytics.init();
+        // 初始化Detail模块
+        user.detail.init();
       },
     });
   },

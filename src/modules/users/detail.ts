@@ -4,17 +4,17 @@ import profile from "./profile";
 import anime from "animejs";
 import { querySelector } from "../../components/querySelector";
 
-const personal = {
-  rootElement: querySelector("#personal-module"),
-  closeElement: querySelector("#personal-close"),
-  nameElement: querySelector("#personal-name"),
-  levelsElement: querySelector("#personal-levels"),
+const detail = {
+  rootElement: querySelector("#detail-module"),
+  closeElement: querySelector("#detail-close"),
+  nameElement: querySelector("#detail-name"),
+  levelsElement: querySelector("#detail-levels"),
   balanceElement: {
-    copper: querySelector("#personal-bal-copper-ingot>div"),
-    iron: querySelector("#personal-bal-iron-ingot>div"),
-    gold: querySelector("#personal-bal-gold-ingot>div"),
+    copper: querySelector("#detail-bal-copper-ingot>div"),
+    iron: querySelector("#detail-bal-iron-ingot>div"),
+    gold: querySelector("#detail-bal-gold-ingot>div"),
   },
-  totalBreaksElement: querySelector("#personal-break-chars>div"),
+  totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
     const bindElement = <HTMLDivElement>profile.name.parentNode;
     const openHandler = () => {
@@ -28,11 +28,11 @@ const personal = {
       this.hide();
     };
 
-    logger("Personal", "初始化");
+    logger("Detail", "初始化");
     bindElement.addEventListener("click", openHandler);
   },
   update() {
-    logger("Personal", "已更新");
+    logger("Detail", "已更新");
     const savedStorage = storage.get();
     const savedBalances = savedStorage.balances;
 
@@ -54,13 +54,13 @@ const personal = {
       duration: 250,
       easing: "easeInOutQuad",
       begin: () => {
-        logger("Personal", "正在加载");
+        logger("Detail", "正在加载");
         this.rootElement.classList.remove("hidden");
         // 更新状态
         this.update();
       },
       complete() {
-        logger("Personal", "载入模块");
+        logger("Detail", "载入模块");
       },
     });
   },
@@ -72,10 +72,10 @@ const personal = {
       easing: "easeInOutQuad",
       complete: () => {
         this.rootElement.classList.add("hidden");
-        logger("Personal", "已隐藏");
+        logger("Detail", "已隐藏");
       },
     });
   },
 };
 
-export default personal;
+export default detail;

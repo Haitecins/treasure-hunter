@@ -8,7 +8,7 @@ import rewards from "../../conf/ending/rewards";
 import storage from "../storage";
 import logger from "../../components/logger";
 import { querySelector } from "../../components/querySelector";
-import analyzer from "../analyzer";
+// import analytics from "./analytics";
 
 const ending = {
   rootElement: querySelector("#ending-module"),
@@ -72,10 +72,7 @@ const ending = {
           // 重置缓存
           cache.reset();
           // 显示Home模块
-          scene.home.show(() => {
-            // 更新数据
-            analyzer.update();
-          });
+          scene.home.show();
           // 清空节点遗留下的内容
           this.rateElement.innerHTML = "";
           this.statElement.innerHTML = "";

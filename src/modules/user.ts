@@ -1,9 +1,9 @@
-import personal from "./users/personal";
+import detail from "./users/detail";
 import profile from "./users/profile";
 
 const user = {
   profile,
-  personal,
+  detail,
 };
 
 export default user;

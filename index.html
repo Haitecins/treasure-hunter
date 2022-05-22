@@ -85,6 +85,13 @@
         <div class="flex justify-end absolute top-16 inset-x-0 p-4">
           <div class="th-icon-module flex-col">
             <i
+              id="analytics-open-btn"
+              class="th-icon-ref bg-banner_pattern m-0 cursor-pointer"
+            ></i>
+            <div class="text-xl text-th-lightgrey pt-1">历史记录</div>
+          </div>
+          <div class="th-icon-module flex-col ml-4">
+            <i
               id="settings-open-btn"
               class="th-icon-ref bg-comparator m-0 cursor-pointer"
             ></i>
@@ -98,11 +105,6 @@
             <div class="text-xl text-th-lightgrey pt-1">开始游戏</div>
           </div>
         </div>
-        <!-- data analyze -->
-        <div
-          id="data-analyze"
-          class="absolute inset-x-0 bottom-0 px-4 pb-4 h-[44vh] max-h-80"
-        ></div>
       </div>
       <!-- game area -->
       <div id="chunk-scene" class="th-chunk-scene hidden">
@@ -151,33 +153,33 @@
         </div>
       </div>
     </div>
-    <div id="personal-module" class="th-modal-space hidden">
+    <div id="detail-module" class="th-modal-space hidden">
       <div class="absolute inset-0 bg-th-mask"></div>
       <div class="th-modal">
         <div class="flex justify-between items-center">
           <div class="flex items-center">
-            <div id="personal-name" class="text-3xl"></div>
+            <div id="detail-name" class="text-3xl"></div>
             <div
-              id="personal-levels"
+              id="detail-levels"
               class="text-2xl pl-4 text-th-lightgrey"
             ></div>
           </div>
-          <i id="personal-close" class="th-modal-cancel-btn"></i>
+          <i id="detail-close" class="th-modal-cancel-btn"></i>
         </div>
         <div>
-          <div id="personal-bal-copper-ingot" class="th-icon-module">
+          <div id="detail-bal-copper-ingot" class="th-icon-module">
             <i class="th-icon-ref bg-copper_ingot w-10 h-10" title="铜锭"></i>
             <div></div>
           </div>
-          <div id="personal-bal-iron-ingot" class="th-icon-module">
+          <div id="detail-bal-iron-ingot" class="th-icon-module">
             <i class="th-icon-ref bg-iron_ingot w-10 h-10" title="铁锭"></i>
             <div></div>
           </div>
-          <div id="personal-bal-gold-ingot" class="th-icon-module">
+          <div id="detail-bal-gold-ingot" class="th-icon-module">
             <i class="th-icon-ref bg-gold_ingot w-10 h-10" title="金锭"></i>
             <div></div>
           </div>
-          <div id="personal-break-chars" class="th-icon-module">
+          <div id="detail-break-chars" class="th-icon-module">
             <i
               class="th-icon-ref bg-paper w-10 h-10"
               title="累计破坏的字块个数"
@@ -185,6 +187,16 @@
             <div></div>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="analytics-module" class="th-modal-space hidden">
+      <div class="absolute inset-0 bg-th-mask"></div>
+      <div class="th-modal justify-start w-full h-full">
+        <div class="flex justify-between items-center">
+          <div class="text-3xl">历史记录</div>
+          <i id="analytics-close-btn" class="th-modal-cancel-btn"></i>
+        </div>
+        <div id="analytics-chart" class="h-full pt-3"></div>
       </div>
     </div>
     <div id="settings-module" class="th-modal-space hidden">

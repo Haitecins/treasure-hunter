@@ -7,7 +7,7 @@ import { querySelector } from "../../components/querySelector";
 const home = {
   rootElement: querySelector("#home-scene"),
   startElement: querySelector("#home-start"),
-  show(animeCompleteCallback?: () => void) {
+  show() {
     logger("Home", "正在加载");
     anime({
       targets: this.rootElement,
@@ -15,17 +15,15 @@ const home = {
       duration: 200,
       easing: "easeInOutSine",
       begin: () => {
-        // 更新Account模块
+        // 更新Profile模块
         user.profile.update();
         this.rootElement.classList.remove("hidden");
       },
       // 加载完成后添加按钮事件
       complete: () => {
         logger("Home", "载入模块");
-        // 绑定模块的点击事件
+        // 绑定自身模块的点击事件
         this.event();
-        // 加载完成后需要做的事情
-        animeCompleteCallback?.();
       },
     });
   },
