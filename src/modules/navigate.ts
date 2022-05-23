@@ -2,22 +2,22 @@ import anime from "animejs";
 import { Difficult } from "./features";
 import { Entity } from "./entities";
 
-const navigate = (el: Entity) => {
+const navigate = (elem: Entity) => {
   const { clientWidth, clientHeight } = document.documentElement;
-  const timeline = anime.timeline({ targets: el });
+  const timeline = anime.timeline({ targets: elem });
   const steps = Difficult.target.STEP_COUNTS;
   const keyframes = [...Array(steps)].map(() => ({
     duration: anime.random(500, 3000),
-    translateX: anime.random(0, clientWidth - el.clientWidth),
-    translateY: anime.random(0, clientHeight - el.clientHeight),
+    translateX: anime.random(0, clientWidth - elem.clientWidth),
+    translateY: anime.random(0, clientHeight - elem.clientHeight),
   }));
 
   // 将路线动画实例对象给tracker属性控制
-  el.tracker = timeline;
+  elem.tracker = timeline;
   // 字块生成后改变生成的位置
-  anime.set(el, {
-    translateX: anime.random(0, clientWidth - el.clientWidth),
-    translateY: anime.random(0, clientHeight - el.clientHeight),
+  anime.set(elem, {
+    translateX: anime.random(0, clientWidth - elem.clientWidth),
+    translateY: anime.random(0, clientHeight - elem.clientHeight),
   });
   // 字块出现的过渡效果
   timeline.add({
@@ -35,7 +35,7 @@ const navigate = (el: Entity) => {
     easing: "easeInOutQuad",
     scale: [1, 0],
     opacity: [1, 0],
-    complete: () => el.remove(),
+    complete: () => elem.remove(),
   });
 };
 

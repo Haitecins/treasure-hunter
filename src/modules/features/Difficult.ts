@@ -248,9 +248,9 @@ const Difficult = {
       indicator: this.levels(),
       duration: 250,
       easing: "linear",
-      update: (el) => {
+      update: (elem) => {
         // 如果模块被隐藏了，那么迭代器也没有必要工作。
-        if (this.iterator.stopped) el.pause();
+        if (this.iterator.stopped) elem.pause();
         this.degreeElement.innerHTML = this.iterator.indicator.toFixed(0);
       },
     });

@@ -38,16 +38,16 @@ const entities = {
     });
   },
   spawn() {
-    const el = <Entity>document.createElement("div");
+    const elem = <Entity>document.createElement("div");
     const char = chars.random().toUpperCase();
     const color = colors.random();
 
-    el.isActive = false;
-    el.innerHTML = el.activeKey = char;
-    el.classList.add(...color, "th-entity");
-    this.container.appendChild(el);
+    elem.isActive = false;
+    elem.innerHTML = elem.activeKey = char;
+    elem.classList.add(...color, "th-entity");
+    this.container.appendChild(elem);
 
-    return el;
+    return elem;
   },
   stop() {
     // 停止生成
