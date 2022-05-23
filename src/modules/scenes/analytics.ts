@@ -187,7 +187,7 @@ const analytics = {
           type: "line",
           data: history.map(({ balances: { iron } }) => iron),
           itemStyle: {
-            color: "#d8d8d8",
+            color: "#fff",
           },
         },
         {
