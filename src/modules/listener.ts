@@ -4,16 +4,18 @@ import cache from "../conf/cache";
 import logger from "../components/logger";
 import quests from "./quests";
 
-const activeCharHandler = (el: Entity) => {
+const activeCharHandler = (elem: Entity) => {
   const { provides } = cache;
 
+  // 如果已经激活则退出执行
+  if (elem.isActive) return;
   // 防止重复执行
-  el.isActive = !el.isActive;
+  elem.isActive = !elem.isActive;
   // 停止路线动画
-  el.tracker.pause();
+  elem.tracker.pause();
   // 执行消失动画
   anime({
-    targets: el,
+    targets: elem,
     duration: 250,
     scale: 0,
     easing: "easeInOutQuad",
@@ -34,7 +36,7 @@ const activeCharHandler = (el: Entity) => {
       }
     },
     complete() {
-      el.remove();
+      elem.remove();
     },
   });
 };
@@ -44,12 +46,11 @@ const keyDownHandler = (ev: KeyboardEvent) => {
     Array.prototype.slice.call(entities.container.children)
   );
 
-  children.forEach((el) => {
-    const { activeKey, isActive } = el;
+  children.forEach((elem) => {
+    const { activeKey } = elem;
 
-    !isActive &&
-      ev.key.toLowerCase() === activeKey.toLowerCase() &&
-      activeCharHandler(el);
+    // 按下的键与字符的键对应则激活
+    ev.key.toLowerCase() === activeKey.toLowerCase() && activeCharHandler(elem);
   });
 };
 const listener = {
