@@ -18,7 +18,7 @@ const difficult = {
   confirmElement: querySelector("#difficult-ok-btn"),
   cancelElement: querySelector("#difficult-cancel-btn"),
   degreeElement: querySelector("#degree-levels"),
-  degreeDisplayElement: querySelector("#degree-levels-display"),
+  degreeInGamingElement: querySelector("#degree-levels-display"),
   target: {
     // 计时器
     TIMER: 0,
@@ -75,7 +75,7 @@ const difficult = {
         this.degreeElement.innerHTML = "0";
         // 完全隐藏后需要做的事情？
         animeComplete?.();
-        // 隐藏模块必须把选择器全部销毁！
+        // 模块隐藏后销毁选择器！
         this.destroySelector();
         logger("Difficult", "已隐藏");
       },
@@ -92,7 +92,7 @@ const difficult = {
       scene.home.hide(
         () => {
           // 在游戏区域内显示难度系数
-          difficult.loadDiff();
+          difficult.showLevels();
           // 初始化任务目标
           quests.load();
           // 开启计时
@@ -109,11 +109,9 @@ const difficult = {
     const cancelHandler = () => {
       // 移除两个按钮的事件
       cleanEvents();
-      // 如果取消选择，那么一定要重置选择器。
-      // 如果在此处不重置，那么下一次打开难度选择器时，仍然拥有上一次更改的属性！
       this.hide(() => {
-        // 在完全隐藏后，重置选择器
-        this.resetSelector();
+        // 在模块隐藏后，还原更改。
+        this.revertChanges();
       });
       // 重新绑定开始按钮的事件
       scene.home.event();
@@ -242,21 +240,6 @@ const difficult = {
     this.selectorElement.innerHTML = "";
     logger("Difficult", "销毁选择器");
   },
-  resetSelector() {
-    // 重置项目的更变
-    this.target = {
-      TIMER: 0,
-      SUMMON_SPEED: 0,
-      STEP_COUNTS: 0,
-    };
-    // 重置迭代器
-    this.iterator = {
-      exponents: [],
-      indicator: 0,
-      stopped: false,
-    };
-    logger("Difficult", "重置选择器");
-  },
   iteratorAnimation() {
     // 改变难度系数
     // animeJS会自动根据当前值进行改变
@@ -272,12 +255,27 @@ const difficult = {
       },
     });
   },
-  loadDiff() {
-    this.degreeDisplayElement.innerHTML = `Lv.${this.levels()}`;
+  revertChanges() {
+    // 重置项目的更变
+    this.target = {
+      TIMER: 0,
+      SUMMON_SPEED: 0,
+      STEP_COUNTS: 0,
+    };
+    // 重置迭代器
+    this.iterator = {
+      exponents: [],
+      indicator: 0,
+      stopped: false,
+    };
+    logger("Difficult", "重置选择器");
+  },
+  showLevels() {
+    this.degreeInGamingElement.innerHTML = `Lv.${this.levels()}`;
     logger("Difficult", "加载难度系数指示器");
   },
-  cleanDiff() {
-    this.degreeDisplayElement.innerHTML = "";
+  hideLevels() {
+    this.degreeInGamingElement.innerHTML = "";
     logger("Difficult", "移除难度系数指示器");
   },
 };

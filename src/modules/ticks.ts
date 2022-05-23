@@ -27,7 +27,7 @@ const ticks = {
           // 停止计时
           this.stop();
           // 移除难度系数显示
-          difficult.cleanDiff();
+          difficult.hideLevels();
           // 隐藏任务目标
           quests.hide();
           // 清理Chunk模块，移除字块/关闭监听器。

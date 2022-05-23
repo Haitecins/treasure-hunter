@@ -59,8 +59,6 @@ const ending = {
           // 设置历史记录上限，超过自动删除。
           if (data.history.length > 30) data.history.length = 30;
         });
-        // 重置难度选择器
-        difficult.resetSelector();
         this.rootElement.classList.remove("hidden");
       },
       complete: () => {
@@ -71,6 +69,8 @@ const ending = {
           this.hide();
           // 重置缓存
           cache.reset();
+          // 重置已更改的目标
+          difficult.revertChanges();
           // 显示Home模块
           scene.home.show();
           // 清空节点遗留下的内容
