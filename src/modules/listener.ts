@@ -19,7 +19,7 @@ const activeCharHandler = (el: Entity) => {
     easing: "easeInOutQuad",
     begin() {
       // 更新一次任务目标
-      quests.update();
+      quests.updateTarget();
       // 有概率获得铜锭x1-3
       if (anime.random(0, 100) <= 30) {
         provides.COPPER_COUNT += anime.random(1, 3);

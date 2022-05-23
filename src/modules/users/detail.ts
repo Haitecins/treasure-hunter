@@ -31,7 +31,7 @@ const detail = {
     logger("Detail", "初始化");
     bindElement.addEventListener("click", openHandler);
   },
-  update() {
+  updateStatus() {
     logger("Detail", "已更新");
     const savedStorage = storage.get();
     const savedBalances = savedStorage.balances;
@@ -57,7 +57,7 @@ const detail = {
         logger("Detail", "正在加载");
         this.rootElement.classList.remove("hidden");
         // 更新状态
-        this.update();
+        this.updateStatus();
       },
       complete() {
         logger("Detail", "载入模块");

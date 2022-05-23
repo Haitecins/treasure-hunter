@@ -8,7 +8,6 @@ import rewards from "../../conf/ending/rewards";
 import storage from "../storage";
 import logger from "../../components/logger";
 import { querySelector } from "../../components/querySelector";
-// import analytics from "./analytics";
 
 const ending = {
   rootElement: querySelector("#ending-module"),
@@ -16,7 +15,7 @@ const ending = {
   statElement: querySelector("#ending-stat>div"),
   rewardElement: querySelector("#ending-reward>div"),
   returnLobbyElement: querySelector("#return-lobby"),
-  update() {
+  updateAssess() {
     logger("Ending", "已更新");
     // 加载评价等级
     ratings.load(this.rateElement);
@@ -36,7 +35,7 @@ const ending = {
       easing: "easeInOutSine",
       begin: () => {
         // 加载评价/统计/奖励
-        this.update();
+        this.updateAssess();
         // 记录游戏数据
         storage.save((data) => {
           const {

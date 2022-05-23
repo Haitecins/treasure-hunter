@@ -12,7 +12,7 @@ const profile = {
     iron: querySelector("#bal-iron-ingot>div"),
     gold: querySelector("#bal-gold-ingot>div"),
   },
-  update() {
+  updateBar() {
     logger("Profile", "已更新");
     const savedStorage = storage.get();
     const savedBalances = storage.get().balances;

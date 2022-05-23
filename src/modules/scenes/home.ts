@@ -16,7 +16,7 @@ const home = {
       easing: "easeInOutSine",
       begin: () => {
         // 更新Profile模块
-        user.profile.update();
+        user.profile.updateBar();
         this.rootElement.classList.remove("hidden");
       },
       // 加载完成后添加按钮事件
