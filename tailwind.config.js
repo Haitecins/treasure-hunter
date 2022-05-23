@@ -7,6 +7,7 @@ const backgroundImage = {
   copper_ingot: importIcon("copper_ingot.png"),
   gold_ingot: importIcon("gold_ingot.png"),
   emerald: importIcon("emerald.png"),
+  ender_pearl: importIcon("ender_pearl.png"),
   iron_ingot: importIcon("iron_ingot.png"),
   nether_star: importIcon("nether_star.png"),
   ok: importIcon("ok.png"),
