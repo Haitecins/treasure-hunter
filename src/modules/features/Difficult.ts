@@ -1,10 +1,10 @@
 import anime from "animejs";
-import logger from "../components/logger";
-import scene from "./scene";
-import listener from "./listener";
-import ticks from "./ticks";
-import quests from "./quests";
-import { querySelector } from "../components/querySelector";
+import logger from "../../components/logger";
+import listener from "../listener";
+import ticks from "../ticks";
+import quests from "../quests";
+import { querySelector } from "../../components/querySelector";
+import { Chunk, Home } from "../scenes";
 
 interface Items {
   value: number;
@@ -12,7 +12,7 @@ interface Items {
   title: (props: Items) => string;
 }
 
-const difficult = {
+const Difficult = {
   rootElement: querySelector("#difficult-select-module"),
   selectorElement: querySelector("#difficult-selector"),
   confirmElement: querySelector("#difficult-ok-btn"),
@@ -89,10 +89,10 @@ const difficult = {
       // 如果在此处重置选择器，那么Entities模块和Ticks模块无法获取到此模块的SUMMON_SPEED和TIMER属性。
       this.hide();
       // 隐藏Home模块
-      scene.home.hide(
+      Home.hide(
         () => {
           // 在游戏区域内显示难度系数
-          difficult.showLevels();
+          Difficult.showLevels();
           // 初始化任务目标
           quests.load();
           // 开启计时
@@ -100,7 +100,7 @@ const difficult = {
         },
         () => {
           // 载入游戏
-          scene.chunk.play();
+          Chunk.play();
           // 开启键盘监听器
           listener.enable();
         }
@@ -114,7 +114,7 @@ const difficult = {
         this.revertChanges();
       });
       // 重新绑定开始按钮的事件
-      scene.home.event();
+      Home.event();
     };
     const cleanEvents = () => {
       this.confirmElement.removeEventListener("click", okHandler);
@@ -280,4 +280,4 @@ const difficult = {
   },
 };
 
-export default difficult;
+export default Difficult;

@@ -1,13 +1,13 @@
 import anime from "animejs";
-import logger from "../components/logger";
-import { querySelector } from "../components/querySelector";
-import resolutionSetting from "./settings/resolutionSetting";
+import logger from "../../components/logger";
+import { querySelector } from "../../components/querySelector";
+import resolutionSetting from "../../conf/settings/resolutionSetting";
 
-const settings = {
+const Settings = {
   rootElement: querySelector("#settings-module"),
   openElement: querySelector("#settings-open-btn"),
   closeElement: querySelector("#settings-close-btn"),
-  settingOptions: {
+  options: {
     // 分辨率设置
     resolution: <HTMLInputElement>querySelector("#resolution-option"),
   },
@@ -67,4 +67,4 @@ const settings = {
   },
 };
 
-export default settings;
+export default Settings;

@@ -1,10 +1,10 @@
 import anime from "animejs";
-import scene from "./scene";
-import convert from "../utils/convert";
+import convert from "./convert";
 import logger from "../components/logger";
-import difficult from "./difficult";
-import quests from "./quests";
+import { Chunk, Ending } from "./scenes";
+import { Difficult } from "./features";
 import { querySelector } from "../components/querySelector";
+import quests from "./quests";
 
 const ticks = {
   rootElement: querySelector("#ticks-module"),
@@ -12,7 +12,7 @@ const ticks = {
   timer: 0,
   timeRecorder: 0,
   start() {
-    const timer = difficult.target.TIMER;
+    const timer = Difficult.target.TIMER;
 
     logger("Ticks", "计时开始");
     logger("Ticks", `此次设定的时间为${timer}秒`);
@@ -27,18 +27,18 @@ const ticks = {
           // 停止计时
           this.stop();
           // 移除难度系数显示
-          difficult.hideLevels();
+          Difficult.hideLevels();
           // 隐藏任务目标
           quests.hide();
           // 清理Chunk模块，移除字块/关闭监听器。
-          scene.chunk.clear();
+          Chunk.clear();
           anime({
             duration: 1000,
             complete: () => {
               // 隐藏Chunk模块
-              scene.chunk.hide();
+              Chunk.hide();
               // 加载Ending模块
-              scene.ending.show();
+              Ending.show();
               // 清空tick节点遗留下的内容
               this.rootElement.innerHTML = "";
             },

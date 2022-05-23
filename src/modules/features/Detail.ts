@@ -1,10 +1,10 @@
 import logger from "../../components/logger";
 import storage from "../storage";
-import profile from "./profile";
 import anime from "animejs";
 import { querySelector } from "../../components/querySelector";
+import { Profile } from "../users";
 
-const detail = {
+const Detail = {
   rootElement: querySelector("#detail-module"),
   closeElement: querySelector("#detail-close"),
   nameElement: querySelector("#detail-name"),
@@ -16,7 +16,7 @@ const detail = {
   },
   totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
-    const bindElement = <HTMLDivElement>profile.name.parentNode;
+    const bindElement = <HTMLDivElement>Profile.name.parentNode;
     const openHandler = () => {
       bindElement.removeEventListener("click", openHandler);
       this.closeElement.addEventListener("click", closeHandler);
@@ -78,4 +78,4 @@ const detail = {
   },
 };
 
-export default detail;
+export default Detail;

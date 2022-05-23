@@ -1,6 +1,6 @@
-import difficult from "./difficult";
 import logger from "../components/logger";
 import cache from "../conf/cache";
+import { Difficult } from "./features";
 import { querySelector } from "../components/querySelector";
 
 const quests = {
@@ -9,9 +9,10 @@ const quests = {
   targetElement: querySelector("#quest-target"),
   targetValue: 0,
   init() {
+    const { target } = Difficult;
     const value = Math.floor(
-      (difficult.target.TIMER * 1000) / difficult.target.SUMMON_SPEED -
-        (difficult.target.TIMER * 1000) / difficult.target.SUMMON_SPEED / 3
+      (target.TIMER * 1000) / target.SUMMON_SPEED -
+        (target.TIMER * 1000) / target.SUMMON_SPEED / 3
     );
 
     this.targetValue = value;

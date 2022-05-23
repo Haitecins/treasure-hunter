@@ -1,6 +1,5 @@
 import anime from "animejs";
-import scene from "../scene";
-import difficult from "../difficult";
+import Home from "./Home";
 import cache from "../../conf/cache";
 import ratings from "../../conf/ending/ratings";
 import stats from "../../conf/ending/stats";
@@ -8,8 +7,9 @@ import rewards from "../../conf/ending/rewards";
 import storage from "../storage";
 import logger from "../../components/logger";
 import { querySelector } from "../../components/querySelector";
+import { Difficult } from "../features";
 
-const ending = {
+const Ending = {
   rootElement: querySelector("#ending-module"),
   rateElement: querySelector("#ending-rate>span"),
   statElement: querySelector("#ending-stat>div"),
@@ -45,7 +45,7 @@ const ending = {
           data.history = [
             {
               date: new Date().getTime(),
-              difficultLevels: difficult.levels(),
+              difficultLevels: Difficult.levels(),
               breakChars: BREAK_CHARS,
               balances: {
                 copper: COPPER_COUNT,
@@ -69,9 +69,9 @@ const ending = {
           // 重置缓存
           cache.reset();
           // 重置已更改的目标
-          difficult.revertChanges();
+          Difficult.revertChanges();
           // 显示Home模块
-          scene.home.show();
+          Home.show();
           // 清空节点遗留下的内容
           this.rateElement.innerHTML = "";
           this.statElement.innerHTML = "";
@@ -88,4 +88,4 @@ const ending = {
   },
 };
 
-export default ending;
+export default Ending;

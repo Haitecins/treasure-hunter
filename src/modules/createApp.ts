@@ -1,6 +1,6 @@
-import settings from "../conf/settings";
 import storage from "./storage";
-import auth from "./users/auth";
+import { Auth } from "./users";
+import { Settings } from "./features";
 import { querySelector } from "../components/querySelector";
 
 const createApp = () => {
@@ -11,13 +11,13 @@ const createApp = () => {
     // 删除loading元素
     loadingElement.remove();
     // 初始化验证模块
-    auth.init();
+    Auth.init();
   };
 
   // 加载或初始化游戏数据
   storage.load(() => {
     // 初始化游戏设置
-    settings.init();
+    Settings.init();
     // 显示body内容
     document.body.removeAttribute("style");
     // 添加点击事件

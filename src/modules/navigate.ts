@@ -1,11 +1,11 @@
 import anime from "animejs";
+import { Difficult } from "./features";
 import { Entity } from "./entities";
-import difficult from "./difficult";
 
 const navigate = (el: Entity) => {
   const { clientWidth, clientHeight } = document.documentElement;
   const timeline = anime.timeline({ targets: el });
-  const steps = difficult.target.STEP_COUNTS;
+  const steps = Difficult.target.STEP_COUNTS;
   const keyframes = [...Array(steps)].map(() => ({
     duration: anime.random(500, 3000),
     translateX: anime.random(0, clientWidth - el.clientWidth),

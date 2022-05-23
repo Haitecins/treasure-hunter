@@ -1,9 +1,9 @@
 import anime from "animejs";
 import logger from "../components/logger";
-import chars from "../utils/chars";
-import colors from "../utils/colors";
+import chars from "./chars";
+import colors from "./colors";
 import navigate from "./navigate";
-import difficult from "./difficult";
+import { Difficult } from "./features";
 import { querySelector } from "../components/querySelector";
 
 interface Entity extends HTMLDivElement {
@@ -20,12 +20,12 @@ const entities = {
     // 生成字块
     this.animeInstance = anime({
       loop: true,
-      duration: difficult.target.SUMMON_SPEED,
+      duration: Difficult.target.SUMMON_SPEED,
       begin() {
         logger("Entities", "开始生成字块");
         logger(
           "Entities",
-          `当前生成字块的速度为${difficult.target.SUMMON_SPEED}毫秒`
+          `当前生成字块的速度为${Difficult.target.SUMMON_SPEED}毫秒`
         );
       },
       loopComplete: () => {

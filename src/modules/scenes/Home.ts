@@ -1,10 +1,10 @@
 import anime from "animejs";
-import user from "../user";
 import logger from "../../components/logger";
-import difficult from "../difficult";
 import { querySelector } from "../../components/querySelector";
+import { Difficult } from "../features";
+import { Profile } from "../users";
 
-const home = {
+const Home = {
   rootElement: querySelector("#home-scene"),
   startElement: querySelector("#home-start"),
   show() {
@@ -16,7 +16,7 @@ const home = {
       easing: "easeInOutSine",
       begin: () => {
         // 更新Profile模块
-        user.profile.updateBar();
+        Profile.updateBar();
         this.rootElement.classList.remove("hidden");
       },
       // 加载完成后添加按钮事件
@@ -49,11 +49,11 @@ const home = {
       this.startElement.removeEventListener("click", startBtnHandler);
 
       // 显示难度选择模块
-      difficult.show();
+      Difficult.show();
     };
 
     this.startElement.addEventListener("click", startBtnHandler);
   },
 };
 
-export default home;
+export default Home;

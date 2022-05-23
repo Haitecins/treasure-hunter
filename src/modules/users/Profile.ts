@@ -1,9 +1,9 @@
 import storage from "../storage";
 import logger from "../../components/logger";
-import formatter from "../../utils/formatter";
+import formatter from "../formatter";
 import { querySelector } from "../../components/querySelector";
 
-const profile = {
+const Profile = {
   rootElement: querySelector("#profile-module"),
   name: querySelector("#profile-name"),
   levels: querySelector("#profile-levels"),
@@ -32,4 +32,4 @@ const profile = {
   },
 };
 
-export default profile;
+export default Profile;

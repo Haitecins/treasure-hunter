@@ -1,11 +1,12 @@
+import { Settings } from "../../modules/features";
 import storage from "../../modules/storage";
-import settings from "../settings";
 
 const resolutionSetting = {
   value: 0,
   apply: (size: number | null, label: string) => {
+    const { resolution } = Settings.options;
     const screen = document.documentElement.style;
-    const resLabel = settings.settingOptions.resolution.previousElementSibling!;
+    const resLabel = resolution.previousElementSibling!;
 
     // 调整分辨率
     if (size) screen.fontSize = `${size}px`;
@@ -14,7 +15,7 @@ const resolutionSetting = {
   },
   init() {
     const savedSettings = storage.get().settings;
-    const resolutionSlider = settings.settingOptions.resolution;
+    const resolutionSlider = Settings.options.resolution;
 
     // 修改分辨率value属性的值为localStorage中的值
     this.value = savedSettings.resolution;

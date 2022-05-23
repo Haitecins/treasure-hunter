@@ -1,11 +1,11 @@
 import anime from "animejs";
-import scene from "../scene";
+import { Home } from "../scenes";
+import { Analytics, Detail } from "../features";
+import { querySelector } from "../../components/querySelector";
 import storage from "../storage";
 import logger from "../../components/logger";
-import user from "../user";
-import { querySelector } from "../../components/querySelector";
 
-const auth = {
+const Auth = {
   rootElement: querySelector("#auth-module"),
   confirmElement: querySelector("#auth-confirm"),
   tipElement: querySelector("#auth-tip"),
@@ -75,11 +75,11 @@ const auth = {
         // 删除Auth模块
         this.rootElement.remove();
         // 显示Home模块
-        scene.home.show();
+        Home.show();
         // 初始化Analytics模块
-        scene.analytics.init();
+        Analytics.init();
         // 初始化Detail模块
-        user.detail.init();
+        Detail.init();
       },
     });
   },
@@ -98,4 +98,4 @@ const auth = {
   },
 };
 
-export default auth;
+export default Auth;

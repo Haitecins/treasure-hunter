@@ -35,7 +35,7 @@ echarts.use([
   SVGRenderer,
   UniversalTransition,
 ]);
-const analytics = {
+const Analytics = {
   rootElement: querySelector("#analytics-module"),
   openElement: querySelector("#analytics-open-btn"),
   closeElement: querySelector("#analytics-close-btn"),
@@ -212,4 +212,4 @@ const analytics = {
   },
 };
 
-export default analytics;
+export default Analytics;
