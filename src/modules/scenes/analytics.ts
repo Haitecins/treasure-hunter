@@ -113,6 +113,11 @@ const analytics = {
       },
       tooltip: {
         trigger: "axis",
+        backgroundColor: "rgba(0,0,0,0.75)",
+        borderColor: "#424242",
+        textStyle: {
+          color: "#F6F4F2",
+        },
       },
       legend: {
         data: ["难度系数", "破坏字块", "铜锭获取", "铁锭获取", "金锭获取"],
