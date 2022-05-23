@@ -1,7 +1,7 @@
 import { Settings } from "../../modules/features";
 import storage from "../../modules/storage";
 
-const resolutionSetting = {
+const resolutionItem = {
   value: 0,
   apply: (size: number | null, label: string) => {
     const { resolution } = Settings.options;
@@ -51,4 +51,4 @@ const resolutionSetting = {
   },
 };
 
-export default resolutionSetting;
+export default resolutionItem;

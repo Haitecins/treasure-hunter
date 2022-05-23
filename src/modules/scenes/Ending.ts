@@ -1,9 +1,9 @@
 import anime from "animejs";
 import Home from "./Home";
 import cache from "../../conf/cache";
-import ratings from "../../conf/ending/ratings";
-import stats from "../../conf/ending/stats";
-import rewards from "../../conf/ending/rewards";
+import ratings from "../../conf/EndingModule/ratings";
+import stats from "../../conf/EndingModule/stats";
+import rewards from "../../conf/EndingModule/rewards";
 import storage from "../storage";
 import logger from "../../components/logger";
 import { querySelector } from "../../components/querySelector";

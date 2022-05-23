@@ -1,7 +1,7 @@
 import anime from "animejs";
 import logger from "../../components/logger";
 import { querySelector } from "../../components/querySelector";
-import resolutionSetting from "../../conf/settings/resolutionSetting";
+import resolutionItem from "../../conf/SettingsModule/resolutionItem";
 
 const Settings = {
   rootElement: querySelector("#settings-module"),
@@ -27,13 +27,13 @@ const Settings = {
       // 在模块隐藏前保存更改
       this.hide(() => {
         // 应用分辨率设置
-        resolutionSetting.save();
+        resolutionItem.save();
       });
     };
 
     logger("Settings", "初始化");
     // 初始化分辨率设置选项
-    resolutionSetting.init();
+    resolutionItem.init();
     // 初始化绑定打开设置按钮的事件
     this.openElement.addEventListener("click", openHandler);
   },
