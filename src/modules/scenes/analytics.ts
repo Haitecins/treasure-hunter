@@ -61,7 +61,12 @@ const analytics = {
     // 初始化绑定打开设置按钮的事件
     this.openElement.addEventListener("click", openHandler);
     // 当屏幕大小发生变化时重新调整
-    window.addEventListener("resize", () => this.chart.resize());
+    window.addEventListener("resize", () => {
+      // 当图表存在并且屏幕大小发生变化时，才会重新绘制图表。
+      if (this.chart.id) {
+        this.updateChart();
+      }
+    });
   },
   show() {
     anime({
@@ -78,10 +83,8 @@ const analytics = {
             locale: "ZH",
           });
         }
-        // 重新调整大小
-        this.chart.resize();
         // 更新数据
-        this.update();
+        this.updateChart();
       },
       complete() {
         logger("Analytics", "载入模块");
@@ -103,7 +106,6 @@ const analytics = {
   refresh() {
     const history = storage.get().history.slice(0, 14);
 
-    logger("Analytics", "正在刷新数据");
     return <EChartsOption>{
       backgroundColor: "transparent",
       textStyle: {
@@ -119,12 +121,13 @@ const analytics = {
           color: "#F6F4F2",
           fontSize: "1rem",
         },
+        itemGap: document.documentElement.clientWidth * 0.05,
       },
       grid: {
         containLabel: true,
-        top: 5,
-        left: 5,
-        right: 5,
+        top: 10,
+        left: 10,
+        right: 10,
         bottom: 40,
       },
       xAxis: {
@@ -146,10 +149,7 @@ const analytics = {
           show: false,
         },
         splitLine: {
-          lineStyle: {
-            color: "#F6F4F2",
-            opacity: 0.25,
-          },
+          show: false,
         },
       },
       series: [
@@ -157,34 +157,52 @@ const analytics = {
           name: "难度系数",
           type: "line",
           data: history.map(({ difficultLevels }) => difficultLevels),
+          itemStyle: {
+            color: "#FF4B4B",
+          },
         },
         {
           name: "破坏字块",
           type: "line",
           data: history.map(({ breakChars }) => breakChars),
+          itemStyle: {
+            color: "#61C3FF",
+          },
         },
         {
           name: "铜锭获取",
           type: "line",
           data: history.map(({ balances: { copper } }) => copper),
+          itemStyle: {
+            color: "#e77b55",
+          },
         },
         {
           name: "铁锭获取",
           type: "line",
           data: history.map(({ balances: { iron } }) => iron),
+          itemStyle: {
+            color: "#d8d8d8",
+          },
         },
         {
           name: "金锭获取",
           type: "line",
           data: history.map(({ balances: { gold } }) => gold),
+          itemStyle: {
+            color: "#fdf45f",
+          },
         },
       ],
     };
   },
-  update() {
+  updateChart() {
     const newOptions = this.refresh();
 
+    // 更新数据
     this.chart.setOption(newOptions);
+    // 重新调整大小
+    this.chart.resize();
     logger("Analytics", "已更新");
   },
 };
