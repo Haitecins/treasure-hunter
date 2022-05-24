@@ -1,10 +1,10 @@
 import anime from "animejs";
 import convert from "./convert";
-import logger from "../components/logger";
 import { Chunk, Ending } from "./scenes";
 import { Difficult } from "./features";
-import { querySelector } from "../components/querySelector";
 import quests from "./quests";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const ticks = {
   rootElement: querySelector("#ticks-module"),

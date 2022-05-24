@@ -1,7 +1,7 @@
 import storage from "../storage";
-import logger from "../../components/logger";
 import formatter from "../formatter";
-import { querySelector } from "../../components/querySelector";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const Profile = {
   rootElement: querySelector("#profile-module"),

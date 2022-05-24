@@ -1,10 +1,10 @@
 import anime from "animejs";
-import logger from "../../components/logger";
+import { Chunk, Home } from "../scenes";
 import listener from "../listener";
 import ticks from "../ticks";
 import quests from "../quests";
-import { querySelector } from "../../components/querySelector";
-import { Chunk, Home } from "../scenes";
+import { querySelector } from "@/components/querySelector";
+import logger from "@/components/logger";
 
 type DifficultItems = {
   value: number;

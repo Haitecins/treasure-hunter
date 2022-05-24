@@ -1,10 +1,22 @@
 import { defineConfig } from "vite";
+import alias from "@rollup/plugin-alias";
 
+const path = require("path");
 const chunk1 = ["animejs", "howler"];
 const chunk2 = ["echarts"];
 const chunk3 = ["dayjs"];
 
 export default defineConfig({
+  plugins: [
+    alias({
+      entries: [
+        {
+          find: "@",
+          replacement: path.resolve(__dirname, "src"),
+        },
+      ],
+    }),
+  ],
   build: {
     minify: "terser",
     terserOptions: {

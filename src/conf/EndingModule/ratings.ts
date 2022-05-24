@@ -1,6 +1,6 @@
-import cache from "../cache";
 import anime from "animejs";
-import logger from "../../components/logger";
+import cache from "../cache";
+import logger from "@/components/logger";
 
 const { provides } = cache;
 const ratings = {

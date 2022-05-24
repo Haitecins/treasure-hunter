@@ -1,7 +1,7 @@
-import logger from "../components/logger";
-import cache from "../conf/cache";
+import cache from "@/conf/cache";
 import { Difficult } from "./features";
-import { querySelector } from "../components/querySelector";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const quests = {
   rootElement: querySelector("#quests-progress"),

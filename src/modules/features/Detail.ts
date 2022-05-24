@@ -1,8 +1,8 @@
-import logger from "../../components/logger";
-import storage from "../storage";
 import anime from "animejs";
-import { querySelector } from "../../components/querySelector";
 import { Profile } from "../users";
+import storage from "../storage";
+import { querySelector } from "@/components/querySelector";
+import logger from "@/components/logger";
 
 const Detail = {
   rootElement: querySelector("#detail-module"),

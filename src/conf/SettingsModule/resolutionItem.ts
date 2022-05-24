@@ -1,5 +1,5 @@
-import { Settings } from "../../modules/features";
-import storage from "../../modules/storage";
+import { Settings } from "@/modules/features";
+import storage from "@/modules/storage";
 
 const resolutionItem = {
   value: 0,

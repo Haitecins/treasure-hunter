@@ -1,7 +1,7 @@
-import logger from "../../components/logger";
-import { querySelector } from "../../components/querySelector";
 import entities from "../entities";
 import listener from "../listener";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const Chunk = {
   rootElement: querySelector("#chunk-scene"),

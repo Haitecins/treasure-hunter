@@ -1,7 +1,7 @@
 import storage from "./storage";
 import { Auth } from "./users";
 import { Settings } from "./features";
-import { querySelector } from "../components/querySelector";
+import { querySelector } from "@/components/querySelector";
 
 const createApp = () => {
   const loadingElement = querySelector("#loading-page");

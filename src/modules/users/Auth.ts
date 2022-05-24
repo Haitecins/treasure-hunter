@@ -1,9 +1,9 @@
 import anime from "animejs";
 import { Home } from "../scenes";
 import { Analytics, Detail } from "../features";
-import { querySelector } from "../../components/querySelector";
 import storage from "../storage";
-import logger from "../../components/logger";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const Auth = {
   rootElement: querySelector("#auth-module"),

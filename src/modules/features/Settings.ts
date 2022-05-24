@@ -1,7 +1,7 @@
 import anime from "animejs";
-import logger from "../../components/logger";
-import { querySelector } from "../../components/querySelector";
-import resolutionItem from "../../conf/SettingsModule/resolutionItem";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
+import resolutionItem from "@/conf/SettingsModule/resolutionItem";
 
 const Settings = {
   rootElement: querySelector("#settings-module"),

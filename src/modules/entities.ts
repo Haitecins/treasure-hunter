@@ -1,10 +1,10 @@
 import anime from "animejs";
-import logger from "../components/logger";
 import chars from "./chars";
 import colors from "./colors";
 import route from "./route";
 import { Difficult } from "./features";
-import { querySelector } from "../components/querySelector";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;

@@ -1,8 +1,8 @@
 import anime from "animejs";
 import entities, { Entity } from "./entities";
-import cache from "../conf/cache";
-import logger from "../components/logger";
 import quests from "./quests";
+import cache from "@/conf/cache";
+import logger from "@/components/logger";
 
 const activeCharHandler = (elem: Entity) => {
   const { provides } = cache;

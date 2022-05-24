@@ -14,9 +14,9 @@ import {
 import { LineChart, LineSeriesOption } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
 import { SVGRenderer } from "echarts/renderers";
-import { querySelector } from "../../components/querySelector";
+import { querySelector } from "@/components/querySelector";
 import storage from "../storage";
-import logger from "../../components/logger";
+import logger from "@/components/logger";
 
 type EChartsOption = echarts.ComposeOption<
   | TitleComponentOption

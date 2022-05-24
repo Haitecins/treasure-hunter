@@ -1,8 +1,8 @@
 import anime from "animejs";
-import logger from "../../components/logger";
-import { querySelector } from "../../components/querySelector";
 import { Difficult } from "../features";
 import { Profile } from "../users";
+import logger from "@/components/logger";
+import { querySelector } from "@/components/querySelector";
 
 const Home = {
   rootElement: querySelector("#home-scene"),

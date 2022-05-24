@@ -1,8 +1,8 @@
 import cache from "../cache";
-import storage from "../../modules/storage";
-import loadIcon from "../../components/loadIcon";
-import writeText from "../../components/writeText";
-import logger from "../../components/logger";
+import storage from "@/modules/storage";
+import loadIcon from "@/components/loadIcon";
+import writeText from "@/components/writeText";
+import logger from "@/components/logger";
 
 const rewards = {
   list: [

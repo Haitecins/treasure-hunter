@@ -1,8 +1,8 @@
 import cache from "./cache";
-import ticks from "../modules/ticks";
-import entities, { Entity } from "../modules/entities";
-import { activeCharHandler } from "../modules/listener";
-import route from "../modules/route";
+import ticks from "@/modules/ticks";
+import route from "@/modules/route";
+import entities, { Entity } from "@/modules/entities";
+import { activeCharHandler } from "@/modules/listener";
 
 // 开发环境功能配置
 if (import.meta.env.MODE === "development") {
