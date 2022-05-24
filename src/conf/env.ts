@@ -2,7 +2,7 @@ import cache from "./cache";
 import ticks from "../modules/ticks";
 import entities, { Entity } from "../modules/entities";
 import { activeCharHandler } from "../modules/listener";
-import navigate from "../modules/navigate";
+import route from "../modules/route";
 
 // 开发环境功能配置
 if (import.meta.env.MODE === "development") {
@@ -26,7 +26,7 @@ if (import.meta.env.MODE === "development") {
 
       for (let i = 0; i < amounts; i++) {
         // 生成字块并移动
-        navigate(entities.spawn());
+        route(entities.spawner());
       }
       return `已生成数量为${amounts}的字块`;
     },

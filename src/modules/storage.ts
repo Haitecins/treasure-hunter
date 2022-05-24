@@ -1,6 +1,6 @@
 import logger from "../components/logger";
 
-interface Metadata {
+interface StorageMetadata {
   pid: number;
   name: any;
   levels: number;
@@ -28,7 +28,7 @@ interface Metadata {
 
 const db_key = "th_storage";
 const temp_key = "th_temp_storage";
-const metadata: Metadata = {
+const metadata: StorageMetadata = {
   pid: new Date().getTime(),
   name: null,
   levels: 1,
@@ -65,8 +65,8 @@ const load = (callback?: () => void) => {
  * 保存当前进度
  * @param callback 修改临时进度的回调，可以进行临时进度的修改，回调执行完后会保存当前进度。
  */
-const save = (callback?: (data: Metadata) => void) => {
-  const db_temp = <Metadata>(<any>window)[temp_key];
+const save = (callback?: (data: StorageMetadata) => void) => {
+  const db_temp = <StorageMetadata>(<never>window)[temp_key];
 
   try {
     callback?.(db_temp);
@@ -83,7 +83,7 @@ const save = (callback?: (data: Metadata) => void) => {
  * 获取当前临时进度对象
  */
 const get = () => {
-  return <Metadata>(<any>window)[temp_key];
+  return <StorageMetadata>(<never>window)[temp_key];
 };
 
 export default { load, save, get };

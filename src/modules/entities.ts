@@ -2,7 +2,7 @@ import anime from "animejs";
 import logger from "../components/logger";
 import chars from "./chars";
 import colors from "./colors";
-import navigate from "./navigate";
+import route from "./route";
 import { Difficult } from "./features";
 import { querySelector } from "../components/querySelector";
 
@@ -17,27 +17,26 @@ const entities = {
   animeInstance: <anime.AnimeInstance>{},
   enable() {
     logger("Entities", "载入模块");
+    const { SUMMON_SPEED } = Difficult.target;
+
     // 生成字块
     this.animeInstance = anime({
+      duration: SUMMON_SPEED,
       loop: true,
-      duration: Difficult.target.SUMMON_SPEED,
       begin() {
         logger("Entities", "开始生成字块");
-        logger(
-          "Entities",
-          `当前生成字块的速度为${Difficult.target.SUMMON_SPEED}毫秒`
-        );
+        logger("Entities", `当前生成字块的速度为${SUMMON_SPEED}毫秒`);
       },
       loopComplete: () => {
         // 超过20个字块则停止生成
         if (this.container.children.length >= 20) return;
-        const spawner = this.spawn();
+        const spawn = this.spawner();
 
-        navigate(spawner);
+        route(spawn);
       },
     });
   },
-  spawn() {
+  spawner() {
     const elem = <Entity>document.createElement("div");
     const char = chars.random().toUpperCase();
     const color = colors.random();

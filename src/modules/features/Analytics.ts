@@ -26,6 +26,10 @@ type EChartsOption = echarts.ComposeOption<
   | LineSeriesOption
 >;
 
+type RelativeTimeOptions = {
+  fromNow(withoutSuffix?: boolean): string;
+};
+
 echarts.use([
   TitleComponent,
   TooltipComponent,
@@ -139,11 +143,9 @@ const Analytics = {
         show: false,
         boundaryGap: false,
         type: "category",
-        data: history.map(({ date }) => (<
-            {
-              fromNow(withoutSuffix?: boolean): string;
-            }
-          >(<any>dayjs(date))).fromNow()),
+        data: history.map(({ date }) =>
+          (<RelativeTimeOptions>(<never>dayjs(date))).fromNow()
+        ),
         axisLabel: {
           show: false,
         },

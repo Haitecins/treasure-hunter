@@ -6,11 +6,11 @@ import quests from "../quests";
 import { querySelector } from "../../components/querySelector";
 import { Chunk, Home } from "../scenes";
 
-interface Items {
+type DifficultItems = {
   value: number;
   exponent: number;
-  title: (props: Items) => string;
-}
+  title: (props: DifficultItems) => string;
+};
 
 const Difficult = {
   rootElement: querySelector("#difficult-select-module"),
@@ -128,8 +128,8 @@ const Difficult = {
   selector(
     title: string,
     id: string,
-    options: [Items[], number],
-    onchange: (selected: Items) => void
+    options: [DifficultItems[], number],
+    onchange: (selected: DifficultItems) => void
   ) {
     const container = document.createElement("div");
     const label = document.createElement("div");
@@ -171,8 +171,8 @@ const Difficult = {
     (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
-    const timerLimit = (props: Items) => `${props.value}秒`;
-    const runningLimit = (props: Items) => `${props.value}次`;
+    const timerLimit = (props: DifficultItems) => `${props.value}秒`;
+    const runningLimit = (props: DifficultItems) => `${props.value}次`;
 
     // 加载难度选择器
     this.selector(
