@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { createHtmlPlugin } from "vite-plugin-html";
 import alias from "@rollup/plugin-alias";
 
 const path = require("path");
@@ -8,6 +9,14 @@ const chunk3 = ["dayjs"];
 
 export default defineConfig({
   plugins: [
+    createHtmlPlugin({
+      minify: true,
+      inject: {
+        data: {
+          title: "Treasure &#9733; Hunter",
+        },
+      },
+    }),
     alias({
       entries: [
         {
