@@ -2,7 +2,7 @@ import anime from "animejs";
 import { Difficult } from "./features";
 import { Entity } from "./entities";
 
-const navigate = (elem: Entity) => {
+const route = (elem: Entity) => {
   const { clientWidth, clientHeight } = document.documentElement;
   const timeline = anime.timeline({ targets: elem });
   const steps = Difficult.target.STEP_COUNTS;
@@ -39,4 +39,4 @@ const navigate = (elem: Entity) => {
   });
 };
 
-export default navigate;
+export default route;
