@@ -1,5 +1,6 @@
 import anime from "animejs";
 import { Chunk, Home } from "../scenes";
+import cache from "@/conf/cache";
 import listener from "../listener";
 import ticks from "../ticks";
 import quests from "../quests";
@@ -103,6 +104,8 @@ const Difficult = {
           Chunk.play();
           // 开启键盘监听器
           listener.enable();
+          // 正在游戏
+          cache.props.isPlaying = true;
         }
       );
     };

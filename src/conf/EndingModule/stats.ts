@@ -16,7 +16,7 @@ const stats = {
       return `耗时：${writeText(convert(timeRecorder))}`;
     },
     () => {
-      const breakChars = cache.provides.BREAK_CHARS;
+      const breakChars = cache.props.breakChars;
 
       logger("Stat", `破坏字块${breakChars}个`);
       storage.save((data) => (data.historyBreak += breakChars));

@@ -2,6 +2,7 @@ import anime from "animejs";
 import convert from "./convert";
 import { Chunk, Ending } from "./scenes";
 import { Difficult } from "./features";
+import cache from "@/conf/cache";
 import quests from "./quests";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/querySelector";
@@ -24,6 +25,8 @@ const ticks = {
       loopBegin: () => {
         if (this.timer <= 0) {
           this.rootElement.innerHTML = "时间到";
+          // 游戏结束
+          cache.props.isPlaying = false;
           // 停止计时
           this.stop();
           // 移除难度系数显示

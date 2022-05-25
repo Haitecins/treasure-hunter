@@ -20,9 +20,11 @@ const quests = {
     this.targetElement.innerHTML = value + "";
   },
   updateTarget() {
+    const { props } = cache;
+
     // 增加一次字块计数，并将数值写到current元素中。
-    this.currentElement.innerHTML = ++cache.provides.BREAK_CHARS + "";
-    if (cache.provides.BREAK_CHARS >= this.targetValue) {
+    this.currentElement.innerHTML = ++props.breakChars + "";
+    if (props.breakChars >= this.targetValue) {
       this.targetElement.innerHTML = "Completed";
     }
   },

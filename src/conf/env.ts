@@ -2,10 +2,36 @@ import cache from "./cache";
 import ticks from "@/modules/ticks";
 import route from "@/modules/route";
 import entities, { Entity } from "@/modules/entities";
-import { activeCharHandler } from "@/modules/listener";
+import listener, { activeCharHandler } from "@/modules/listener";
 
 // 开发环境功能配置
 if (import.meta.env.MODE === "development") {
+  // 暂停/继续游戏
+  Object.defineProperty(window, "_pause", {
+    value() {
+      const chars = <Entity[]>(
+        Array.prototype.slice.call(entities.container.children)
+      );
+
+      if (cache.props.isPlaying) {
+        if (entities.animeInstance.paused) {
+          entities.animeInstance.play();
+          listener.enable();
+          chars.forEach((char) => char.tracker.play());
+          ticks.animeInstance.play();
+          return "游戏继续";
+        } else {
+          entities.animeInstance.pause();
+          listener.disable();
+          chars.forEach((char) => char.tracker.pause());
+          ticks.animeInstance.pause();
+          return "游戏暂停";
+        }
+      } else {
+        return "游戏尚未开始或已经结束！";
+      }
+    },
+  });
   // 全局暴露缓存(cache)模块
   Object.defineProperty(window, "_cache", {
     value: cache,
@@ -36,7 +62,7 @@ if (import.meta.env.MODE === "development") {
     value(amount: number) {
       const amounts = amount || 100;
 
-      cache.provides.BREAK_CHARS += amounts;
+      cache.props.breakChars += amounts;
       return `增加了${amounts}个累计破坏字块的个数`;
     },
   });

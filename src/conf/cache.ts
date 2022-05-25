@@ -1,19 +1,21 @@
 import logger from "@/components/logger";
 
 const provides = {
+  // 游戏是否正在进行中
+  isPlaying: false,
   // 破坏的字块数
-  BREAK_CHARS: 0,
+  breakChars: 0,
   // 铜锭计数
-  COPPER_COUNT: 0,
+  copperCount: 0,
   // 铁锭计数xw
-  IRON_COUNT: 0,
+  ironCount: 0,
   // 金锭计数
-  GOLD_COUNT: 0,
+  goldCount: 0,
 };
 const cache = {
-  provides: { ...provides },
+  props: { ...provides },
   reset() {
-    this.provides = { ...provides };
+    this.props = { ...provides };
     logger("Cache", "重置缓存");
   },
 };

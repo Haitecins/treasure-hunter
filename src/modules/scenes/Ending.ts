@@ -39,19 +39,20 @@ const Ending = {
         // 记录游戏数据
         storage.save((data) => {
           const {
-            provides: { BREAK_CHARS, COPPER_COUNT, IRON_COUNT, GOLD_COUNT },
+            props: {
+              breakChars,
+              copperCount: copper,
+              ironCount: iron,
+              goldCount: gold,
+            },
           } = cache;
 
           data.history = [
             {
               date: new Date().getTime(),
               difficultLevels: Difficult.levels(),
-              breakChars: BREAK_CHARS,
-              balances: {
-                copper: COPPER_COUNT,
-                iron: IRON_COUNT,
-                gold: GOLD_COUNT,
-              },
+              breakChars,
+              balances: { copper, iron, gold },
             },
             ...data.history,
           ];
