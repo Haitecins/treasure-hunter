@@ -2,6 +2,7 @@ const importIcon = (name) => `url("/src/assets/icons/${name}")`;
 const backgroundImage = {
   banner_pattern: importIcon("banner_pattern.png"),
   barrier: importIcon("barrier.png"),
+  blaze_powder: importIcon("blaze_powder.png"),
   cancel: importIcon("cancel.png"),
   comparator: importIcon("comparator.png"),
   copper_ingot: importIcon("copper_ingot.png"),

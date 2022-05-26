@@ -84,38 +84,51 @@ https://www.bilibili.com/video/BV1GJ411x7h7
           </div>
         </div>
         <!-- 功能模块 -->
-        <div class="flex justify-end py-4 px-6">
-          <!-- 商店 -->
-          <div class="th-icon-module flex-col">
-            <i
-              id="treasure-store-open-btn"
-              class="th-icon-ref bg-emerald m-0 cursor-pointer"
-            ></i>
-            <div class="text-xl text-th-lightgrey pt-1">宝藏商店</div>
+        <div class="flex justify-between items-start py-4 px-6">
+          <div class="text-xl">
+            <!-- 收集品列表 -->
+            <div class="th-icon-module">
+              <i class="th-icon-ref bg-blaze_powder"></i>
+              <div>已收集<span class="px-2">0/25</span>冒险家宝藏</div>
+            </div>
+            <div class="th-icon-module">
+              <i class="th-icon-ref bg-blaze_powder"></i>
+              <div>已收集<span class="px-2">0/15</span>寰宇支配者宝藏</div>
+            </div>
           </div>
-          <!-- 历史记录 -->
-          <div class="th-icon-module flex-col ml-4">
-            <i
-              id="analytics-open-btn"
-              class="th-icon-ref bg-banner_pattern m-0 cursor-pointer"
-            ></i>
-            <div class="text-xl text-th-lightgrey pt-1">历史记录</div>
-          </div>
-          <!-- 设置 -->
-          <div class="th-icon-module flex-col ml-4">
-            <i
-              id="settings-open-btn"
-              class="th-icon-ref bg-comparator m-0 cursor-pointer"
-            ></i>
-            <div class="text-xl text-th-lightgrey pt-1">游戏设置</div>
-          </div>
-          <!-- 开始游戏 -->
-          <div class="th-icon-module flex-col ml-4">
-            <i
-              id="home-start"
-              class="th-icon-ref bg-ender_pearl m-0 cursor-pointer"
-            ></i>
-            <div class="text-xl text-th-lightgrey pt-1">开始游戏</div>
+          <div class="flex justify-end">
+            <!-- 商店 -->
+            <div class="th-icon-module flex-col">
+              <i
+                id="treasure-store-open-btn"
+                class="th-icon-ref bg-emerald m-0 cursor-pointer"
+              ></i>
+              <div class="text-xl text-th-lightgrey pt-1">宝藏商店</div>
+            </div>
+            <!-- 历史记录 -->
+            <div class="th-icon-module flex-col ml-4">
+              <i
+                id="analytics-open-btn"
+                class="th-icon-ref bg-banner_pattern m-0 cursor-pointer"
+              ></i>
+              <div class="text-xl text-th-lightgrey pt-1">历史记录</div>
+            </div>
+            <!-- 设置 -->
+            <div class="th-icon-module flex-col ml-4">
+              <i
+                id="settings-open-btn"
+                class="th-icon-ref bg-comparator m-0 cursor-pointer"
+              ></i>
+              <div class="text-xl text-th-lightgrey pt-1">游戏设置</div>
+            </div>
+            <!-- 开始游戏 -->
+            <div class="th-icon-module flex-col ml-4">
+              <i
+                id="home-start"
+                class="th-icon-ref bg-ender_pearl m-0 cursor-pointer"
+              ></i>
+              <div class="text-xl text-th-lightgrey pt-1">开始游戏</div>
+            </div>
           </div>
         </div>
       </div>
@@ -213,6 +226,22 @@ https://www.bilibili.com/video/BV1GJ411x7h7
           <i id="analytics-close-btn" class="th-modal-cancel-btn"></i>
         </div>
         <div id="analytics-chart" class="h-full pt-3"></div>
+      </div>
+    </div>
+    <!-- 商店模块 -->
+    <div id="store-module" class="th-modal-space hidden">
+      <div class="absolute inset-0 bg-th-mask"></div>
+      <div class="th-modal justify-start">
+        <div class="flex justify-between items-center">
+          <div class="text-3xl flex items-end">
+            <span>游戏设置</span
+            ><span class="pl-2 text-th-lightgrey text-xl"
+              >更改将在关闭后生效</span
+            >
+          </div>
+          <i id="store-close-btn" class="th-modal-cancel-btn"></i>
+        </div>
+        <div class="text-2xl flex items-center pl-3 pt-3">Content.</div>
       </div>
     </div>
     <!-- 设置模块 -->
