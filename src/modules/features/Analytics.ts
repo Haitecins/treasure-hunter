@@ -17,6 +17,7 @@ import { SVGRenderer } from "echarts/renderers";
 import { querySelector } from "@/components/querySelector";
 import storage from "../storage";
 import logger from "@/components/logger";
+import moduleToggle from "@/components/moduleToggle";
 
 type EChartsOption = echarts.ComposeOption<
   | TitleComponentOption
@@ -46,24 +47,15 @@ const Analytics = {
   chartElement: <HTMLElement>querySelector("#analytics-chart"),
   chart: <echarts.EChartsType>{},
   init() {
-    const openHandler = () => {
-      // 移除打开设置事件
-      this.openElement.removeEventListener("click", openHandler);
-      // 添加关闭设置事件
-      this.closeElement.addEventListener("click", closeHandler);
-      this.show();
-    };
-    const closeHandler = () => {
-      // 移除关闭设置事件
-      this.closeElement.removeEventListener("click", closeHandler);
-      // 添加打开设置事件
-      this.openElement.addEventListener("click", openHandler);
-      this.hide();
-    };
-
+    moduleToggle(
+      {
+        open: this.openElement,
+        close: this.closeElement,
+      },
+      () => this.show(),
+      () => this.hide()
+    );
     logger("Analytics", "初始化");
-    // 初始化绑定打开设置按钮的事件
-    this.openElement.addEventListener("click", openHandler);
     // 当屏幕大小发生变化时重新调整
     window.addEventListener("resize", () => {
       // 当图表存在并且屏幕大小发生变化时，才会重新绘制图表。

@@ -6,6 +6,7 @@ import ticks from "../ticks";
 import quests from "../quests";
 import { querySelector } from "@/components/querySelector";
 import logger from "@/components/logger";
+import moduleToggle from "@/components/moduleToggle";
 
 type DifficultItems = {
   value: number;
@@ -13,6 +14,7 @@ type DifficultItems = {
   title: (props: DifficultItems) => string;
 };
 
+let getOpenHandler: () => void;
 const Difficult = {
   rootElement: querySelector("#difficult-select-module"),
   selectorElement: querySelector("#difficult-selector"),
@@ -55,8 +57,6 @@ const Difficult = {
       },
       complete: () => {
         logger("Difficult", "载入模块");
-        // 绑定两个按钮的事件
-        this.event();
       },
     });
   },
@@ -82,14 +82,13 @@ const Difficult = {
       },
     });
   },
-  event() {
-    const okHandler = () => {
-      // 移除两个按钮的事件
-      cleanEvents();
-      // 隐藏模块，但不重置选择器，选择器将在一局游戏结束后重置。
-      // 如果在此处重置选择器，那么Entities模块和Ticks模块无法获取到此模块的SUMMON_SPEED和TIMER属性。
+  init() {
+    const confirmHandler = () => {
+      // 隐藏模块
       this.hide();
-      // 隐藏Home模块
+      // 解除【选好了】按钮事件绑定
+      this.confirmElement.removeEventListener("click", confirmHandler);
+      // 开始游戏
       Home.hide(
         () => {
           // 在游戏区域内显示难度系数
@@ -109,24 +108,30 @@ const Difficult = {
         }
       );
     };
-    const cancelHandler = () => {
-      // 移除两个按钮的事件
-      cleanEvents();
-      this.hide(() => {
-        // 在模块隐藏后，还原更改。
-        this.revertChanges();
-      });
-      // 重新绑定开始按钮的事件
-      Home.event();
-    };
-    const cleanEvents = () => {
-      this.confirmElement.removeEventListener("click", okHandler);
-      this.cancelElement.removeEventListener("click", cancelHandler);
-    };
 
-    // 绑定事件
-    this.confirmElement.addEventListener("click", okHandler);
-    this.cancelElement.addEventListener("click", cancelHandler);
+    getOpenHandler = moduleToggle(
+      {
+        open: Home.startElement,
+        close: this.cancelElement,
+      },
+      () => {
+        this.show();
+        // 打开后绑定【选好了】按钮事件
+        this.confirmElement.addEventListener("click", confirmHandler);
+      },
+      () => {
+        this.hide(() => {
+          // 在模块隐藏后，还原更改。
+          this.revertChanges();
+        });
+        // 解除【选好了】按钮事件绑定
+        this.confirmElement.removeEventListener("click", confirmHandler);
+      }
+    );
+  },
+  rebindOpenEvent() {
+    // 重新为【开始游戏】按钮绑定open函数事件
+    Home.startElement.addEventListener("click", getOpenHandler);
   },
   selector(
     title: string,

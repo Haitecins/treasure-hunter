@@ -3,6 +3,7 @@ import { Profile } from "../users";
 import storage from "../storage";
 import { querySelector } from "@/components/querySelector";
 import logger from "@/components/logger";
+import moduleToggle from "@/components/moduleToggle";
 
 const Detail = {
   rootElement: querySelector("#detail-module"),
@@ -16,20 +17,15 @@ const Detail = {
   },
   totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
-    const bindElement = <HTMLDivElement>Profile.name.parentNode;
-    const openHandler = () => {
-      bindElement.removeEventListener("click", openHandler);
-      this.closeElement.addEventListener("click", closeHandler);
-      this.show();
-    };
-    const closeHandler = () => {
-      this.closeElement.removeEventListener("click", closeHandler);
-      bindElement.addEventListener("click", openHandler);
-      this.hide();
-    };
-
+    moduleToggle(
+      {
+        open: <HTMLDivElement>Profile.name.parentNode,
+        close: this.closeElement,
+      },
+      () => this.show(),
+      () => this.hide()
+    );
     logger("Detail", "初始化");
-    bindElement.addEventListener("click", openHandler);
   },
   updateStatus() {
     logger("Detail", "已更新");

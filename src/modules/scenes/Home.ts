@@ -1,5 +1,4 @@
 import anime from "animejs";
-import { Difficult } from "../features";
 import { Profile } from "../users";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/querySelector";
@@ -22,8 +21,6 @@ const Home = {
       // 加载完成后添加按钮事件
       complete: () => {
         logger("Home", "载入模块");
-        // 绑定自身模块的点击事件
-        this.event();
       },
     });
   },
@@ -42,17 +39,6 @@ const Home = {
         animeCompleteCallback?.();
       },
     });
-  },
-  event() {
-    // 开始按钮事件
-    const startBtnHandler = () => {
-      this.startElement.removeEventListener("click", startBtnHandler);
-
-      // 显示难度选择模块
-      Difficult.show();
-    };
-
-    this.startElement.addEventListener("click", startBtnHandler);
   },
 };
 
