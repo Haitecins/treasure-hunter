@@ -60,8 +60,6 @@ const Ending = {
           if (data.history.length > 30) data.history.length = 30;
         });
         this.rootElement.classList.remove("hidden");
-        // 还原更改
-        Difficult.revertChanges();
       },
       complete: () => {
         logger("Ending", "载入模块");
@@ -71,6 +69,8 @@ const Ending = {
           this.hide();
           // 重置缓存
           cache.reset();
+          // 还原更改
+          Difficult.revertChanges();
           // 重新为【开始游戏】按钮绑定open函数事件
           Difficult.rebindOpenEvent();
           // 显示Home模块
