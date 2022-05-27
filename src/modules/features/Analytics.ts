@@ -1,4 +1,3 @@
-import anime from "animejs";
 import dayjs from "dayjs";
 import * as echarts from "echarts/core";
 import {
@@ -18,6 +17,7 @@ import { querySelector } from "@/components/querySelector";
 import storage from "../storage";
 import logger from "@/components/logger";
 import moduleToggle from "@/components/moduleToggle";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 type EChartsOption = echarts.ComposeOption<
   | TitleComponentOption
@@ -65,39 +65,24 @@ const Analytics = {
     });
   },
   show() {
-    anime({
-      targets: this.rootElement,
-      opacity: [0, 1],
-      duration: 250,
-      easing: "easeInOutQuad",
-      begin: () => {
-        logger("Analytics", "正在加载");
-        this.rootElement.classList.remove("hidden");
-        // 首次打开的时候初始化Chart
-        if (!this.chart.id) {
-          this.chart = echarts.init(this.chartElement, "dark", {
-            locale: "ZH",
-          });
-        }
-        // 更新数据
-        this.updateChart();
-      },
-      complete() {
-        logger("Analytics", "载入模块");
-      },
+    const loadChart = () => {
+      // 首次打开的时候初始化Chart
+      if (!this.chart.id) {
+        this.chart = echarts.init(this.chartElement, "dark", {
+          locale: "ZH",
+        });
+      }
+      // 更新数据
+      this.updateChart();
+    };
+    // 显示模块
+    showModule(this.rootElement, "Analytics", {
+      begin: loadChart,
     });
   },
   hide() {
-    anime({
-      targets: this.rootElement,
-      opacity: [1, 0],
-      duration: 250,
-      easing: "easeInOutQuad",
-      complete: () => {
-        this.rootElement.classList.add("hidden");
-        logger("Analytics", "已隐藏");
-      },
-    });
+    // 隐藏模块
+    hideModule(this.rootElement, "Analytics");
   },
   refresh() {
     const history = storage.get().history.slice(0, 14);

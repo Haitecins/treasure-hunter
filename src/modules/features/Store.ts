@@ -1,7 +1,7 @@
-import anime from "animejs";
 import { querySelector } from "@/components/querySelector";
 import logger from "@/components/logger";
 import moduleToggle from "@/components/moduleToggle";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 const Store = {
   rootElement: querySelector("#store-module"),
@@ -19,31 +19,10 @@ const Store = {
     logger("Store", "初始化");
   },
   show() {
-    anime({
-      targets: this.rootElement,
-      opacity: [0, 1],
-      duration: 250,
-      easing: "easeInOutQuad",
-      begin: () => {
-        logger("Store", "正在加载");
-        this.rootElement.classList.remove("hidden");
-      },
-      complete() {
-        logger("Store", "载入模块");
-      },
-    });
+    showModule(this.rootElement, "Store");
   },
   hide() {
-    anime({
-      targets: this.rootElement,
-      opacity: [1, 0],
-      duration: 250,
-      easing: "easeInOutQuad",
-      complete: () => {
-        this.rootElement.classList.add("hidden");
-        logger("Store", "已隐藏");
-      },
-    });
+    hideModule(this.rootElement, "Store");
   },
 };
 

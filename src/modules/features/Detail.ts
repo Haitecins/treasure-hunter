@@ -1,9 +1,9 @@
-import anime from "animejs";
 import { Profile } from "../users";
 import storage from "../storage";
 import { querySelector } from "@/components/querySelector";
 import logger from "@/components/logger";
 import moduleToggle from "@/components/moduleToggle";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 const Detail = {
   rootElement: querySelector("#detail-module"),
@@ -44,33 +44,12 @@ const Detail = {
       savedStorage.historyBreak.toLocaleString("en");
   },
   show() {
-    anime({
-      targets: this.rootElement,
-      opacity: [0, 1],
-      duration: 250,
-      easing: "easeInOutQuad",
-      begin: () => {
-        logger("Detail", "正在加载");
-        this.rootElement.classList.remove("hidden");
-        // 更新状态
-        this.updateStatus();
-      },
-      complete() {
-        logger("Detail", "载入模块");
-      },
+    showModule(this.rootElement, "Detail", {
+      begin: () => this.updateStatus(),
     });
   },
   hide() {
-    anime({
-      targets: this.rootElement,
-      opacity: [1, 0],
-      duration: 250,
-      easing: "easeInOutQuad",
-      complete: () => {
-        this.rootElement.classList.add("hidden");
-        logger("Detail", "已隐藏");
-      },
-    });
+    hideModule(this.rootElement, "Detail");
   },
 };
 

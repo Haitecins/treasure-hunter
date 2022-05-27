@@ -1,4 +1,3 @@
-import anime from "animejs";
 import { Difficult } from "../features";
 import Home from "./Home";
 import storage from "../storage";
@@ -8,6 +7,7 @@ import stats from "@/conf/EndingModule/stats";
 import rewards from "@/conf/EndingModule/rewards";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/querySelector";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 const Ending = {
   rootElement: querySelector("#ending-module"),
@@ -25,14 +25,7 @@ const Ending = {
     rewards.load(this.rewardElement);
   },
   show() {
-    logger("Ending", "正在加载");
-    const { clientHeight } = document.documentElement;
-
-    anime({
-      targets: this.rootElement,
-      translateY: [clientHeight, 0],
-      duration: 500,
-      easing: "easeInOutSine",
+    showModule(this.rootElement, "Ending", {
       begin: () => {
         // 加载评价/统计/奖励
         this.updateAssess();
@@ -59,20 +52,18 @@ const Ending = {
           // 设置历史记录上限，超过自动删除。
           if (data.history.length > 30) data.history.length = 30;
         });
-        this.rootElement.classList.remove("hidden");
       },
       complete: () => {
-        logger("Ending", "载入模块");
         const lobbyHandler = () => {
           this.returnLobbyElement.removeEventListener("click", lobbyHandler);
-          // 隐藏模块
-          this.hide();
           // 重置缓存
           cache.reset();
           // 还原更改
           Difficult.revertChanges();
           // 重新为【开始游戏】按钮绑定open函数事件
           Difficult.rebindOpenEvent();
+          // 隐藏模块
+          this.hide();
           // 显示Home模块
           Home.show();
           // 清空节点遗留下的内容
@@ -86,8 +77,7 @@ const Ending = {
     });
   },
   hide() {
-    this.rootElement.classList.add("hidden");
-    logger("Ending", "已隐藏");
+    hideModule.now(this.rootElement, "Ending");
   },
 };
 

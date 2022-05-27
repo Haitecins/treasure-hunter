@@ -7,6 +7,7 @@ import quests from "../quests";
 import { querySelector } from "@/components/querySelector";
 import logger from "@/components/logger";
 import moduleToggle from "@/components/moduleToggle";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 type DifficultItems = {
   value: number;
@@ -42,43 +43,28 @@ const Difficult = {
     return this.iterator.exponents.reduce((prev, current) => prev + current, 0);
   },
   show() {
-    logger("Difficult", "正在加载");
-    anime({
-      targets: this.rootElement,
-      opacity: [0, 1],
-      duration: 200,
-      easing: "easeInOutSine",
+    showModule(this.rootElement, "Difficult", {
       begin: () => {
-        this.rootElement.classList.remove("hidden");
         // 初始化难度系数为0
         this.degreeElement.innerHTML = "0";
         // 加载选择器
         this.loadSelector();
       },
-      complete: () => {
-        logger("Difficult", "载入模块");
-      },
     });
   },
   hide(animeComplete?: () => void) {
-    anime({
-      targets: this.rootElement,
-      opacity: [1, 0],
-      duration: 200,
-      easing: "easeInOutSine",
+    hideModule(this.rootElement, "Difficult", {
       begin: () => {
         // 停止迭代器的迭代
         this.iterator.stopped = true;
       },
       complete: () => {
-        this.rootElement.classList.add("hidden");
         // 重置难度系数
         this.degreeElement.innerHTML = "0";
         // 完全隐藏后需要做的事情？
         animeComplete?.();
         // 模块隐藏后销毁选择器！
         this.destroySelector();
-        logger("Difficult", "已隐藏");
       },
     });
   },

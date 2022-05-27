@@ -1,8 +1,8 @@
-import anime from "animejs";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/querySelector";
 import resolutionItem from "@/conf/SettingsModule/resolutionItem";
 import moduleToggle from "@/components/moduleToggle";
+import { hideModule, showModule } from "@/components/moduleDisplay";
 
 const Settings = {
   rootElement: querySelector("#settings-module"),
@@ -30,31 +30,11 @@ const Settings = {
     resolutionItem.init();
   },
   show() {
-    anime({
-      targets: this.rootElement,
-      opacity: [0, 1],
-      duration: 250,
-      easing: "easeInOutQuad",
-      begin: () => {
-        logger("Settings", "正在加载");
-        this.rootElement.classList.remove("hidden");
-      },
-      complete() {
-        logger("Settings", "载入模块");
-      },
-    });
+    showModule(this.rootElement, "Settings");
   },
   hide(beginExtraCallback?: () => void) {
-    anime({
-      targets: this.rootElement,
-      opacity: [1, 0],
-      duration: 250,
-      easing: "easeInOutQuad",
+    hideModule(this.rootElement, "Settings", {
       begin: beginExtraCallback,
-      complete: () => {
-        this.rootElement.classList.add("hidden");
-        logger("Settings", "已隐藏");
-      },
     });
   },
 };
