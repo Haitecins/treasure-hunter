@@ -4,11 +4,10 @@ import loadIcon from "@/components/loadIcon";
 import writeText from "@/components/writeText";
 import logger from "@/components/logger";
 
-const { props: cacheProps } = cache;
 const rewards = {
   list: [
     () => {
-      const coins = cacheProps.copperCount;
+      const coins = cache.props.copperCount;
 
       if (coins) {
         storage.save(({ balances }) => (balances.copper += coins));
@@ -22,7 +21,7 @@ const rewards = {
       return null;
     },
     () => {
-      const coins = cacheProps.ironCount;
+      const coins = cache.props.ironCount;
 
       if (coins) {
         storage.save(({ balances }) => (balances.iron = coins));
@@ -36,7 +35,7 @@ const rewards = {
       return null;
     },
     () => {
-      const coins = cacheProps.goldCount;
+      const coins = cache.props.goldCount;
 
       if (coins) {
         storage.save(({ balances }) => (balances.gold += coins));

@@ -69,11 +69,13 @@ const hideModule: ModuleDisplay = (
 
 showModule.now = (target, module, callback) => {
   target.classList.remove("hidden");
+  (<HTMLElement>target).style.opacity = "1";
   logger(module, "载入模块");
   callback?.();
 };
 hideModule.now = (target, module, callback) => {
   target.classList.add("hidden");
+  (<HTMLElement>target).style.opacity = "0";
   logger(module, "已隐藏");
   callback?.();
 };

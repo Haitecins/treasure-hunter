@@ -66,10 +66,6 @@ const Ending = {
           this.hide();
           // 显示Home模块
           Home.show();
-          // 清空节点遗留下的内容
-          this.rateElement.innerHTML = "";
-          this.statElement.innerHTML = "";
-          this.rewardElement.innerHTML = "";
         };
 
         this.returnLobbyElement.addEventListener("click", lobbyHandler);
@@ -77,7 +73,12 @@ const Ending = {
     });
   },
   hide() {
-    hideModule.now(this.rootElement, "Ending");
+    hideModule.now(this.rootElement, "Ending", () => {
+      // 清空节点遗留下的内容
+      this.rateElement.innerHTML = "";
+      this.statElement.innerHTML = "";
+      this.rewardElement.innerHTML = "";
+    });
   },
 };
 

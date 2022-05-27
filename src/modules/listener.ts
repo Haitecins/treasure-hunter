@@ -4,7 +4,6 @@ import quests from "./quests";
 import cache from "@/conf/cache";
 import logger from "@/components/logger";
 
-const { props: cacheProps } = cache;
 const activeCharHandler = (elem: Entity) => {
   // 如果已经激活则退出执行
   if (elem.isActive) return;
@@ -23,15 +22,15 @@ const activeCharHandler = (elem: Entity) => {
       quests.updateTarget();
       // 有概率获得铜锭x1-4
       if (anime.random(0, 100) <= 30) {
-        cacheProps.copperCount += anime.random(1, 4);
+        cache.props.copperCount += anime.random(1, 4);
       }
       // 有概率获得铁锭x1-3
       if (anime.random(0, 100) <= 15) {
-        cacheProps.ironCount += anime.random(1, 3);
+        cache.props.ironCount += anime.random(1, 3);
       }
       // 有概率获得金锭x1-2
       if (anime.random(0, 100) <= 5) {
-        cacheProps.goldCount += anime.random(1, 2);
+        cache.props.goldCount += anime.random(1, 2);
       }
     },
     complete() {

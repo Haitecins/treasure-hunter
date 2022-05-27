@@ -1,11 +1,18 @@
 import anime from "animejs";
 import cache from "../cache";
 import logger from "@/components/logger";
+import storage from "@/modules/storage";
 
-const { props: cacheProps } = cache;
+const levelsUp = () => {
+  logger("Levels", "玩家等级提升");
+  storage.save((data) => {
+    // 升级
+    data.levels += 1;
+  });
+};
 const ratings = {
   load(container: Element) {
-    const { breakChars } = cacheProps;
+    const { breakChars } = cache.props;
     let rank;
 
     console.group("Ratings Module Event");
@@ -31,34 +38,49 @@ const ratings = {
     container.innerHTML = rank;
   },
   rankS() {
-    cacheProps.copperCount += anime.random(50, 70);
-    cacheProps.ironCount += anime.random(15, 30);
-    cacheProps.goldCount += anime.random(7, 10);
+    cache.props.copperCount += anime.random(50, 70);
+    cache.props.ironCount += anime.random(15, 30);
+    cache.props.goldCount += anime.random(7, 10);
+    if (anime.random(0, 100) <= 60) {
+      levelsUp();
+    }
 
     return "S";
   },
   rankA() {
-    cacheProps.copperCount += anime.random(30, 50);
-    cacheProps.ironCount += anime.random(5, 15);
-    cacheProps.goldCount += anime.random(5, 7);
+    cache.props.copperCount += anime.random(30, 50);
+    cache.props.ironCount += anime.random(5, 15);
+    cache.props.goldCount += anime.random(5, 7);
+    if (anime.random(0, 100) <= 40) {
+      levelsUp();
+    }
 
     return "A";
   },
   rankB() {
-    cacheProps.copperCount += anime.random(10, 30);
-    cacheProps.ironCount += anime.random(2, 5);
-    cacheProps.goldCount += anime.random(0, 1);
+    cache.props.copperCount += anime.random(10, 30);
+    cache.props.ironCount += anime.random(2, 5);
+    cache.props.goldCount += anime.random(0, 1);
+    if (anime.random(0, 100) <= 25) {
+      levelsUp();
+    }
 
     return "B";
   },
   rankC() {
-    cacheProps.copperCount += anime.random(5, 10);
-    cacheProps.ironCount += anime.random(1, 2);
+    cache.props.copperCount += anime.random(5, 10);
+    cache.props.ironCount += anime.random(1, 2);
+    if (anime.random(0, 100) <= 15) {
+      levelsUp();
+    }
 
     return "C";
   },
   rankD() {
-    cacheProps.copperCount += anime.random(0, 5);
+    cache.props.copperCount += anime.random(0, 5);
+    if (anime.random(0, 100) <= 10) {
+      levelsUp();
+    }
 
     return "D";
   },
