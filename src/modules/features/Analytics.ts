@@ -12,7 +12,7 @@ import {
 } from "echarts/components";
 import { LineChart, LineSeriesOption } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
-import { SVGRenderer } from "echarts/renderers";
+import { CanvasRenderer } from "echarts/renderers";
 import { querySelector } from "@/components/querySelector";
 import storage from "../storage";
 import logger from "@/components/logger";
@@ -37,7 +37,7 @@ echarts.use([
   GridComponent,
   LegendComponent,
   LineChart,
-  SVGRenderer,
+  CanvasRenderer,
   UniversalTransition,
 ]);
 const Analytics = {
@@ -68,13 +68,12 @@ const Analytics = {
     const loadChart = () => {
       // 首次打开的时候初始化Chart
       if (!this.chart.id) {
-        this.chart = echarts.init(this.chartElement, "dark", {
-          locale: "ZH",
-        });
+        this.chart = echarts.init(this.chartElement, "dark", { locale: "ZH" });
       }
       // 更新数据
       this.updateChart();
     };
+
     // 显示模块
     showModule(this.rootElement, "Analytics", {
       begin: loadChart,
