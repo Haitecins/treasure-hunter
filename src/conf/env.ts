@@ -3,6 +3,7 @@ import ticks from "@/modules/ticks";
 import route from "@/modules/route";
 import entities, { Entity } from "@/modules/entities";
 import listener, { activeCharHandler } from "@/modules/listener";
+import storage from "@/modules/storage";
 
 // 开发环境功能配置
 if (import.meta.env.MODE === "development") {
@@ -43,6 +44,32 @@ if (import.meta.env.MODE === "development") {
 
       ticks.timer = ts;
       return `已将计时设为${ts}秒`;
+    },
+  });
+  // 注入随机的历史记录
+  Object.defineProperty(window, "_injectHistory", {
+    value(amount: number) {
+      const [min, max] = [0, 1000];
+      const x = (amount > 30 ? 30 : false) || 5;
+      const inject = [...Array(x)].map(() => {
+        return {
+          date: 1640966400000,
+          difficultLevels: Math.floor(Math.random() * (max - min + 1) + min),
+          breakChars: Math.floor(Math.random() * (max - min + 1) + min),
+          balances: {
+            copper: Math.floor(Math.random() * (max - min + 1) + min),
+            iron: Math.floor(Math.random() * (max - min + 1) + min),
+            gold: Math.floor(Math.random() * (max - min + 1) + min),
+          },
+        };
+      });
+
+      storage.save((data) => {
+        data.history = [...inject, ...data.history];
+        if (data.history.length > 30) data.history.length = 30;
+      });
+
+      return `已注入${x}条历史记录`;
     },
   });
   // 快速生成字块
