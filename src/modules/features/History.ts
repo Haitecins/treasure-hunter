@@ -1,17 +1,19 @@
 import dayjs from "dayjs";
 import * as echarts from "echarts/core";
 import {
-  TooltipComponent,
-  TooltipComponentOption,
   GridComponent,
   GridComponentOption,
   LegendComponent,
   LegendComponentOption,
+  TooltipComponent,
+  TooltipComponentOption,
 } from "echarts/components";
 import { LineChart, LineSeriesOption } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
 import { SVGRenderer } from "echarts/renderers";
 import { querySelector } from "@/components/querySelector";
+import cache from "@/conf/cache";
+import { Difficult } from "@/modules/features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import moduleToggle from "@/components/moduleToggle";
@@ -36,11 +38,11 @@ echarts.use([
   SVGRenderer,
   UniversalTransition,
 ]);
-const Analytics = {
-  rootElement: querySelector("#analytics-module"),
-  openElement: querySelector("#analytics-open-btn"),
-  closeElement: querySelector("#analytics-close-btn"),
-  chartElement: <HTMLElement>querySelector("#analytics-chart"),
+const History = {
+  rootElement: querySelector("#history-module"),
+  openElement: querySelector("#history-open-btn"),
+  closeElement: querySelector("#history-close-btn"),
+  chartElement: <HTMLElement>querySelector("#history-chart"),
   chart: <echarts.EChartsType>{},
   init() {
     moduleToggle(
@@ -51,7 +53,7 @@ const Analytics = {
       () => this.show(),
       () => this.hide()
     );
-    logger("Analytics", "初始化");
+    logger("History", "初始化");
     // 当屏幕大小发生变化时重新调整
     window.addEventListener("resize", () => {
       // 当图表存在并且屏幕大小发生变化时，才会重新绘制图表。
@@ -71,13 +73,13 @@ const Analytics = {
     };
 
     // 显示模块
-    showModule(this.rootElement, "Analytics", {
+    showModule(this.rootElement, "History", {
       begin: loadChart,
     });
   },
   hide() {
     // 隐藏模块
-    hideModule(this.rootElement, "Analytics");
+    hideModule(this.rootElement, "History");
   },
   refresh() {
     const latestHistory = storage.get().history.slice(0, 10);
@@ -182,8 +184,35 @@ const Analytics = {
     this.chart.setOption(newOptions);
     // 重新调整大小
     this.chart.resize();
-    logger("Analytics", "已更新");
+    logger("History", "已更新");
+  },
+  addHistory() {
+    console.group("History Module Event");
+    logger("History", "已增加一条历史记录");
+    storage.save((data) => {
+      const {
+        props: {
+          breakChars,
+          copperCount: copper,
+          ironCount: iron,
+          goldCount: gold,
+        },
+      } = cache;
+
+      data.history = [
+        {
+          date: new Date().getTime(),
+          difficultLevels: Difficult.levels(),
+          breakChars,
+          balances: { copper, iron, gold },
+        },
+        ...data.history,
+      ];
+      // 设置历史记录上限，超过自动删除。
+      if (data.history.length > 30) data.history.length = 30;
+    });
+    console.groupEnd();
   },
 };
 
-export default Analytics;
+export default History;

@@ -1,7 +1,7 @@
 import Detail from "./Detail";
-import Analytics from "./Analytics";
 import Difficult from "./Difficult";
+import History from "./History";
 import Settings from "./Settings";
 import Store from "./Store";
 
-export { Analytics, Detail, Difficult, Settings, Store };
+export { Detail, Difficult, History, Settings, Store };

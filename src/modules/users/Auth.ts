@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { Home } from "../scenes";
-import { Analytics, Detail, Difficult, Store } from "../features";
+import { History, Detail, Difficult, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/querySelector";
@@ -76,8 +76,8 @@ const Auth = {
         this.rootElement.remove();
         // 显示Home模块
         Home.show();
-        // 初始化Analytics模块
-        Analytics.init();
+        // 初始化History模块
+        History.init();
         // 初始化Store模块
         Store.init();
         // 初始化Difficult模块

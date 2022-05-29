@@ -1,6 +1,5 @@
-import { Difficult } from "../features";
+import { History, Difficult } from "../features";
 import Home from "./Home";
-import storage from "../storage";
 import cache from "@/conf/cache";
 import ratings from "@/conf/EndingModule/ratings";
 import stats from "@/conf/EndingModule/stats";
@@ -29,29 +28,8 @@ const Ending = {
       begin: () => {
         // 加载评价/统计/奖励
         this.updateAssess();
-        // 记录游戏数据
-        storage.save((data) => {
-          const {
-            props: {
-              breakChars,
-              copperCount: copper,
-              ironCount: iron,
-              goldCount: gold,
-            },
-          } = cache;
-
-          data.history = [
-            {
-              date: new Date().getTime(),
-              difficultLevels: Difficult.levels(),
-              breakChars,
-              balances: { copper, iron, gold },
-            },
-            ...data.history,
-          ];
-          // 设置历史记录上限，超过自动删除。
-          if (data.history.length > 30) data.history.length = 30;
-        });
+        // 添加一条历史记录
+        History.addHistory();
       },
       complete: () => {
         const lobbyHandler = () => {
