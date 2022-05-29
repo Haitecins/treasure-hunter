@@ -1,8 +1,6 @@
 import dayjs from "dayjs";
 import * as echarts from "echarts/core";
 import {
-  TitleComponent,
-  TitleComponentOption,
   TooltipComponent,
   TooltipComponentOption,
   GridComponent,
@@ -12,7 +10,7 @@ import {
 } from "echarts/components";
 import { LineChart, LineSeriesOption } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
-import { CanvasRenderer } from "echarts/renderers";
+import { SVGRenderer } from "echarts/renderers";
 import { querySelector } from "@/components/querySelector";
 import storage from "../storage";
 import logger from "@/components/logger";
@@ -20,7 +18,6 @@ import moduleToggle from "@/components/moduleToggle";
 import { hideModule, showModule } from "@/components/moduleDisplay";
 
 type EChartsOption = echarts.ComposeOption<
-  | TitleComponentOption
   | TooltipComponentOption
   | GridComponentOption
   | LegendComponentOption
@@ -32,12 +29,11 @@ type RelativeTimeOptions = {
 };
 
 echarts.use([
-  TitleComponent,
   TooltipComponent,
   GridComponent,
   LegendComponent,
   LineChart,
-  CanvasRenderer,
+  SVGRenderer,
   UniversalTransition,
 ]);
 const Analytics = {
@@ -89,12 +85,13 @@ const Analytics = {
     return <EChartsOption>{
       backgroundColor: "transparent",
       textStyle: {
+        fontSize: "1rem",
         fontFamily: '"en", "cn", "sans-serif"',
       },
       tooltip: {
         trigger: "axis",
-        backgroundColor: "rgba(0,0,0,0.75)",
         borderColor: "#424242",
+        backgroundColor: "rgba(0,0,0,0.65)",
         textStyle: {
           color: "#F6F4F2",
         },
@@ -104,7 +101,6 @@ const Analytics = {
         bottom: 0,
         textStyle: {
           color: "#F6F4F2",
-          fontSize: "1rem",
         },
         itemGap: document.documentElement.clientWidth * 0.05,
       },
