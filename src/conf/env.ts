@@ -50,7 +50,7 @@ if (import.meta.env.MODE === "development") {
   Object.defineProperty(window, "_injectHistory", {
     value(amount: number) {
       const [min, max] = [0, 1000];
-      const x = (amount > 30 ? 30 : false) || 5;
+      const x = (amount > 30 ? false : amount) || 5;
       const inject = [...Array(x)].map(() => {
         return {
           date: 1640966400000,
