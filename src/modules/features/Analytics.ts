@@ -80,7 +80,7 @@ const Analytics = {
     hideModule(this.rootElement, "Analytics");
   },
   refresh() {
-    const history = storage.get().history.slice(0, 14);
+    const latestHistory = storage.get().history.slice(0, 10);
 
     return <EChartsOption>{
       backgroundColor: "transparent",
@@ -102,7 +102,7 @@ const Analytics = {
         textStyle: {
           color: "#F6F4F2",
         },
-        itemGap: document.documentElement.clientWidth * 0.05,
+        itemGap: this.rootElement.clientWidth * 0.05,
       },
       grid: {
         containLabel: true,
@@ -115,7 +115,7 @@ const Analytics = {
         show: false,
         boundaryGap: false,
         type: "category",
-        data: history.map(({ date }) =>
+        data: latestHistory.map(({ date }) =>
           (<RelativeTimeOptions>(<never>dayjs(date))).fromNow()
         ),
         axisLabel: {
@@ -135,7 +135,7 @@ const Analytics = {
         {
           name: "难度系数",
           type: "line",
-          data: history.map(({ difficultLevels }) => difficultLevels),
+          data: latestHistory.map(({ difficultLevels }) => difficultLevels),
           itemStyle: {
             color: "#FF4B4B",
           },
@@ -143,7 +143,7 @@ const Analytics = {
         {
           name: "破坏字块",
           type: "line",
-          data: history.map(({ breakChars }) => breakChars),
+          data: latestHistory.map(({ breakChars }) => breakChars),
           itemStyle: {
             color: "#61C3FF",
           },
@@ -151,7 +151,7 @@ const Analytics = {
         {
           name: "铜锭获取",
           type: "line",
-          data: history.map(({ balances: { copper } }) => copper),
+          data: latestHistory.map(({ balances: { copper } }) => copper),
           itemStyle: {
             color: "#e77b55",
           },
@@ -159,7 +159,7 @@ const Analytics = {
         {
           name: "铁锭获取",
           type: "line",
-          data: history.map(({ balances: { iron } }) => iron),
+          data: latestHistory.map(({ balances: { iron } }) => iron),
           itemStyle: {
             color: "#fff",
           },
@@ -167,7 +167,7 @@ const Analytics = {
         {
           name: "金锭获取",
           type: "line",
-          data: history.map(({ balances: { gold } }) => gold),
+          data: latestHistory.map(({ balances: { gold } }) => gold),
           itemStyle: {
             color: "#fdf45f",
           },
