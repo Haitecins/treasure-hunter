@@ -8,7 +8,7 @@ import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
 import toggleModule from "@/components/toggleModule";
 import { hideModule, showModule } from "@/components/displaying";
-import { ModuleToggleType, RootElementType } from "@/interfaces";
+import { ModuleToggleType, RootElementType } from "@/global-types";
 
 let getOpenHandler: () => void;
 const Difficult: DifficultModuleProps = {

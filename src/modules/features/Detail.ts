@@ -7,7 +7,7 @@ import {
   BalanceElementType,
   ModuleToggleType,
   RootElementType,
-} from "@/interfaces";
+} from "@/global-types";
 
 const Detail: DetailModuleProps = {
   rootElement: querySelector("#detail-module"),

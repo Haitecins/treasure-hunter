@@ -7,7 +7,7 @@ import rewards from "@/conf/EndingModule/rewards";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const Ending: EndingModuleProps = {
   rootElement: querySelector("#ending-module"),

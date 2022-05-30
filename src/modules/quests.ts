@@ -2,7 +2,7 @@ import cache from "@/conf/cache";
 import { Difficult } from "./features";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const quests: QuestModuleProps = {
   rootElement: querySelector("#quests-progress"),

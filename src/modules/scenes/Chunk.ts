@@ -3,7 +3,7 @@ import listener from "../listener";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const Chunk: ChunkModuleProps = {
   rootElement: querySelector("#chunk-scene"),

@@ -1,18 +1,16 @@
-interface BalanceElementType {
+type BalanceElementType = {
   readonly balanceElement: {
     readonly copper: Element;
     readonly iron: Element;
     readonly gold: Element;
   };
-}
-
-interface RootElementType {
+};
+type RootElementType = {
   readonly rootElement: Element;
-}
-
-interface ModuleToggleType {
+};
+type ModuleToggleType = {
   readonly openElement: Element;
   readonly closeElement: Element;
-}
+};
 
 export { BalanceElementType, RootElementType, ModuleToggleType };

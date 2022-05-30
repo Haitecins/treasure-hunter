@@ -1,7 +1,7 @@
 import { Profile } from "../users";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const Home: HomeModuleProps = {
   rootElement: querySelector("#home-scene"),

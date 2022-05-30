@@ -3,7 +3,7 @@ import { querySelector } from "@/components/selector";
 import resolutionItem from "@/conf/SettingsModule/resolutionItem";
 import toggleModule from "@/components/toggleModule";
 import { hideModule, showModule } from "@/components/displaying";
-import { ModuleToggleType, RootElementType } from "@/interfaces";
+import { ModuleToggleType, RootElementType } from "@/global-types";
 
 const Settings: SettingsModuleProps = {
   rootElement: querySelector("#settings-module"),

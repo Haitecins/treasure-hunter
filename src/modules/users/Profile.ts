@@ -2,7 +2,7 @@ import storage from "../storage";
 import formatter from "../formatter";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
-import { BalanceElementType, RootElementType } from "@/interfaces";
+import { BalanceElementType, RootElementType } from "@/global-types";
 
 const Profile: ProfileModuleProps = {
   rootElement: querySelector("#profile-module"),

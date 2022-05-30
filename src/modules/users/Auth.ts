@@ -4,7 +4,7 @@ import { Detail, Difficult, History, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const Auth: AuthModuleProps = {
   rootElement: querySelector("#auth-module"),

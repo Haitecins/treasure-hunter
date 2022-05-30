@@ -6,7 +6,7 @@ import cache from "@/conf/cache";
 import quests from "./quests";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
-import { RootElementType } from "@/interfaces";
+import { RootElementType } from "@/global-types";
 
 const ticks: TickModuleProps = {
   rootElement: querySelector("#ticks-module"),
