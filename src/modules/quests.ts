@@ -1,14 +1,14 @@
 import cache from "@/conf/cache";
 import { Difficult } from "./features";
-import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
+import { hideModule, showModule } from "@/components/displaying";
 
 const quests = {
   rootElement: querySelector("#quests-progress"),
   currentElement: querySelector("#quest-current"),
   targetElement: querySelector("#quest-target"),
   targetValue: 0,
-  init() {
+  load() {
     const { target } = Difficult;
     const value = Math.floor(
       (target.TIMER * 1000) / target.SUMMON_SPEED -
@@ -26,19 +26,18 @@ const quests = {
       this.targetElement.innerHTML = "Completed";
     }
   },
-  load() {
-    // 初始化
-    this.init();
-    // 显示目标元素
-    this.rootElement.classList.remove("hidden");
-    logger("Quests", "载入模块");
+  init() {
+    showModule.now(this.rootElement, "Quests", () => {
+      // 载入任务目标
+      this.load();
+    });
   },
   hide() {
-    this.rootElement.classList.add("hidden");
-    this.currentElement.innerHTML = "";
-    this.targetElement.innerHTML = "";
-    this.targetValue = 0;
-    logger("Quests", "已隐藏");
+    hideModule.now(this.rootElement, "Quests", () => {
+      this.currentElement.innerHTML = "";
+      this.targetElement.innerHTML = "";
+      this.targetValue = 0;
+    });
   },
 };
 

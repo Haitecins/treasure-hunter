@@ -80,7 +80,7 @@ const Difficult = {
           // 在游戏区域内显示难度系数
           Difficult.showLevels();
           // 初始化任务目标
-          quests.load();
+          quests.init();
           // 开启计时
           ticks.start();
         },
