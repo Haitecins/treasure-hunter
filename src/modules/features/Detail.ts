@@ -1,9 +1,9 @@
 import { Profile } from "../users";
 import storage from "../storage";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import moduleToggle from "@/components/moduleToggle";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import switcher from "@/components/switcher";
+import { hideModule, showModule } from "@/components/displaying";
 
 const Detail = {
   rootElement: querySelector("#detail-module"),
@@ -17,7 +17,7 @@ const Detail = {
   },
   totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
-    moduleToggle(
+    switcher(
       {
         open: <HTMLDivElement>Profile.name.parentNode,
         close: this.closeElement,

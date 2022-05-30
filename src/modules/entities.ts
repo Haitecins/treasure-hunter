@@ -4,7 +4,7 @@ import colors from "./colors";
 import route from "./route";
 import { Difficult } from "./features";
 import logger from "@/components/logger";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 
 interface Entity extends HTMLDivElement {
   activeKey: string;

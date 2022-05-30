@@ -18,14 +18,7 @@ type NowModuleArguments = (
 
 type ModuleDisplay = ModuleArguments & { now: NowModuleArguments };
 
-const showModule: ModuleDisplay = (
-  target,
-  module,
-  callbacks?: {
-    begin?: () => void;
-    complete?: () => void;
-  }
-) => {
+const showModule: ModuleDisplay = (target, module, callbacks) => {
   anime({
     targets: target,
     opacity: [0, 1],

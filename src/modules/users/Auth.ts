@@ -3,7 +3,7 @@ import { Home } from "../scenes";
 import { History, Detail, Difficult, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 
 const Auth = {
   rootElement: querySelector("#auth-module"),

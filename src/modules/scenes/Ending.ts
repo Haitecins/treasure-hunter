@@ -5,8 +5,8 @@ import ratings from "@/conf/EndingModule/ratings";
 import stats from "@/conf/EndingModule/stats";
 import rewards from "@/conf/EndingModule/rewards";
 import logger from "@/components/logger";
-import { querySelector } from "@/components/querySelector";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import { querySelector } from "@/components/selector";
+import { hideModule, showModule } from "@/components/displaying";
 
 const Ending = {
   rootElement: querySelector("#ending-module"),

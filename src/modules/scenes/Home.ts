@@ -1,6 +1,6 @@
 import { Profile } from "../users";
-import { querySelector } from "@/components/querySelector";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import { querySelector } from "@/components/selector";
+import { hideModule, showModule } from "@/components/displaying";
 
 const Home = {
   rootElement: querySelector("#home-scene"),

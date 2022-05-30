@@ -1,14 +1,14 @@
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import moduleToggle from "@/components/moduleToggle";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import switcher from "@/components/switcher";
+import { hideModule, showModule } from "@/components/displaying";
 
 const Store = {
   rootElement: querySelector("#store-module"),
   openElement: querySelector("#treasure-store-open-btn"),
   closeElement: querySelector("#store-close-btn"),
   init() {
-    moduleToggle(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,

@@ -1,8 +1,8 @@
 import logger from "@/components/logger";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 import resolutionItem from "@/conf/SettingsModule/resolutionItem";
-import moduleToggle from "@/components/moduleToggle";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import switcher from "@/components/switcher";
+import { hideModule, showModule } from "@/components/displaying";
 
 const Settings = {
   rootElement: querySelector("#settings-module"),
@@ -13,7 +13,7 @@ const Settings = {
     resolution: <HTMLInputElement>querySelector("#resolution-option"),
   },
   init() {
-    moduleToggle(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,

@@ -11,13 +11,13 @@ import {
 import { LineChart, LineSeriesOption } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
 import { SVGRenderer } from "echarts/renderers";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 import cache from "@/conf/cache";
 import { Difficult } from "@/modules/features";
 import storage from "../storage";
 import logger from "@/components/logger";
-import moduleToggle from "@/components/moduleToggle";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import switcher from "@/components/switcher";
+import { hideModule, showModule } from "@/components/displaying";
 
 type EChartsOption = echarts.ComposeOption<
   | TooltipComponentOption
@@ -45,7 +45,7 @@ const History = {
   chartElement: <HTMLElement>querySelector("#history-chart"),
   chart: <echarts.EChartsType>{},
   init() {
-    moduleToggle(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,

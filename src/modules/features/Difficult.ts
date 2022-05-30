@@ -4,10 +4,10 @@ import cache from "@/conf/cache";
 import listener from "../listener";
 import ticks from "../ticks";
 import quests from "../quests";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import moduleToggle from "@/components/moduleToggle";
-import { hideModule, showModule } from "@/components/moduleDisplay";
+import switcher from "@/components/switcher";
+import { hideModule, showModule } from "@/components/displaying";
 
 type DifficultItems = {
   value: number;
@@ -95,7 +95,7 @@ const Difficult = {
       );
     };
 
-    getOpenHandler = moduleToggle(
+    getOpenHandler = switcher(
       {
         open: Home.startElement,
         close: this.cancelElement,

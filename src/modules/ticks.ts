@@ -5,7 +5,7 @@ import { Difficult } from "./features";
 import cache from "@/conf/cache";
 import quests from "./quests";
 import logger from "@/components/logger";
-import { querySelector } from "@/components/querySelector";
+import { querySelector } from "@/components/selector";
 
 const ticks = {
   rootElement: querySelector("#ticks-module"),
