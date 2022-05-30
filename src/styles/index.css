@@ -10,12 +10,12 @@
 @tailwind utilities;
 
 @font-face {
-  src: url("../fonts/Ubuntu-Bold.ttf");
+  src: url("../assets/fonts/Ubuntu-Bold.ttf");
   font-family: "en";
 }
 
 @font-face {
-  src: url("../fonts/zh-cn.ttf");
+  src: url("../assets/fonts/zh-cn.ttf");
   font-family: "cn";
 }
 
