@@ -9,14 +9,8 @@ import logger from "@/components/logger";
 import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 
-type DifficultItems = {
-  value: number;
-  exponent: number;
-  title: (props: DifficultItems) => string;
-};
-
 let getOpenHandler: () => void;
-const Difficult = {
+const Difficult: DifficultModuleProps = {
   rootElement: querySelector("#difficult-select-module"),
   selectorElement: querySelector("#difficult-selector"),
   confirmElement: querySelector("#difficult-ok-btn"),
@@ -33,7 +27,7 @@ const Difficult = {
   },
   iterator: {
     // 难度指数
-    exponents: <number[]>[],
+    exponents: [],
     // 指数迭代器
     indicator: 0,
     // 是否停止迭代器迭代数值
@@ -52,7 +46,7 @@ const Difficult = {
       },
     });
   },
-  hide(animeComplete?: () => void) {
+  hide(animeComplete) {
     hideModule(this.rootElement, "Difficult", {
       begin: () => {
         // 停止迭代器的迭代
@@ -119,12 +113,7 @@ const Difficult = {
     // 重新为【开始游戏】按钮绑定open函数事件
     Home.startElement.addEventListener("click", getOpenHandler);
   },
-  selector(
-    title: string,
-    id: string,
-    options: [DifficultItems[], number],
-    onchange: (selected: DifficultItems) => void
-  ) {
+  selector(title, id, options, onchange) {
     const container = document.createElement("div");
     const label = document.createElement("div");
     const selects = document.createElement("div");
@@ -165,8 +154,8 @@ const Difficult = {
     (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
-    const timerLimit = (props: DifficultItems) => `${props.value}秒`;
-    const runningLimit = (props: DifficultItems) => `${props.value}次`;
+    const timerLimit = (props: DifficultModuleItems) => `${props.value}秒`;
+    const runningLimit = (props: DifficultModuleItems) => `${props.value}次`;
 
     // 加载难度选择器
     this.selector(
@@ -274,4 +263,47 @@ const Difficult = {
   },
 };
 
+type DifficultModuleItems = {
+  value: number;
+  exponent: number;
+  title: (props: DifficultModuleItems) => string;
+};
+
+type DifficultModuleProps = {
+  readonly rootElement: Element;
+  readonly selectorElement: Element;
+  readonly confirmElement: Element;
+  readonly cancelElement: Element;
+  readonly degreeElement: Element;
+  readonly degreeInGamingElement: Element;
+  target: {
+    TIMER: number;
+    SUMMON_SPEED: number;
+    STEP_COUNTS: number;
+  };
+  iterator: {
+    exponents: number[];
+    indicator: number;
+    stopped: boolean;
+  };
+  levels(): number;
+  show(): void;
+  hide(animeComplete?: () => void): void;
+  init(): void;
+  rebindOpenEvent(): void;
+  selector(
+    title: string,
+    id: string,
+    options: [DifficultModuleItems[], number],
+    onchange: (selected: DifficultModuleItems) => void
+  ): void;
+  loadSelector(): void;
+  destroySelector(): void;
+  iteratorAnimation(): void;
+  revertChanges(): void;
+  showLevels(): void;
+  hideLevels(): void;
+};
+
 export default Difficult;
+export { DifficultModuleItems, DifficultModuleProps };

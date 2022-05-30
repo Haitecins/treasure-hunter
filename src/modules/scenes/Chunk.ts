@@ -4,7 +4,7 @@ import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 
-const Chunk = {
+const Chunk: ChunkModuleProps = {
   rootElement: querySelector("#chunk-scene"),
   play() {
     showModule.now(this.rootElement, "Chunk", () => {
@@ -24,4 +24,12 @@ const Chunk = {
   },
 };
 
+type ChunkModuleProps = {
+  readonly rootElement: Element;
+  play(): void;
+  hide(): void;
+  clear(): void;
+};
+
 export default Chunk;
+export { ChunkModuleProps };

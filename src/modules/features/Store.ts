@@ -3,7 +3,7 @@ import logger from "@/components/logger";
 import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 
-const Store = {
+const Store: StoreModuleProps = {
   rootElement: querySelector("#store-module"),
   openElement: querySelector("#treasure-store-open-btn"),
   closeElement: querySelector("#store-close-btn"),
@@ -26,4 +26,14 @@ const Store = {
   },
 };
 
+type StoreModuleProps = {
+  readonly rootElement: Element;
+  readonly openElement: Element;
+  readonly closeElement: Element;
+  init(): void;
+  show(): void;
+  hide(): void;
+};
+
 export default Store;
+export { StoreModuleProps };

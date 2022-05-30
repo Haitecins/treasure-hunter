@@ -1,31 +1,5 @@
 import logger from "@/components/logger";
 
-interface StorageMetadata {
-  pid: number;
-  name: any;
-  levels: number;
-  history: {
-    date: number;
-    difficultLevels: number;
-    breakChars: number;
-    balances: {
-      copper: number;
-      iron: number;
-      gold: number;
-    };
-  }[];
-  historyBreak: number;
-  version: string;
-  settings: {
-    resolution: number;
-  };
-  balances: {
-    copper: number;
-    iron: number;
-    gold: number;
-  };
-}
-
 const db_key = "th_storage";
 const temp_key = "th_temp_storage";
 const metadata: StorageMetadata = {
@@ -60,7 +34,6 @@ const load = (callback?: () => void) => {
   // 当数据加载完成后需要做的事
   callback?.();
 };
-
 /**
  * 保存当前进度
  * @param callback 修改临时进度的回调，可以进行临时进度的修改，回调执行完后会保存当前进度。
@@ -86,4 +59,31 @@ const get = () => {
   return <StorageMetadata>(<never>window)[temp_key];
 };
 
+interface StorageMetadata {
+  readonly pid: number;
+  name: any;
+  levels: number;
+  history: {
+    date: number;
+    difficultLevels: number;
+    breakChars: number;
+    balances: {
+      copper: number;
+      iron: number;
+      gold: number;
+    };
+  }[];
+  historyBreak: number;
+  version: string;
+  settings: {
+    resolution: number;
+  };
+  balances: {
+    copper: number;
+    iron: number;
+    gold: number;
+  };
+}
+
 export default { load, save, get };
+export { StorageMetadata };

@@ -10,8 +10,8 @@ const levelsUp = () => {
     data.levels += 1;
   });
 };
-const ratings = {
-  load(container: Element) {
+const ratings: RatingModuleProps = {
+  load(container) {
     const { breakChars } = cache.props;
     let rank;
 
@@ -86,4 +86,15 @@ const ratings = {
   },
 };
 
+type RankList = "S" | "A" | "B" | "C" | "D";
+type RatingModuleProps = {
+  load(container: Element): void;
+  rankS(): RankList;
+  rankA(): RankList;
+  rankB(): RankList;
+  rankC(): RankList;
+  rankD(): RankList;
+};
+
 export default ratings;
+export { RankList, RatingModuleProps };

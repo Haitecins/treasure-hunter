@@ -3,7 +3,7 @@ import formatter from "../formatter";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-const Profile = {
+const Profile: ProfileModuleProps = {
   rootElement: querySelector("#profile-module"),
   name: querySelector("#profile-name"),
   levels: querySelector("#profile-levels"),
@@ -32,4 +32,17 @@ const Profile = {
   },
 };
 
+type ProfileModuleProps = {
+  readonly rootElement: Element;
+  readonly name: Element;
+  readonly levels: Element;
+  readonly balancesElement: {
+    readonly copper: Element;
+    readonly iron: Element;
+    readonly gold: Element;
+  };
+  updateBar(): void;
+};
+
 export default Profile;
+export { ProfileModuleProps };

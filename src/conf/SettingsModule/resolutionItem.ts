@@ -1,9 +1,9 @@
 import { Settings } from "@/modules/features";
 import storage from "@/modules/storage";
 
-const resolutionItem = {
+const resolutionItem: ResolutionItemProps = {
   value: 0,
-  apply: (size: number | null, label: string) => {
+  apply: (size, label) => {
     const { resolution } = Settings.options;
     const screen = document.documentElement.style;
     const resLabel = resolution.previousElementSibling!;
@@ -51,4 +51,12 @@ const resolutionItem = {
   },
 };
 
+type ResolutionItemProps = {
+  value: number;
+  apply(size: number | null, label: string): void;
+  init(): void;
+  save(): void;
+};
+
 export default resolutionItem;
+export { ResolutionItemProps };

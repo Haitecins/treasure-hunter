@@ -1,6 +1,4 @@
-type Handler = () => number;
-
-const convert = (handler: Handler | number) => {
+const convert = (handler: ConvertHandler | number) => {
   let t: number;
 
   if (typeof handler === "function") {
@@ -16,5 +14,7 @@ const convert = (handler: Handler | number) => {
 
   return `${m}:${s}`;
 };
+
+type ConvertHandler = () => number;
 
 export default convert;

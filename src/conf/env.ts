@@ -1,7 +1,7 @@
 import cache from "./cache";
 import ticks from "@/modules/ticks";
 import route from "@/modules/route";
-import entities, { Entity } from "@/modules/entities";
+import entities, { EntityInstance } from "@/modules/entities";
 import listener, { activeCharHandler } from "@/modules/listener";
 import storage from "@/modules/storage";
 
@@ -10,7 +10,7 @@ if (import.meta.env.MODE === "development") {
   // 暂停/继续游戏
   Object.defineProperty(window, "_pause", {
     value() {
-      const chars = <Entity[]>(
+      const chars = <EntityInstance[]>(
         Array.prototype.slice.call(entities.container.children)
       );
 
@@ -96,7 +96,7 @@ if (import.meta.env.MODE === "development") {
   // 强制激活区域内所有的字块
   Object.defineProperty(window, "_activate", {
     value() {
-      (<Entity[]>(
+      (<EntityInstance[]>(
         Array.prototype.slice.call(entities.container.children)
       )).forEach((child) => activeCharHandler(child));
       return "强制激活了区域内的字块";

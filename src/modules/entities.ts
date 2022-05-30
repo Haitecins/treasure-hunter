@@ -6,13 +6,7 @@ import { Difficult } from "./features";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-interface Entity extends HTMLDivElement {
-  activeKey: string;
-  isActive: boolean;
-  tracker: anime.AnimeInstance;
-}
-
-const entities = {
+const entities: EntityModuleProps = {
   container: querySelector("#entities-container"),
   animeInstance: <anime.AnimeInstance>{},
   enable() {
@@ -37,7 +31,7 @@ const entities = {
     });
   },
   spawner() {
-    const elem = <Entity>document.createElement("div");
+    const elem = <EntityInstance>document.createElement("div");
     const char = chars.random().toUpperCase();
     const color = colors.random();
 
@@ -66,5 +60,21 @@ const entities = {
   },
 };
 
+interface EntityInstance extends HTMLDivElement {
+  activeKey: string;
+  isActive: boolean;
+  tracker: anime.AnimeInstance;
+}
+
+type EntityModuleProps = {
+  readonly container: Element;
+  animeInstance: anime.AnimeInstance;
+  enable(): void;
+  spawner(): EntityInstance;
+  stop(): void;
+  clear(): void;
+  destroy(): void;
+};
+
 export default entities;
-export { Entity };
+export { EntityInstance, EntityModuleProps };

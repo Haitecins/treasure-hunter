@@ -3,7 +3,7 @@ import { Difficult } from "./features";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 
-const quests = {
+const quests: QuestModuleProps = {
   rootElement: querySelector("#quests-progress"),
   currentElement: querySelector("#quest-current"),
   targetElement: querySelector("#quest-target"),
@@ -41,4 +41,16 @@ const quests = {
   },
 };
 
+type QuestModuleProps = {
+  readonly rootElement: Element;
+  readonly currentElement: Element;
+  readonly targetElement: Element;
+  targetValue: number;
+  load(): void;
+  updateTarget(): void;
+  init(): void;
+  hide(): void;
+};
+
 export default quests;
+export { QuestModuleProps };

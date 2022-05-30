@@ -1,10 +1,10 @@
 import anime from "animejs";
-import entities, { Entity } from "./entities";
+import entities, { EntityInstance } from "./entities";
 import quests from "./quests";
 import cache from "@/conf/cache";
 import logger from "@/components/logger";
 
-const activeCharHandler = (elem: Entity) => {
+const activeCharHandler = (elem: EntityInstance) => {
   // 如果已经激活则退出执行
   if (elem.isActive) return;
   // 防止重复执行
@@ -40,7 +40,7 @@ const activeCharHandler = (elem: Entity) => {
 };
 const keyDownHandler = (ev: KeyboardEvent) => {
   document.onkeydown = null;
-  const children = <Entity[]>(
+  const children = <EntityInstance[]>(
     Array.prototype.slice.call(entities.container.children)
   );
 

@@ -7,7 +7,7 @@ import quests from "./quests";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-const ticks = {
+const ticks: TickModuleProps = {
   rootElement: querySelector("#ticks-module"),
   animeInstance: <anime.AnimeInstance>{},
   timer: 0,
@@ -66,4 +66,15 @@ const ticks = {
   },
 };
 
+type TickModuleProps = {
+  readonly rootElement: Element;
+  animeInstance: anime.AnimeInstance;
+  timer: number;
+  timeRecorder: number;
+  start(): void;
+  stop(): void;
+  reset(): void;
+};
+
 export default ticks;
+export { TickModuleProps };

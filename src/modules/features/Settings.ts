@@ -4,7 +4,7 @@ import resolutionItem from "@/conf/SettingsModule/resolutionItem";
 import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 
-const Settings = {
+const Settings: SettingsModuleProps = {
   rootElement: querySelector("#settings-module"),
   openElement: querySelector("#settings-open-btn"),
   closeElement: querySelector("#settings-close-btn"),
@@ -32,11 +32,24 @@ const Settings = {
   show() {
     showModule(this.rootElement, "Settings");
   },
-  hide(beginExtraCallback?: () => void) {
+  hide(beginExtraCallback) {
     hideModule(this.rootElement, "Settings", {
       begin: beginExtraCallback,
     });
   },
 };
 
+type SettingsModuleProps = {
+  readonly rootElement: Element;
+  readonly openElement: Element;
+  readonly closeElement: Element;
+  readonly options: {
+    readonly resolution: HTMLInputElement;
+  };
+  init(): void;
+  show(): void;
+  hide(beginExtraCallback?: () => void): void;
+};
+
 export default Settings;
+export { SettingsModuleProps };

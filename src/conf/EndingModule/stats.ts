@@ -5,7 +5,7 @@ import convert from "@/modules/convert";
 import logger from "@/components/logger";
 import writeText from "@/components/writeText";
 
-const stats = {
+const stats: StatModuleProps = {
   list: [
     () => {
       const timeRecorder = ticks.timeRecorder;
@@ -24,7 +24,7 @@ const stats = {
       return `破坏字块：${writeText(breakChars.toLocaleString("en"))}个`;
     },
   ],
-  load(container: Element) {
+  load(container) {
     console.group("Stats Module Event");
     logger("Stats", "载入模块");
     this.list.forEach((fillStats) => {
@@ -41,4 +41,10 @@ const stats = {
   },
 };
 
+type StatModuleProps = {
+  readonly list: readonly Function[];
+  load(container: Element): void;
+};
+
 export default stats;
+export { StatModuleProps };

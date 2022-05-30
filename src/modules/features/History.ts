@@ -19,17 +19,6 @@ import logger from "@/components/logger";
 import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 
-type EChartsOption = echarts.ComposeOption<
-  | TooltipComponentOption
-  | GridComponentOption
-  | LegendComponentOption
-  | LineSeriesOption
->;
-
-type RelativeTimeOptions = {
-  fromNow(withoutSuffix?: boolean): string;
-};
-
 echarts.use([
   TooltipComponent,
   GridComponent,
@@ -38,7 +27,7 @@ echarts.use([
   SVGRenderer,
   UniversalTransition,
 ]);
-const History = {
+const History: HistoryModuleProps = {
   rootElement: querySelector("#history-module"),
   openElement: querySelector("#history-open-btn"),
   closeElement: querySelector("#history-close-btn"),
@@ -84,7 +73,7 @@ const History = {
   refresh() {
     const latestHistory = storage.get().history.slice(0, 10);
 
-    return <EChartsOption>{
+    return {
       backgroundColor: "transparent",
       textStyle: {
         fontSize: "1rem",
@@ -118,7 +107,7 @@ const History = {
         boundaryGap: false,
         type: "category",
         data: latestHistory.map(({ date }) =>
-          (<RelativeTimeOptions>(<never>dayjs(date))).fromNow()
+          (<HistoryRelativeTimeOptions>(<never>dayjs(date))).fromNow()
         ),
         axisLabel: {
           show: false,
@@ -215,4 +204,30 @@ const History = {
   },
 };
 
+type HistoryModuleProps = {
+  readonly rootElement: Element;
+  readonly openElement: Element;
+  readonly closeElement: Element;
+  readonly chartElement: HTMLElement;
+  chart: echarts.EChartsType;
+  init(): void;
+  show(): void;
+  hide(): void;
+  refresh(): HistoryEChartsOption;
+  updateChart(): void;
+  addHistory(): void;
+};
+
+type HistoryEChartsOption = echarts.ComposeOption<
+  | TooltipComponentOption
+  | GridComponentOption
+  | LegendComponentOption
+  | LineSeriesOption
+>;
+
+type HistoryRelativeTimeOptions = {
+  fromNow(withoutSuffix?: boolean): string;
+};
+
 export default History;
+export { HistoryEChartsOption, HistoryRelativeTimeOptions, HistoryModuleProps };

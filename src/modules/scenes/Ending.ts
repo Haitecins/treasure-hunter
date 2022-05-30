@@ -1,4 +1,4 @@
-import { History, Difficult } from "../features";
+import { Difficult, History } from "../features";
 import Home from "./Home";
 import cache from "@/conf/cache";
 import ratings from "@/conf/EndingModule/ratings";
@@ -8,7 +8,7 @@ import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 
-const Ending = {
+const Ending: EndingModuleProps = {
   rootElement: querySelector("#ending-module"),
   rateElement: querySelector("#ending-rate>span"),
   statElement: querySelector("#ending-stat>div"),
@@ -60,4 +60,16 @@ const Ending = {
   },
 };
 
+type EndingModuleProps = {
+  readonly rootElement: Element;
+  readonly rateElement: Element;
+  readonly statElement: Element;
+  readonly rewardElement: Element;
+  readonly returnLobbyElement: Element;
+  updateAssess(): void;
+  show(): void;
+  hide(): void;
+};
+
 export default Ending;
+export { EndingModuleProps };

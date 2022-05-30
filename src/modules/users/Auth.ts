@@ -1,11 +1,11 @@
 import anime from "animejs";
 import { Home } from "../scenes";
-import { History, Detail, Difficult, Store } from "../features";
+import { Detail, Difficult, History, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-const Auth = {
+const Auth: AuthModuleProps = {
   rootElement: querySelector("#auth-module"),
   confirmElement: querySelector("#auth-confirm"),
   tipElement: querySelector("#auth-tip"),
@@ -102,4 +102,17 @@ const Auth = {
   },
 };
 
+type AuthModuleProps = {
+  readonly rootElement: Element;
+  readonly confirmElement: Element;
+  readonly tipElement: Element;
+  readonly inputElement: HTMLInputElement;
+  readonly isLoginElement: Element;
+  readonly joinMessageElement: Element;
+  load(): void;
+  success(): void;
+  init(): void;
+};
+
 export default Auth;
+export { AuthModuleProps };

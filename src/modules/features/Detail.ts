@@ -5,7 +5,7 @@ import logger from "@/components/logger";
 import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 
-const Detail = {
+const Detail: DetailModuleProps = {
   rootElement: querySelector("#detail-module"),
   closeElement: querySelector("#detail-close"),
   nameElement: querySelector("#detail-name"),
@@ -53,4 +53,22 @@ const Detail = {
   },
 };
 
+type DetailModuleProps = {
+  readonly rootElement: Element;
+  readonly closeElement: Element;
+  readonly nameElement: Element;
+  readonly levelsElement: Element;
+  readonly balanceElement: {
+    readonly copper: Element;
+    readonly iron: Element;
+    readonly gold: Element;
+  };
+  readonly totalBreaksElement: Element;
+  init(): void;
+  updateStatus(): void;
+  show(): void;
+  hide(): void;
+};
+
 export default Detail;
+export { DetailModuleProps };
