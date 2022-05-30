@@ -2,6 +2,7 @@ import cache from "@/conf/cache";
 import { Difficult } from "./features";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
+import { RootElementType } from "@/interfaces";
 
 const quests: QuestModuleProps = {
   rootElement: querySelector("#quests-progress"),
@@ -41,16 +42,19 @@ const quests: QuestModuleProps = {
   },
 };
 
-type QuestModuleProps = {
-  readonly rootElement: Element;
-  readonly currentElement: Element;
-  readonly targetElement: Element;
-  targetValue: number;
+type QuestModuleMethods = {
   load(): void;
   updateTarget(): void;
   init(): void;
   hide(): void;
 };
+type InterfaceExtends = QuestModuleMethods & RootElementType;
+
+interface QuestModuleProps extends InterfaceExtends {
+  readonly currentElement: Element;
+  readonly targetElement: Element;
+  targetValue: number;
+}
 
 export default quests;
 export { QuestModuleProps };

@@ -1,12 +1,17 @@
-import { Profile } from "../users";
 import storage from "../storage";
 import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import switcher from "@/components/switcher";
+import toggleModule from "@/components/toggleModule";
 import { hideModule, showModule } from "@/components/displaying";
+import {
+  BalanceElementType,
+  ModuleToggleType,
+  RootElementType,
+} from "@/interfaces";
 
 const Detail: DetailModuleProps = {
   rootElement: querySelector("#detail-module"),
+  openElement: querySelector("#detail-open"),
   closeElement: querySelector("#detail-close"),
   nameElement: querySelector("#detail-name"),
   levelsElement: querySelector("#detail-levels"),
@@ -17,9 +22,9 @@ const Detail: DetailModuleProps = {
   },
   totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
-    switcher(
+    toggleModule(
       {
-        open: <HTMLDivElement>Profile.name.parentNode,
+        open: this.openElement,
         close: this.closeElement,
       },
       () => this.show(),
@@ -53,22 +58,22 @@ const Detail: DetailModuleProps = {
   },
 };
 
-type DetailModuleProps = {
-  readonly rootElement: Element;
-  readonly closeElement: Element;
-  readonly nameElement: Element;
-  readonly levelsElement: Element;
-  readonly balanceElement: {
-    readonly copper: Element;
-    readonly iron: Element;
-    readonly gold: Element;
-  };
-  readonly totalBreaksElement: Element;
+type DetailModuleMethods = {
   init(): void;
   updateStatus(): void;
   show(): void;
   hide(): void;
 };
+type InterfaceExtends = DetailModuleMethods &
+  BalanceElementType &
+  RootElementType &
+  ModuleToggleType;
+
+interface DetailModuleProps extends InterfaceExtends {
+  readonly nameElement: Element;
+  readonly levelsElement: Element;
+  readonly totalBreaksElement: Element;
+}
 
 export default Detail;
 export { DetailModuleProps };

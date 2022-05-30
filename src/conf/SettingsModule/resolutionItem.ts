@@ -51,12 +51,15 @@ const resolutionItem: ResolutionItemProps = {
   },
 };
 
-type ResolutionItemProps = {
-  value: number;
+type ResolutionItemMethods = {
   apply(size: number | null, label: string): void;
   init(): void;
   save(): void;
 };
+
+interface ResolutionItemProps extends ResolutionItemMethods {
+  value: number;
+}
 
 export default resolutionItem;
 export { ResolutionItemProps };

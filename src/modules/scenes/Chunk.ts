@@ -3,6 +3,7 @@ import listener from "../listener";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
+import { RootElementType } from "@/interfaces";
 
 const Chunk: ChunkModuleProps = {
   rootElement: querySelector("#chunk-scene"),
@@ -24,12 +25,14 @@ const Chunk: ChunkModuleProps = {
   },
 };
 
-type ChunkModuleProps = {
-  readonly rootElement: Element;
+type ChunkModuleMethods = {
   play(): void;
   hide(): void;
   clear(): void;
 };
+type InterfaceExtends = ChunkModuleMethods & RootElementType;
+
+interface ChunkModuleProps extends InterfaceExtends {}
 
 export default Chunk;
 export { ChunkModuleProps };

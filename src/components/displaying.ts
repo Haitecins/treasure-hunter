@@ -1,24 +1,7 @@
 import anime from "animejs";
 import logger from "@/components/logger";
 
-type ModuleArguments = (
-  target: Element,
-  module: string,
-  callbacks?: {
-    begin?: () => void;
-    complete?: () => void;
-  }
-) => void;
-
-type NowModuleArguments = (
-  target: Element,
-  module: string,
-  callback?: () => void
-) => void;
-
-type ModuleDisplay = ModuleArguments & { now: NowModuleArguments };
-
-const showModule: ModuleDisplay = (target, module, callbacks) => {
+const showModule: ModuleDisplayProps = (target, module, callbacks) => {
   anime({
     targets: target,
     opacity: [0, 1],
@@ -35,15 +18,7 @@ const showModule: ModuleDisplay = (target, module, callbacks) => {
     },
   });
 };
-
-const hideModule: ModuleDisplay = (
-  target,
-  module,
-  callbacks?: {
-    begin?: () => void;
-    complete?: () => void;
-  }
-) => {
+const hideModule: ModuleDisplayProps = (target, module, callbacks) => {
   anime({
     targets: target,
     opacity: [1, 0],
@@ -72,5 +47,23 @@ hideModule.now = (target, module, callback) => {
   logger(module, "已隐藏");
   callback?.();
 };
+
+type DisplayType = (
+  target: Element,
+  module: string,
+  callbacks?: {
+    begin?: () => void;
+    complete?: () => void;
+  }
+) => void;
+type NowPropType = (
+  target: Element,
+  module: string,
+  callback?: () => void
+) => void;
+
+interface ModuleDisplayProps extends DisplayType {
+  now: NowPropType;
+}
 
 export { showModule, hideModule };

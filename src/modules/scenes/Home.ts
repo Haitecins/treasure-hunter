@@ -1,6 +1,7 @@
 import { Profile } from "../users";
 import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
+import { RootElementType } from "@/interfaces";
 
 const Home: HomeModuleProps = {
   rootElement: querySelector("#home-scene"),
@@ -21,15 +22,18 @@ const Home: HomeModuleProps = {
   },
 };
 
-type HomeModuleProps = {
-  readonly rootElement: Element;
-  readonly startElement: Element;
+type HomeModuleMethods = {
   show(): void;
   hide(
     animeBeginCallback?: () => void,
     animeCompleteCallback?: () => void
   ): void;
 };
+type InterfaceExtends = HomeModuleMethods & RootElementType;
+
+interface HomeModuleProps extends InterfaceExtends {
+  readonly startElement: Element;
+}
 
 export default Home;
 export { HomeModuleProps };

@@ -6,15 +6,16 @@ import ticks from "../ticks";
 import quests from "../quests";
 import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import switcher from "@/components/switcher";
+import toggleModule from "@/components/toggleModule";
 import { hideModule, showModule } from "@/components/displaying";
+import { ModuleToggleType, RootElementType } from "@/interfaces";
 
 let getOpenHandler: () => void;
 const Difficult: DifficultModuleProps = {
   rootElement: querySelector("#difficult-select-module"),
   selectorElement: querySelector("#difficult-selector"),
-  confirmElement: querySelector("#difficult-ok-btn"),
-  cancelElement: querySelector("#difficult-cancel-btn"),
+  openElement: querySelector("#difficult-ok-btn"),
+  closeElement: querySelector("#difficult-cancel-btn"),
   degreeElement: querySelector("#degree-levels"),
   degreeInGamingElement: querySelector("#degree-levels-display"),
   target: {
@@ -67,7 +68,7 @@ const Difficult: DifficultModuleProps = {
       // 隐藏模块
       this.hide();
       // 解除【选好了】按钮事件绑定
-      this.confirmElement.removeEventListener("click", confirmHandler);
+      this.openElement.removeEventListener("click", confirmHandler);
       // 开始游戏
       Home.hide(
         () => {
@@ -89,15 +90,15 @@ const Difficult: DifficultModuleProps = {
       );
     };
 
-    getOpenHandler = switcher(
+    getOpenHandler = toggleModule(
       {
         open: Home.startElement,
-        close: this.cancelElement,
+        close: this.closeElement,
       },
       () => {
         this.show();
         // 打开后绑定【选好了】按钮事件
-        this.confirmElement.addEventListener("click", confirmHandler);
+        this.openElement.addEventListener("click", confirmHandler);
       },
       () => {
         this.hide(() => {
@@ -105,7 +106,7 @@ const Difficult: DifficultModuleProps = {
           this.revertChanges();
         });
         // 解除【选好了】按钮事件绑定
-        this.confirmElement.removeEventListener("click", confirmHandler);
+        this.openElement.removeEventListener("click", confirmHandler);
       }
     );
   },
@@ -263,33 +264,11 @@ const Difficult: DifficultModuleProps = {
   },
 };
 
-type DifficultModuleItems = {
-  value: number;
-  exponent: number;
-  title: (props: DifficultModuleItems) => string;
-};
-
-type DifficultModuleProps = {
-  readonly rootElement: Element;
-  readonly selectorElement: Element;
-  readonly confirmElement: Element;
-  readonly cancelElement: Element;
-  readonly degreeElement: Element;
-  readonly degreeInGamingElement: Element;
-  target: {
-    TIMER: number;
-    SUMMON_SPEED: number;
-    STEP_COUNTS: number;
-  };
-  iterator: {
-    exponents: number[];
-    indicator: number;
-    stopped: boolean;
-  };
-  levels(): number;
+type DifficultModuleMethods = {
+  init(): void;
   show(): void;
   hide(animeComplete?: () => void): void;
-  init(): void;
+  levels(): number;
   rebindOpenEvent(): void;
   selector(
     title: string,
@@ -304,6 +283,30 @@ type DifficultModuleProps = {
   showLevels(): void;
   hideLevels(): void;
 };
+type DifficultModuleItems = {
+  value: number;
+  exponent: number;
+  title: (props: DifficultModuleItems) => string;
+};
+type InterfaceExtends = DifficultModuleMethods &
+  RootElementType &
+  ModuleToggleType;
+
+interface DifficultModuleProps extends InterfaceExtends {
+  readonly selectorElement: Element;
+  readonly degreeElement: Element;
+  readonly degreeInGamingElement: Element;
+  target: {
+    TIMER: number;
+    SUMMON_SPEED: number;
+    STEP_COUNTS: number;
+  };
+  iterator: {
+    exponents: number[];
+    indicator: number;
+    stopped: boolean;
+  };
+}
 
 export default Difficult;
 export { DifficultModuleItems, DifficultModuleProps };

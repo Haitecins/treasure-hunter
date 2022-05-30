@@ -60,21 +60,25 @@ const entities: EntityModuleProps = {
   },
 };
 
-interface EntityInstance extends HTMLDivElement {
-  activeKey: string;
-  isActive: boolean;
-  tracker: anime.AnimeInstance;
-}
-
-type EntityModuleProps = {
-  readonly container: Element;
-  animeInstance: anime.AnimeInstance;
+type EntityModuleMethods = {
   enable(): void;
   spawner(): EntityInstance;
   stop(): void;
   clear(): void;
   destroy(): void;
 };
+type InterfaceExtends = EntityModuleMethods;
+
+interface EntityModuleProps extends InterfaceExtends {
+  readonly container: Element;
+  animeInstance: anime.AnimeInstance;
+}
+
+interface EntityInstance extends HTMLDivElement {
+  activeKey: string;
+  isActive: boolean;
+  tracker: anime.AnimeInstance;
+}
 
 export default entities;
 export { EntityInstance, EntityModuleProps };

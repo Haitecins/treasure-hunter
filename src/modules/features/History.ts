@@ -16,8 +16,9 @@ import cache from "@/conf/cache";
 import { Difficult } from "@/modules/features";
 import storage from "../storage";
 import logger from "@/components/logger";
-import switcher from "@/components/switcher";
+import toggleModule from "@/components/toggleModule";
 import { hideModule, showModule } from "@/components/displaying";
+import { ModuleToggleType, RootElementType } from "@/interfaces";
 
 echarts.use([
   TooltipComponent,
@@ -34,7 +35,7 @@ const History: HistoryModuleProps = {
   chartElement: <HTMLElement>querySelector("#history-chart"),
   chart: <echarts.EChartsType>{},
   init() {
-    switcher(
+    toggleModule(
       {
         open: this.openElement,
         close: this.closeElement,
@@ -204,12 +205,16 @@ const History: HistoryModuleProps = {
   },
 };
 
-type HistoryModuleProps = {
-  readonly rootElement: Element;
-  readonly openElement: Element;
-  readonly closeElement: Element;
-  readonly chartElement: HTMLElement;
-  chart: echarts.EChartsType;
+type HistoryEChartsOption = echarts.ComposeOption<
+  | TooltipComponentOption
+  | GridComponentOption
+  | LegendComponentOption
+  | LineSeriesOption
+>;
+type HistoryRelativeTimeOptions = {
+  fromNow(withoutSuffix?: boolean): string;
+};
+type HistoryModuleMethods = {
   init(): void;
   show(): void;
   hide(): void;
@@ -217,17 +222,14 @@ type HistoryModuleProps = {
   updateChart(): void;
   addHistory(): void;
 };
+type InterfaceExtends = HistoryModuleMethods &
+  RootElementType &
+  ModuleToggleType;
 
-type HistoryEChartsOption = echarts.ComposeOption<
-  | TooltipComponentOption
-  | GridComponentOption
-  | LegendComponentOption
-  | LineSeriesOption
->;
-
-type HistoryRelativeTimeOptions = {
-  fromNow(withoutSuffix?: boolean): string;
-};
+interface HistoryModuleProps extends InterfaceExtends {
+  readonly chartElement: HTMLElement;
+  chart: echarts.EChartsType;
+}
 
 export default History;
 export { HistoryEChartsOption, HistoryRelativeTimeOptions, HistoryModuleProps };

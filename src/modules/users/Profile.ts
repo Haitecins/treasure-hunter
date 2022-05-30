@@ -2,12 +2,13 @@ import storage from "../storage";
 import formatter from "../formatter";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
+import { BalanceElementType, RootElementType } from "@/interfaces";
 
 const Profile: ProfileModuleProps = {
   rootElement: querySelector("#profile-module"),
   name: querySelector("#profile-name"),
   levels: querySelector("#profile-levels"),
-  balancesElement: {
+  balanceElement: {
     copper: querySelector("#bal-copper-ingot>div"),
     iron: querySelector("#bal-iron-ingot>div"),
     gold: querySelector("#bal-gold-ingot>div"),
@@ -26,23 +27,23 @@ const Profile: ProfileModuleProps = {
 
     this.levels.innerHTML = `Lv.${savedStorage.levels}`;
     this.name.innerHTML = savedStorage.name;
-    this.balancesElement.copper.innerHTML = convertFormat(savedBalances.copper);
-    this.balancesElement.iron.innerHTML = convertFormat(savedBalances.iron);
-    this.balancesElement.gold.innerHTML = convertFormat(savedBalances.gold);
+    this.balanceElement.copper.innerHTML = convertFormat(savedBalances.copper);
+    this.balanceElement.iron.innerHTML = convertFormat(savedBalances.iron);
+    this.balanceElement.gold.innerHTML = convertFormat(savedBalances.gold);
   },
 };
 
-type ProfileModuleProps = {
-  readonly rootElement: Element;
-  readonly name: Element;
-  readonly levels: Element;
-  readonly balancesElement: {
-    readonly copper: Element;
-    readonly iron: Element;
-    readonly gold: Element;
-  };
+type ProfileModuleMethods = {
   updateBar(): void;
 };
+type InterfaceExtends = ProfileModuleMethods &
+  BalanceElementType &
+  RootElementType;
+
+interface ProfileModuleProps extends InterfaceExtends {
+  readonly name: Element;
+  readonly levels: Element;
+}
 
 export default Profile;
 export { ProfileModuleProps };

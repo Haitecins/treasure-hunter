@@ -6,6 +6,7 @@ import cache from "@/conf/cache";
 import quests from "./quests";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
+import { RootElementType } from "@/interfaces";
 
 const ticks: TickModuleProps = {
   rootElement: querySelector("#ticks-module"),
@@ -66,15 +67,18 @@ const ticks: TickModuleProps = {
   },
 };
 
-type TickModuleProps = {
-  readonly rootElement: Element;
-  animeInstance: anime.AnimeInstance;
-  timer: number;
-  timeRecorder: number;
+type TickModuleMethods = {
   start(): void;
   stop(): void;
   reset(): void;
 };
+type InterfaceExtends = TickModuleMethods & RootElementType;
+
+interface TickModuleProps extends InterfaceExtends {
+  animeInstance: anime.AnimeInstance;
+  timer: number;
+  timeRecorder: number;
+}
 
 export default ticks;
 export { TickModuleProps };

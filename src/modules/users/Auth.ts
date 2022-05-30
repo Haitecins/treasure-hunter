@@ -4,6 +4,7 @@ import { Detail, Difficult, History, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
+import { RootElementType } from "@/interfaces";
 
 const Auth: AuthModuleProps = {
   rootElement: querySelector("#auth-module"),
@@ -102,17 +103,20 @@ const Auth: AuthModuleProps = {
   },
 };
 
-type AuthModuleProps = {
-  readonly rootElement: Element;
+type AuthModuleMethods = {
+  load(): void;
+  success(): void;
+  init(): void;
+};
+type InterfaceExtends = AuthModuleMethods & RootElementType;
+
+interface AuthModuleProps extends InterfaceExtends {
   readonly confirmElement: Element;
   readonly tipElement: Element;
   readonly inputElement: HTMLInputElement;
   readonly isLoginElement: Element;
   readonly joinMessageElement: Element;
-  load(): void;
-  success(): void;
-  init(): void;
-};
+}
 
 export default Auth;
 export { AuthModuleProps };

@@ -1,13 +1,4 @@
-type Switcher = (
-  targets: {
-    open: Element;
-    close: Element;
-  },
-  opening: () => void,
-  closing: () => void
-) => () => void;
-
-const switcher: Switcher = (targets, opening, closing) => {
+const toggleModule: ToggleModuleType = (targets, opening, closing) => {
   const openHandler = () => {
     // 移除打开设置事件
     targets.open.removeEventListener("click", openHandler);
@@ -31,4 +22,13 @@ const switcher: Switcher = (targets, opening, closing) => {
   return openHandler;
 };
 
-export default switcher;
+type ToggleModuleType = (
+  targets: {
+    open: Element;
+    close: Element;
+  },
+  opening: () => void,
+  closing: () => void
+) => () => void;
+
+export default toggleModule;
