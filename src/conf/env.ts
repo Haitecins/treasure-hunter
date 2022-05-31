@@ -1,7 +1,7 @@
 import cache from "./cache";
 import ticks from "@/modules/ticks";
 import route from "@/modules/route";
-import entities, { EntityInstance } from "@/modules/entities";
+import entities from "@/modules/entities";
 import listener, { activeCharHandler } from "@/modules/listener";
 import storage from "@/modules/storage";
 
@@ -10,21 +10,19 @@ if (import.meta.env.MODE === "development") {
   // 暂停/继续游戏
   Object.defineProperty(window, "_pause", {
     value() {
-      const chars = <EntityInstance[]>(
-        Array.prototype.slice.call(entities.container.children)
-      );
+      const children = entities.children();
 
       if (cache.props.isPlaying) {
         if (entities.animeInstance.paused) {
           entities.animeInstance.play();
           listener.enable();
-          chars.forEach((char) => char.tracker.play());
+          children.forEach((char) => char.tracker.play());
           ticks.animeInstance.play();
           return "游戏继续";
         } else {
           entities.animeInstance.pause();
           listener.disable();
-          chars.forEach((char) => char.tracker.pause());
+          children.forEach((char) => char.tracker.pause());
           ticks.animeInstance.pause();
           return "游戏暂停";
         }
@@ -96,9 +94,9 @@ if (import.meta.env.MODE === "development") {
   // 强制激活区域内所有的字块
   Object.defineProperty(window, "_activate", {
     value() {
-      (<EntityInstance[]>(
-        Array.prototype.slice.call(entities.container.children)
-      )).forEach((child) => activeCharHandler(child));
+      const children = entities.children();
+
+      children.forEach((child) => activeCharHandler(child));
       return "强制激活了区域内的字块";
     },
   });

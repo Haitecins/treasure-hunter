@@ -9,7 +9,7 @@ import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 import { RootElementType } from "@/global-types";
 
-const Ending: EndingModuleProps = {
+const Ending: EndingPropsType = {
   rootElement: querySelector("#ending-module"),
   rateElement: querySelector("#ending-rate>span"),
   statElement: querySelector("#ending-stat>div"),
@@ -61,14 +61,14 @@ const Ending: EndingModuleProps = {
   },
 };
 
-type EndingModuleMethods = {
+type EndingMethodsType = {
   updateAssess(): void;
   show(): void;
   hide(): void;
 };
-type InterfaceExtends = EndingModuleMethods & RootElementType;
+type ExtendsType = EndingMethodsType & RootElementType;
 
-interface EndingModuleProps extends InterfaceExtends {
+interface EndingPropsType extends ExtendsType {
   readonly rateElement: Element;
   readonly statElement: Element;
   readonly rewardElement: Element;
@@ -76,4 +76,4 @@ interface EndingModuleProps extends InterfaceExtends {
 }
 
 export default Ending;
-export { EndingModuleProps };
+export { EndingPropsType };

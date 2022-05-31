@@ -6,7 +6,7 @@ import { Difficult } from "./features";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-const entities: EntityModuleProps = {
+const entities: EntityPropsType = {
   container: querySelector("#entities-container"),
   animeInstance: <anime.AnimeInstance>{},
   enable() {
@@ -31,7 +31,7 @@ const entities: EntityModuleProps = {
     });
   },
   spawner() {
-    const elem = <EntityInstance>document.createElement("div");
+    const elem = <EntityInstanceProps>document.createElement("div");
     const char = chars.random().toUpperCase();
     const color = colors.random();
 
@@ -41,6 +41,9 @@ const entities: EntityModuleProps = {
     this.container.appendChild(elem);
 
     return elem;
+  },
+  children() {
+    return Array.prototype.slice.call(this.container.children);
   },
   stop() {
     // 停止生成
@@ -60,25 +63,26 @@ const entities: EntityModuleProps = {
   },
 };
 
-type EntityModuleMethods = {
+type EntityMethodsType = {
   enable(): void;
-  spawner(): EntityInstance;
+  spawner(): EntityInstanceProps;
+  children(): EntityInstanceProps[];
   stop(): void;
   clear(): void;
   destroy(): void;
 };
-type InterfaceExtends = EntityModuleMethods;
+type ExtendsType = EntityMethodsType;
 
-interface EntityModuleProps extends InterfaceExtends {
+interface EntityPropsType extends ExtendsType {
   readonly container: Element;
   animeInstance: anime.AnimeInstance;
 }
 
-interface EntityInstance extends HTMLDivElement {
+interface EntityInstanceProps extends HTMLDivElement {
   activeKey: string;
   isActive: boolean;
   tracker: anime.AnimeInstance;
 }
 
 export default entities;
-export { EntityInstance, EntityModuleProps };
+export { EntityInstanceProps, EntityPropsType };

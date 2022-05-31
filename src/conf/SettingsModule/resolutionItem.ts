@@ -1,7 +1,7 @@
 import { Settings } from "@/modules/features";
 import storage from "@/modules/storage";
 
-const resolutionItem: ResolutionItemProps = {
+const resolutionItem: ResolutionItemPropsType = {
   value: 0,
   apply: (size, label) => {
     const { resolution } = Settings.options;
@@ -51,15 +51,15 @@ const resolutionItem: ResolutionItemProps = {
   },
 };
 
-type ResolutionItemMethods = {
+type ResolutionItemMethodsType = {
   apply(size: number | null, label: string): void;
   init(): void;
   save(): void;
 };
 
-interface ResolutionItemProps extends ResolutionItemMethods {
+interface ResolutionItemPropsType extends ResolutionItemMethodsType {
   value: number;
 }
 
 export default resolutionItem;
-export { ResolutionItemProps };
+export { ResolutionItemPropsType };

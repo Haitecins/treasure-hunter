@@ -4,7 +4,7 @@ import loadIcon from "@/components/loadIcon";
 import writeText from "@/components/writeText";
 import logger from "@/components/logger";
 
-const rewards: RewardModuleProps = {
+const rewards: RewardPropsType = {
   list: [
     () => {
       const coins = cache.props.copperCount;
@@ -67,10 +67,10 @@ const rewards: RewardModuleProps = {
   },
 };
 
-type RewardModuleProps = {
+type RewardPropsType = {
   readonly list: readonly Function[];
   load(container: Element): void;
 };
 
 export default rewards;
-export { RewardModuleProps };
+export { RewardPropsType };

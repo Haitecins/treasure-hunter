@@ -5,7 +5,7 @@ import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 import { RootElementType } from "@/global-types";
 
-const Chunk: ChunkModuleProps = {
+const Chunk: ChunkPropsType = {
   rootElement: querySelector("#chunk-scene"),
   play() {
     showModule.now(this.rootElement, "Chunk", () => {
@@ -25,14 +25,14 @@ const Chunk: ChunkModuleProps = {
   },
 };
 
-type ChunkModuleMethods = {
+type ChunkMethodsType = {
   play(): void;
   hide(): void;
   clear(): void;
 };
-type InterfaceExtends = ChunkModuleMethods & RootElementType;
+type ExtendsType = ChunkMethodsType & RootElementType;
 
-interface ChunkModuleProps extends InterfaceExtends {}
+interface ChunkPropsType extends ExtendsType {}
 
 export default Chunk;
-export { ChunkModuleProps };
+export { ChunkPropsType };

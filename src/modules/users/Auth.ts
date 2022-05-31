@@ -6,7 +6,7 @@ import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { RootElementType } from "@/global-types";
 
-const Auth: AuthModuleProps = {
+const Auth: AuthPropsType = {
   rootElement: querySelector("#auth-module"),
   confirmElement: querySelector("#auth-confirm"),
   tipElement: querySelector("#auth-tip"),
@@ -103,14 +103,14 @@ const Auth: AuthModuleProps = {
   },
 };
 
-type AuthModuleMethods = {
+type AuthMethodsType = {
   load(): void;
   success(): void;
   init(): void;
 };
-type InterfaceExtends = AuthModuleMethods & RootElementType;
+type ExtendsType = AuthMethodsType & RootElementType;
 
-interface AuthModuleProps extends InterfaceExtends {
+interface AuthPropsType extends ExtendsType {
   readonly confirmElement: Element;
   readonly tipElement: Element;
   readonly inputElement: HTMLInputElement;
@@ -119,4 +119,4 @@ interface AuthModuleProps extends InterfaceExtends {
 }
 
 export default Auth;
-export { AuthModuleProps };
+export { AuthPropsType };

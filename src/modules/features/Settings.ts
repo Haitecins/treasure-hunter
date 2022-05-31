@@ -1,11 +1,11 @@
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import resolutionItem from "@/conf/SettingsModule/resolutionItem";
-import toggleModule from "@/components/toggleModule";
+import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 import { ModuleToggleType, RootElementType } from "@/global-types";
 
-const Settings: SettingsModuleProps = {
+const Settings: SettingsPropsType = {
   rootElement: querySelector("#settings-module"),
   openElement: querySelector("#settings-open-btn"),
   closeElement: querySelector("#settings-close-btn"),
@@ -14,7 +14,7 @@ const Settings: SettingsModuleProps = {
     resolution: <HTMLInputElement>querySelector("#resolution-option"),
   },
   init() {
-    toggleModule(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,
@@ -40,20 +40,18 @@ const Settings: SettingsModuleProps = {
   },
 };
 
-type SettingsModuleMethods = {
+type SettingsMethodsType = {
   init(): void;
   show(): void;
   hide(beginExtraCallback?: () => void): void;
 };
-type InterfaceExtends = SettingsModuleMethods &
-  RootElementType &
-  ModuleToggleType;
+type ExtendsType = SettingsMethodsType & RootElementType & ModuleToggleType;
 
-interface SettingsModuleProps extends InterfaceExtends {
+interface SettingsPropsType extends ExtendsType {
   readonly options: {
     readonly resolution: HTMLInputElement;
   };
 }
 
 export default Settings;
-export { SettingsModuleProps };
+export { SettingsPropsType };

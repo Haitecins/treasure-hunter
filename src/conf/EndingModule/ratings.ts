@@ -10,7 +10,7 @@ const levelsUp = () => {
     data.levels += 1;
   });
 };
-const ratings: RatingModuleMethods = {
+const ratings: RatingPropsType = {
   load(container) {
     const { breakChars } = cache.props;
     let rank;
@@ -86,15 +86,15 @@ const ratings: RatingModuleMethods = {
   },
 };
 
-type RankList = "S" | "A" | "B" | "C" | "D";
-type RatingModuleMethods = {
+type RankListType = "S" | "A" | "B" | "C" | "D";
+type RatingPropsType = {
   load(container: Element): void;
-  rankS(): RankList;
-  rankA(): RankList;
-  rankB(): RankList;
-  rankC(): RankList;
-  rankD(): RankList;
+  rankS(): RankListType;
+  rankA(): RankListType;
+  rankB(): RankListType;
+  rankC(): RankListType;
+  rankD(): RankListType;
 };
 
 export default ratings;
-export { RankList, RatingModuleMethods };
+export { RankListType, RatingPropsType };

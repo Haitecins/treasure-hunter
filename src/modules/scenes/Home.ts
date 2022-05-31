@@ -3,7 +3,7 @@ import { querySelector } from "@/components/selector";
 import { hideModule, showModule } from "@/components/displaying";
 import { RootElementType } from "@/global-types";
 
-const Home: HomeModuleProps = {
+const Home: HomePropsType = {
   rootElement: querySelector("#home-scene"),
   startElement: querySelector("#home-start"),
   show() {
@@ -22,18 +22,18 @@ const Home: HomeModuleProps = {
   },
 };
 
-type HomeModuleMethods = {
+type HomeMethodsType = {
   show(): void;
   hide(
     animeBeginCallback?: () => void,
     animeCompleteCallback?: () => void
   ): void;
 };
-type InterfaceExtends = HomeModuleMethods & RootElementType;
+type ExtendsType = HomeMethodsType & RootElementType;
 
-interface HomeModuleProps extends InterfaceExtends {
+interface HomePropsType extends ExtendsType {
   readonly startElement: Element;
 }
 
 export default Home;
-export { HomeModuleProps };
+export { HomePropsType };

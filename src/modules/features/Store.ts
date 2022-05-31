@@ -1,15 +1,15 @@
 import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import toggleModule from "@/components/toggleModule";
+import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 import { ModuleToggleType, RootElementType } from "@/global-types";
 
-const Store: StoreModuleProps = {
+const Store: StorePropsType = {
   rootElement: querySelector("#store-module"),
   openElement: querySelector("#treasure-store-open-btn"),
   closeElement: querySelector("#store-close-btn"),
   init() {
-    toggleModule(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,
@@ -27,14 +27,14 @@ const Store: StoreModuleProps = {
   },
 };
 
-type StoreModuleMethods = {
+type StoreMethodsType = {
   init(): void;
   show(): void;
   hide(): void;
 };
-type InterfaceExtends = StoreModuleMethods & RootElementType & ModuleToggleType;
+type ExtendsType = StoreMethodsType & RootElementType & ModuleToggleType;
 
-interface StoreModuleProps extends InterfaceExtends {}
+interface StorePropsType extends ExtendsType {}
 
 export default Store;
-export { StoreModuleProps };
+export { StorePropsType };

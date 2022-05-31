@@ -1,7 +1,7 @@
 import anime from "animejs";
 import logger from "@/components/logger";
 
-const showModule: ModuleDisplayProps = (target, module, callbacks) => {
+const showModule: DisplayPropsType = (target, module, callbacks) => {
   anime({
     targets: target,
     opacity: [0, 1],
@@ -18,7 +18,7 @@ const showModule: ModuleDisplayProps = (target, module, callbacks) => {
     },
   });
 };
-const hideModule: ModuleDisplayProps = (target, module, callbacks) => {
+const hideModule: DisplayPropsType = (target, module, callbacks) => {
   anime({
     targets: target,
     opacity: [1, 0],
@@ -48,7 +48,7 @@ hideModule.now = (target, module, callback) => {
   callback?.();
 };
 
-type DisplayType = (
+type PropsType = (
   target: Element,
   module: string,
   callbacks?: {
@@ -56,14 +56,14 @@ type DisplayType = (
     complete?: () => void;
   }
 ) => void;
-type NowPropType = (
+type NowPropsType = (
   target: Element,
   module: string,
   callback?: () => void
 ) => void;
 
-interface ModuleDisplayProps extends DisplayType {
-  now: NowPropType;
+interface DisplayPropsType extends PropsType {
+  now: NowPropsType;
 }
 
 export { showModule, hideModule };

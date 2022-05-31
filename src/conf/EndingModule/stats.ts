@@ -5,7 +5,7 @@ import convert from "@/modules/convert";
 import logger from "@/components/logger";
 import writeText from "@/components/writeText";
 
-const stats: StatModuleProps = {
+const stats: StatPropsType = {
   list: [
     () => {
       const timeRecorder = ticks.timeRecorder;
@@ -41,10 +41,10 @@ const stats: StatModuleProps = {
   },
 };
 
-type StatModuleProps = {
+type StatPropsType = {
   readonly list: readonly Function[];
   load(container: Element): void;
 };
 
 export default stats;
-export { StatModuleProps };
+export { StatPropsType };

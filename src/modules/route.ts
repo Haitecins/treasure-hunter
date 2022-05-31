@@ -1,8 +1,8 @@
 import anime from "animejs";
 import { Difficult } from "./features";
-import { EntityInstance } from "./entities";
+import { EntityInstanceProps } from "./entities";
 
-const route = (elem: EntityInstance) => {
+const route = (elem: EntityInstanceProps) => {
   const { clientWidth, clientHeight } = document.documentElement;
   const timeline = anime.timeline({ targets: elem });
   const steps = Difficult.target.STEP_COUNTS;

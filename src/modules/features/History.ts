@@ -16,7 +16,7 @@ import cache from "@/conf/cache";
 import { Difficult } from "@/modules/features";
 import storage from "../storage";
 import logger from "@/components/logger";
-import toggleModule from "@/components/toggleModule";
+import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 import { ModuleToggleType, RootElementType } from "@/global-types";
 
@@ -28,14 +28,14 @@ echarts.use([
   SVGRenderer,
   UniversalTransition,
 ]);
-const History: HistoryModuleProps = {
+const History: HistoryPropsType = {
   rootElement: querySelector("#history-module"),
   openElement: querySelector("#history-open-btn"),
   closeElement: querySelector("#history-close-btn"),
   chartElement: <HTMLElement>querySelector("#history-chart"),
   chart: <echarts.EChartsType>{},
   init() {
-    toggleModule(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,
@@ -214,7 +214,7 @@ type HistoryEChartsOption = echarts.ComposeOption<
 type HistoryRelativeTimeOptions = {
   fromNow(withoutSuffix?: boolean): string;
 };
-type HistoryModuleMethods = {
+type HistoryMethodsType = {
   init(): void;
   show(): void;
   hide(): void;
@@ -222,14 +222,12 @@ type HistoryModuleMethods = {
   updateChart(): void;
   addHistory(): void;
 };
-type InterfaceExtends = HistoryModuleMethods &
-  RootElementType &
-  ModuleToggleType;
+type ExtendsType = HistoryMethodsType & RootElementType & ModuleToggleType;
 
-interface HistoryModuleProps extends InterfaceExtends {
+interface HistoryPropsType extends ExtendsType {
   readonly chartElement: HTMLElement;
   chart: echarts.EChartsType;
 }
 
 export default History;
-export { HistoryEChartsOption, HistoryRelativeTimeOptions, HistoryModuleProps };
+export { HistoryEChartsOption, HistoryRelativeTimeOptions, HistoryPropsType };

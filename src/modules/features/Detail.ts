@@ -1,7 +1,7 @@
 import storage from "../storage";
 import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import toggleModule from "@/components/toggleModule";
+import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 import {
   BalanceElementType,
@@ -9,7 +9,7 @@ import {
   RootElementType,
 } from "@/global-types";
 
-const Detail: DetailModuleProps = {
+const Detail: DetailPropsType = {
   rootElement: querySelector("#detail-module"),
   openElement: querySelector("#detail-open"),
   closeElement: querySelector("#detail-close"),
@@ -22,7 +22,7 @@ const Detail: DetailModuleProps = {
   },
   totalBreaksElement: querySelector("#detail-break-chars>div"),
   init() {
-    toggleModule(
+    switcher(
       {
         open: this.openElement,
         close: this.closeElement,
@@ -58,22 +58,22 @@ const Detail: DetailModuleProps = {
   },
 };
 
-type DetailModuleMethods = {
+type DetailMethodsType = {
   init(): void;
   updateStatus(): void;
   show(): void;
   hide(): void;
 };
-type InterfaceExtends = DetailModuleMethods &
+type ExtendsType = DetailMethodsType &
   BalanceElementType &
   RootElementType &
   ModuleToggleType;
 
-interface DetailModuleProps extends InterfaceExtends {
+interface DetailPropsType extends ExtendsType {
   readonly nameElement: Element;
   readonly levelsElement: Element;
   readonly totalBreaksElement: Element;
 }
 
 export default Detail;
-export { DetailModuleProps };
+export { DetailPropsType };

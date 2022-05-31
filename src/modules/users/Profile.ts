@@ -4,7 +4,7 @@ import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 import { BalanceElementType, RootElementType } from "@/global-types";
 
-const Profile: ProfileModuleProps = {
+const Profile: ProfilePropsType = {
   rootElement: querySelector("#profile-module"),
   name: querySelector("#profile-name"),
   levels: querySelector("#profile-levels"),
@@ -33,17 +33,15 @@ const Profile: ProfileModuleProps = {
   },
 };
 
-type ProfileModuleMethods = {
+type ProfileMethodsType = {
   updateBar(): void;
 };
-type InterfaceExtends = ProfileModuleMethods &
-  BalanceElementType &
-  RootElementType;
+type ExtendsType = ProfileMethodsType & BalanceElementType & RootElementType;
 
-interface ProfileModuleProps extends InterfaceExtends {
+interface ProfilePropsType extends ExtendsType {
   readonly name: Element;
   readonly levels: Element;
 }
 
 export default Profile;
-export { ProfileModuleProps };
+export { ProfilePropsType };

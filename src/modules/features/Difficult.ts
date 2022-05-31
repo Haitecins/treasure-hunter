@@ -6,12 +6,12 @@ import ticks from "../ticks";
 import quests from "../quests";
 import { querySelector } from "@/components/selector";
 import logger from "@/components/logger";
-import toggleModule from "@/components/toggleModule";
+import switcher from "@/components/switcher";
 import { hideModule, showModule } from "@/components/displaying";
 import { ModuleToggleType, RootElementType } from "@/global-types";
 
 let getOpenHandler: () => void;
-const Difficult: DifficultModuleProps = {
+const Difficult: DifficultPropsType = {
   rootElement: querySelector("#difficult-select-module"),
   selectorElement: querySelector("#difficult-selector"),
   openElement: querySelector("#difficult-ok-btn"),
@@ -90,7 +90,7 @@ const Difficult: DifficultModuleProps = {
       );
     };
 
-    getOpenHandler = toggleModule(
+    getOpenHandler = switcher(
       {
         open: Home.startElement,
         close: this.closeElement,
@@ -155,8 +155,8 @@ const Difficult: DifficultModuleProps = {
     (<HTMLInputElement>selects.children[index]).click();
   },
   loadSelector() {
-    const timerLimit = (props: DifficultModuleItems) => `${props.value}秒`;
-    const runningLimit = (props: DifficultModuleItems) => `${props.value}次`;
+    const timerLimit = (props: DifficultItemPropsType) => `${props.value}秒`;
+    const runningLimit = (props: DifficultItemPropsType) => `${props.value}次`;
 
     // 加载难度选择器
     this.selector(
@@ -264,7 +264,7 @@ const Difficult: DifficultModuleProps = {
   },
 };
 
-type DifficultModuleMethods = {
+type DifficultMethodsType = {
   init(): void;
   show(): void;
   hide(animeComplete?: () => void): void;
@@ -273,8 +273,8 @@ type DifficultModuleMethods = {
   selector(
     title: string,
     id: string,
-    options: [DifficultModuleItems[], number],
-    onchange: (selected: DifficultModuleItems) => void
+    options: [DifficultItemPropsType[], number],
+    onchange: (selected: DifficultItemPropsType) => void
   ): void;
   loadSelector(): void;
   destroySelector(): void;
@@ -283,16 +283,14 @@ type DifficultModuleMethods = {
   showLevels(): void;
   hideLevels(): void;
 };
-type DifficultModuleItems = {
+type DifficultItemPropsType = {
   value: number;
   exponent: number;
-  title: (props: DifficultModuleItems) => string;
+  title: (props: DifficultItemPropsType) => string;
 };
-type InterfaceExtends = DifficultModuleMethods &
-  RootElementType &
-  ModuleToggleType;
+type ExtendsType = DifficultMethodsType & RootElementType & ModuleToggleType;
 
-interface DifficultModuleProps extends InterfaceExtends {
+interface DifficultPropsType extends ExtendsType {
   readonly selectorElement: Element;
   readonly degreeElement: Element;
   readonly degreeInGamingElement: Element;
@@ -309,4 +307,4 @@ interface DifficultModuleProps extends InterfaceExtends {
 }
 
 export default Difficult;
-export { DifficultModuleItems, DifficultModuleProps };
+export { DifficultItemPropsType, DifficultPropsType };
