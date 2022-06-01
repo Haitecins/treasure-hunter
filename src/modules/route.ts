@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { Difficult } from "./features";
-import { EntityInstanceProps } from "./entities";
+import { EntityInstanceProps } from "./entity";
 
 const route = (elem: EntityInstanceProps) => {
   const { clientWidth, clientHeight } = document.documentElement;

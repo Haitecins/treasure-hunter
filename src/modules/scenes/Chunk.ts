@@ -1,4 +1,4 @@
-import entities from "../entities";
+import entity from "../entity";
 import listener from "../listener";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
@@ -10,7 +10,7 @@ const Chunk: ChunkPropsType = {
   play() {
     showModule.now(this.rootElement, "Chunk", () => {
       // 启用字块生成模块
-      entities.enable();
+      entity.enable();
     });
   },
   hide() {
@@ -18,7 +18,7 @@ const Chunk: ChunkPropsType = {
   },
   clear() {
     // 销毁字块生成模块
-    entities.destroy();
+    entity.destroy();
     // 关闭键盘监听器
     listener.disable();
     logger("Chunk", "模块清理");

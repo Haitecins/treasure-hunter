@@ -6,7 +6,7 @@ import { Difficult } from "./features";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
 
-const entities: EntityPropsType = {
+const entity: EntityPropsType = {
   container: querySelector("#entities-container"),
   animeInstance: <anime.AnimeInstance>{},
   enable() {
@@ -84,5 +84,5 @@ interface EntityInstanceProps extends HTMLDivElement {
   tracker: anime.AnimeInstance;
 }
 
-export default entities;
+export default entity;
 export { EntityInstanceProps, EntityPropsType };

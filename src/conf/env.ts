@@ -1,7 +1,7 @@
 import cache from "./cache";
 import ticks from "@/modules/ticks";
 import route from "@/modules/route";
-import entities from "@/modules/entities";
+import entity from "@/modules/entity";
 import listener, { activeCharHandler } from "@/modules/listener";
 import storage from "@/modules/storage";
 
@@ -10,17 +10,17 @@ if (import.meta.env.MODE === "development") {
   // 暂停/继续游戏
   Object.defineProperty(window, "_pause", {
     value() {
-      const children = entities.children();
+      const children = entity.children();
 
       if (cache.props.isPlaying) {
-        if (entities.animeInstance.paused) {
-          entities.animeInstance.play();
+        if (entity.animeInstance.paused) {
+          entity.animeInstance.play();
           listener.enable();
           children.forEach((char) => char.tracker.play());
           ticks.animeInstance.play();
           return "游戏继续";
         } else {
-          entities.animeInstance.pause();
+          entity.animeInstance.pause();
           listener.disable();
           children.forEach((char) => char.tracker.pause());
           ticks.animeInstance.pause();
@@ -77,7 +77,7 @@ if (import.meta.env.MODE === "development") {
 
       for (let i = 0; i < amounts; i++) {
         // 生成字块并移动
-        route(entities.spawner());
+        route(entity.spawner());
       }
       return `已生成数量为${amounts}的字块`;
     },
@@ -94,7 +94,7 @@ if (import.meta.env.MODE === "development") {
   // 强制激活区域内所有的字块
   Object.defineProperty(window, "_activate", {
     value() {
-      const children = entities.children();
+      const children = entity.children();
 
       children.forEach((child) => activeCharHandler(child));
       return "强制激活了区域内的字块";

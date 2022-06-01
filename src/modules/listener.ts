@@ -1,5 +1,5 @@
 import anime from "animejs";
-import entities, { EntityInstanceProps } from "./entities";
+import entity, { EntityInstanceProps } from "./entity";
 import quests from "./quests";
 import cache from "@/conf/cache";
 import logger from "@/components/logger";
@@ -40,7 +40,7 @@ const activeCharHandler = (elem: EntityInstanceProps) => {
 };
 const keyDownHandler = (ev: KeyboardEvent) => {
   document.onkeydown = null;
-  const children = entities.children();
+  const children = entity.children();
 
   children.forEach((elem) => {
     const { activeKey } = elem;
