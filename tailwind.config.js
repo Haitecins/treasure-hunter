@@ -1,19 +1,19 @@
-const importIcon = (name) => `url("/src/assets/icons/${name}")`;
+const registerImage = (name) => `url("/src/assets/icons/${name}")`;
 const backgroundImage = {
-  banner_pattern: importIcon("banner_pattern.png"),
-  barrier: importIcon("barrier.png"),
-  blaze_powder: importIcon("blaze_powder.png"),
-  cancel: importIcon("cancel.png"),
-  comparator: importIcon("comparator.png"),
-  copper_ingot: importIcon("copper_ingot.png"),
-  gold_ingot: importIcon("gold_ingot.png"),
-  emerald: importIcon("emerald.png"),
-  ender_pearl: importIcon("ender_pearl.png"),
-  iron_ingot: importIcon("iron_ingot.png"),
-  nether_star: importIcon("nether_star.png"),
-  ok: importIcon("ok.png"),
-  paper: importIcon("paper.png"),
-  writable_book: importIcon("writable_book.png"),
+  banner_pattern: registerImage("banner_pattern.png"),
+  barrier: registerImage("barrier.png"),
+  blaze_powder: registerImage("blaze_powder.png"),
+  cancel: registerImage("cancel.png"),
+  comparator: registerImage("comparator.png"),
+  copper_ingot: registerImage("copper_ingot.png"),
+  gold_ingot: registerImage("gold_ingot.png"),
+  emerald: registerImage("emerald.png"),
+  ender_pearl: registerImage("ender_pearl.png"),
+  iron_ingot: registerImage("iron_ingot.png"),
+  nether_star: registerImage("nether_star.png"),
+  ok: registerImage("ok.png"),
+  paper: registerImage("paper.png"),
+  writable_book: registerImage("writable_book.png"),
 };
 const colors = {
   // 用于文字的颜色

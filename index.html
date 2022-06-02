@@ -81,16 +81,8 @@
         </div>
         <!-- 功能模块 -->
         <div class="flex justify-between items-start py-4 px-6">
-          <div class="text-xl">
+          <div id="collection-module" class="text-xl">
             <!-- 收集品列表 -->
-            <div class="th-icon-module">
-              <i class="th-icon-ref bg-blaze_powder"></i>
-              <div>已收集<span class="px-2">0/25</span>冒险家宝藏</div>
-            </div>
-            <div class="th-icon-module">
-              <i class="th-icon-ref bg-blaze_powder"></i>
-              <div>已收集<span class="px-2">0/15</span>寰宇支配者宝藏</div>
-            </div>
           </div>
           <div class="flex justify-end">
             <!-- 商店 -->
@@ -302,6 +294,23 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- 收藏品收集详细模块 -->
+    <div id="collection-detail-module" class="th-modal-space hidden">
+      <div class="absolute inset-0 bg-th-mask"></div>
+      <div class="th-modal justify-start">
+        <div class="flex justify-between items-center">
+          <div class="text-3xl flex items-end">
+            <span id="collection-title"></span
+            ><span class="pl-2 text-th-lightgrey text-xl">收藏品</span>
+          </div>
+          <i id="collection-detail-close-btn" class="th-modal-cancel-btn"></i>
+        </div>
+        <div
+          id="collection-contents"
+          class="flex items-center pt-3 flex-wrap justify-evenly"
+        ></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

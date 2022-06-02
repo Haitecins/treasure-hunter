@@ -11,6 +11,7 @@ const Home: HomePropsType = {
       begin: () => {
         // 更新Profile模块
         Profile.updateBar();
+        // TODO 需要更新Collection模块
       },
     });
   },

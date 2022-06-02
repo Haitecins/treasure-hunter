@@ -1,6 +1,6 @@
 import anime from "animejs";
 import { Home } from "../scenes";
-import { Detail, Difficult, History, Store } from "../features";
+import { Collection, Detail, Difficult, History, Store } from "../features";
 import storage from "../storage";
 import logger from "@/components/logger";
 import { querySelector } from "@/components/selector";
@@ -75,8 +75,8 @@ const Auth: AuthPropsType = {
       complete: () => {
         // 删除Auth模块
         this.rootElement.remove();
-        // 显示Home模块
-        Home.show();
+        // 初始化Collection模块
+        Collection.init();
         // 初始化History模块
         History.init();
         // 初始化Store模块
@@ -85,6 +85,8 @@ const Auth: AuthPropsType = {
         Difficult.init();
         // 初始化Detail模块
         Detail.init();
+        // 显示Home模块
+        Home.show();
       },
     });
   },

@@ -9,8 +9,8 @@ type RootElementType = {
   readonly rootElement: Element;
 };
 type ModuleToggleType = {
-  readonly openElement: Element;
-  readonly closeElement: Element;
+  readonly openElement?: Element;
+  readonly closeElement?: Element;
 };
 
 export { BalanceElementType, RootElementType, ModuleToggleType };

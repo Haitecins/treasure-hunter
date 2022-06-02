@@ -68,7 +68,7 @@ const Difficult: DifficultPropsType = {
       // 隐藏模块
       this.hide();
       // 解除【选好了】按钮事件绑定
-      this.openElement.removeEventListener("click", confirmHandler);
+      this.openElement!.removeEventListener("click", confirmHandler);
       // 开始游戏
       Home.hide(
         () => {
@@ -98,7 +98,7 @@ const Difficult: DifficultPropsType = {
       () => {
         this.show();
         // 打开后绑定【选好了】按钮事件
-        this.openElement.addEventListener("click", confirmHandler);
+        this.openElement!.addEventListener("click", confirmHandler);
       },
       () => {
         this.hide(() => {
@@ -106,7 +106,7 @@ const Difficult: DifficultPropsType = {
           this.revertChanges();
         });
         // 解除【选好了】按钮事件绑定
-        this.openElement.removeEventListener("click", confirmHandler);
+        this.openElement!.removeEventListener("click", confirmHandler);
       }
     );
   },

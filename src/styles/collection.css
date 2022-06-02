@@ -1,0 +1,5 @@
+@layer components {
+  .th-locked {
+    filter: grayscale(1);
+  }
+}
