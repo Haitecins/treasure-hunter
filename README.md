@@ -4,7 +4,7 @@
 
 [cloud.tencent.com](https://treasure-hunter-5gzr20nk38f64941-1256732922.ap-shanghai.app.tcloudbase.com/)
 
-[vercel.com](https://treasure-hunter-c7rle09vd-chiyukikana.vercel.app/)
+[vercel.com](https://treasure-hunter-drab.vercel.app/)
 
 ## Q&A
 
