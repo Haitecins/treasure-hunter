@@ -2,7 +2,7 @@
 
 ## How to play
 
-[cloud.tencent.com](https://treasure-hunter-8guesx1c28d6e82c-1256732922.ap-shanghai.app.tcloudbase.com)
+[cloud.tencent.com](https://treasure-hunter-5gzr20nk38f64941-1256732922.ap-shanghai.app.tcloudbase.com/)
 
 ## Q&A
 
